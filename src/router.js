@@ -1,0 +1,134 @@
+// Vue et Router sont deux dépendances du package-lock.json
+// Le nom de la variable importée est le mot qui se trouve plus bas dans "component"
+
+import Vue from 'vue'
+import Router from 'vue-router'
+import Home from './views/Home.vue'
+
+// import InscripNounou from './views/NouInscription.vue'
+import Notfound from './views/notfound.vue'
+import Inscription from './views/inscription.vue'
+import Fonctionnement from './views/fonctionnement.vue'
+import Reglement from './views/reglement.vue'
+import Todoliste from './views/todolist.vue'
+import Conseilsnounous from './views/conseilsnounous.vue'
+import Alimentsdangereux from './views/alimentsdangereux.vue'
+import Objetsutiles from './views/objetsutiles.vue'
+import Sorties from './views/sorties.vue'
+import Catsittersearch from './views/catsittersearch.vue'
+import CatSearch from './views/catSearch.vue'
+import ProfilNou from './views/profilNou.vue'
+import ProfilMaitre from './views/profilMaitre.vue'
+import Login from './views/login.vue'
+import UserProfile from './views/userProfile.vue'
+import ShowNounous from './views/showNounous.vue'
+import ShowMaitres from './views/showMaitres.vue'
+
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+path : '*',
+redirect: '/notfound'
+    },
+    {
+      // juste le slash ça permet de dire que ce sera cette vue qui sera envoyée par défaut
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/fonctionnement',
+      name: 'fonctionnement',
+      component: Fonctionnement
+    },
+    {
+      path: '/reglement',
+      name: 'reglement',
+      component: Reglement
+    },
+    {
+      path: '/todoliste',
+      name: 'todoliste',
+      component: Todoliste
+    },
+    {
+      path: '/conseilsnounous',
+      name: 'conseilsnounous',
+      component: Conseilsnounous
+    },
+    {
+      path: '/alimentsdangereux',
+      name: 'alimentsdangereux',
+      component: Alimentsdangereux
+    },
+    {
+      path: '/objetsutiles',
+      name: 'objetsutiles',
+      component: Objetsutiles
+    },
+    {
+      path: '/sorties',
+      name: 'sorties',
+      component: Sorties
+    },
+    {
+      path: '/catsittersearch',
+      name: 'catsittersearch',
+      component: Catsittersearch
+    },
+    {
+      path: '/profilNou',
+      name: 'profilNou',
+      component: ProfilNou
+    },
+    {
+      path: '/profilMaitre',
+      name: 'profilMaitre',
+      component: ProfilMaitre
+    },
+    {
+      path: '/userProfile',
+      name: 'userProfile',
+      component: UserProfile
+    },
+    {
+      path: '/catSearch',
+      name: 'catSearch',
+      component: CatSearch
+    },
+    {
+      path: '/inscription',
+      name: 'inscription',
+      component: Inscription
+    },
+    {
+      path: '/notfound',
+      name: 'notfound',
+      component: Notfound
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/showNounous',
+      name: 'showNounous',
+      component: ShowNounous
+    },
+    {
+      path: '/showMaitres',
+      name: 'showMaitres',
+      component: ShowMaitres
+    }
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')}
+    
+  ]
+})

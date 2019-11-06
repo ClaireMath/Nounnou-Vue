@@ -1,0 +1,160 @@
+<template>
+ <div>
+   <div class="catsearch">
+         <h1>TROUVER UN CHAT A GARDER</h1>
+        
+        <form @submit.prevent="showcats">
+        
+        <input v-model="maitre.ville" type="text" name="" id="" placeholder="Ville de l'hôte">
+        
+        <input v-model="maitre.statut_disponible" type="checkbox" id="dispo">
+        <label for="dispo">ayant besoin d'être gardé bientôt</label>
+        
+        <input v-model="chat.tolere_les_chats" type="checkbox" id="okchats">
+        <label for="okchats">qui s'entend avec les chats</label>
+        
+        <input v-model="chat.tolere_les_animaux" type="checkbox" id="okanimaux">
+        <label for="okanimaux">qui s'entend avec les autres animaux</label>
+        
+        <input v-model="chat.a_peur_des_enfants" type="checkbox" id="peurdesenfants">
+        <label for="peurdesenfants">qui s'entend bien avec les enfants</label>
+        
+        <input class="btn"  type="submit" value="Rechercher">
+        
+    </form>
+    <div class="results">
+       
+        <!-- boucler pour afficher tous les résultats (v-for)
+        dans data créer variable qui s'appelle resultats
+        (voir datatable) 
+         -->
+          <!-- // le premier maitres, c'est celui qui est dans props, donc dans l'enfant
+        // le deuxième maitres, c'est celui qui est dans data-->
+        <myTable v-if="show" :resultats="resultatmaitres"></myTable>
+     </div> 
+    </div>    
+    
+     <myfooter></myfooter>
+    </div>
+    </template>
+
+<script>
+// @ is an alias to /src
+import myfooter from '../components/myfooter'
+import myTable from "../components/myTable";
+
+export default {
+  name: 'catSearch',
+ components: {
+    myfooter,
+    myTable
+            },
+data() {
+      return {
+        maitre: {} ,
+        show: false,
+        chat: {},
+        resultatmaitres: [],
+        url: "http://localhost:6001/maitre/AllByVilleEtStatut",
+      }
+    },
+
+    methods: {
+       showcats() {
+          
+        this.axios
+        .post(this.url,this.maitre)
+          .then((res) => {
+            console.log(res.data)
+             this.resultatmaitres = res.data;
+          this.show = true;
+          console.log(this.resultatmaitres);
+          })
+          .catch(err => {
+            // console.log(err)
+          })
+       } 
+},
+  // from: Route d'où je viens : the target Route Object being navigated to.
+  // to: Route où je veux aller : the current route being navigated away from.
+  // next: Fonction callback appelée quand ma condition est remplie
+ beforeRouteEnter(from, to, next) {
+    if (localStorage.getItem("token") == null) {
+      next("/login");
+    } else {
+      next();
+    }
+}
+};
+</script>
+<style scoped>
+.catsearch {
+  background-color: whitesmoke;
+  color: black;
+  font-family: "Merienda One", cursive, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.results {
+  width: 100%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.ville {
+  margin: 20px;
+}
+
+/* .catsitter {
+  display: flex;
+  justify-content: center;
+} */
+.btn {
+  width: 250px;
+  height: 50px;
+  font-family: "Livvic", sans-serif;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  color: hsl(330, 78%, 23%);
+  background-color: whitesmoke;
+  /* font-family: cursive, "sans-serif"; */
+  font-weight: bold;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+  padding: 0px;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: #680d3b;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
+label {
+  margin-bottom: 30px;
+}
+input {
+  border-radius: 25px;
+  height: 30px;
+  width: 100%;
+  padding: 10px;
+}
+select {
+  margin-bottom: 30px;
+  border-radius: 25px;
+  height: 30px;
+  width: 100%;
+}
+.checkbox {
+  height: 20px;
+}
+</style>
