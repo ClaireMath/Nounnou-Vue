@@ -5,7 +5,7 @@
         
         <form @submit.prevent="showcats">
         
-        <input v-model="maitre.ville" type="text" name="" id="" placeholder="Ville de l'hôte">
+        <input v-model="maitre.ville" type="text" name="" id="ville" placeholder="Ville de l'hôte">
         
         <input v-model="maitre.statut_disponible" type="checkbox" id="dispo">
         <label for="dispo">ayant besoin d'être gardé bientôt</label>
@@ -75,8 +75,8 @@ data() {
           })
        } 
 },
-  // from: Route d'où je viens : the target Route Object being navigated to.
-  // to: Route où je veux aller : the current route being navigated away from.
+  // from: Route d'où je viens : the current route being navigated away from.
+  // to: Route où je veux aller : the target Route Object being navigated to.
   // next: Fonction callback appelée quand ma condition est remplie
  beforeRouteEnter(from, to, next) {
     if (localStorage.getItem("token") == null) {
@@ -99,15 +99,19 @@ data() {
   padding: 20px;
 }
 .results {
+  margin-top: 40px;
   width: 100%;
 }
 form {
+  width: 65%;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  align-items: center;
+  align-items: center;border: 2px solid #680d3b;
+  border-radius: 25px;
+  padding: 20px;
 }
-.ville {
+#ville {
   margin: 20px;
 }
 
@@ -145,16 +149,26 @@ label {
 input {
   border-radius: 25px;
   height: 30px;
-  width: 100%;
+  width: 50%;
   padding: 10px;
 }
 select {
   margin-bottom: 30px;
   border-radius: 25px;
   height: 30px;
-  width: 100%;
+  width: 50%;
 }
 .checkbox {
   height: 20px;
+}
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+form {
+  width: 90%;
+}
+.btn {
+  width: 60%;
+}
 }
 </style>

@@ -3,9 +3,9 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 
-// import InscripNounou from './views/NouInscription.vue'
+
+import Home from './views/Home.vue'
 import Notfound from './views/notfound.vue'
 import Inscription from './views/inscription.vue'
 import Fonctionnement from './views/fonctionnement.vue'
@@ -20,9 +20,9 @@ import CatSearch from './views/catSearch.vue'
 import ProfilNou from './views/profilNou.vue'
 import ProfilMaitre from './views/profilMaitre.vue'
 import Login from './views/login.vue'
-import UserProfile from './views/userProfile.vue'
 import ShowNounous from './views/showNounous.vue'
 import ShowMaitres from './views/showMaitres.vue'
+import Admin from './views/admin.vue'
 
 Vue.use(Router)
 
@@ -91,11 +91,6 @@ redirect: '/notfound'
       component: ProfilMaitre
     },
     {
-      path: '/userProfile',
-      name: 'userProfile',
-      component: UserProfile
-    },
-    {
       path: '/catSearch',
       name: 'catSearch',
       component: CatSearch
@@ -124,6 +119,11 @@ redirect: '/notfound'
       path: '/showMaitres',
       name: 'showMaitres',
       component: ShowMaitres
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route

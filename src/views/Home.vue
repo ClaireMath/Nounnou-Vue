@@ -37,7 +37,6 @@ export default {
         this.inconnu = false
         this.myToken =  VueJwtDecode.decode(localStorage.getItem("token"))
     }
-    console.log(this.myToken.prenom);
     // console.log(this.myToken.prenom)
   },
   methods: {}

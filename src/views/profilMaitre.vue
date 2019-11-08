@@ -65,14 +65,33 @@
 
         <div class="chat">
           <h2>Mon (Mes) chat(s)</h2>
+          <select @change="selectCat">
+            <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
+            <option
+              v-for="chat in chats"
+              :value="chat.idChat"
+              :key="chat.idChat"
+            >{{chat.prenom_chat}}</option>
+          </select>
+          <!-- :src = je binde la photo que je récupère à l'image, pour qu'elle apparaisse directement-->
+          <div class="divphoto">
+          <img v-if="chat.photo" :src="chat.photo" class="uploading-image" width="100%"/>
+          <img v-else :src="photo" class="uploading-image" width="100%"/>
+          </div>
+          <input
+            type="file"
+            accept="image/jpeg"
+            @change="uploadImage"
+          />
           <input
             v-model="chat.prenom_chat"
             type="text"
             class="inputText"
             style="resize:horizontal; width:200px; height:30px"
+            placeholder="Prénom de mon chat"
             required
           />
-          <label for="avatar">Photo de mon chat:</label>
+          <!-- <label for="avatar">Photo de mon chat:</label> -->
 
           <!-- <input class="inputphoto" type="file" v-on:change="handleFileUpload()" accept="image/png, image/jpeg" /> -->
 
@@ -181,10 +200,17 @@
             type="text"
             placeholder="Problème de santé particulier"
             class="inputText"
+            style="resize:horizontal; width:60%; height:30px"
             required
           />
 
-          <textarea v-model="chat.description" cols="60" rows="12" placeholder="Décrivez votre boule de poils."></textarea>
+          <textarea
+            v-model="chat.description"
+            cols="60"
+            rows="12"
+            placeholder="Décrivez votre boule de poils."
+          ></textarea>
+          <input @click="deleteCat" type="button" class="btn" value="Supprimer mon chat" />
         </div>
       </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
@@ -211,25 +237,72 @@ export default {
   data() {
     return {
       maitre: {},
+      chats: {},
       chat: {},
-      // file: ''
+      photo:null
     };
   },
   created: function() {
-    //  window.location.reload()
+    
     if (!localStorage.getItem("token")) {
       this.$router.push("/login");
     } else {
       this.maitre = VueJwtDecode.decode(localStorage.getItem("token"));
     }
+
+    this.displayCats();
   },
+
   methods: {
+    displayCats() {
+      
+      this.axios
+        .get(
+          `http://localhost:6001/chat/AllChatsByMaitre/${this.maitre.idMaitre}`
+        )
+        .then(res => {
+          console.log(res);
+          this.chats = res.data;
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+
+    selectCat(event) {
+      console.log(JSON.parse(event.target.value));
+      this.chat = event.target.value;
+      console.log(this.chat);
+      this.axios
+        .get(`http://localhost:6001/chat/getOneById/${this.chat}`)
+        .then(res => {
+          console.log(res);
+          this.chat = res.data;
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+  deleteCat() {
+     this.axios.delete(
+        `http://localhost:6001/chat/delete/${this.chat.idChat}`, this.chat
+      )
+        .then(res => {
+          console.log(res);
+         
+          alert("Votre chat a été supprimé.");
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+  },
     updateProfileMaitre() {
       this.axios.post(
         "http://localhost:6001/maitre/updateByEmail",
         this.maitre
       );
       this.chat.id_maitre = this.maitre.idMaitre;
+      console.log(this.chat)
       this.axios
         .post("http://localhost:6001/chat/newCat", this.chat)
         .then(res => {
@@ -240,8 +313,22 @@ export default {
         .catch(err => {
           // console.log(err);
         });
-    }
+    },
+    uploadImage(e){
+      // on affecte à la variable image, le fichier en position 
+                const image = e.target.files[0];
+      // on créé une nouvelle instance de FileReader (qui est un constructeur) pour lire le fichier et le convertir
+                const reader = new FileReader();
+      // on convertit l'image en url via la méthode readAsDataURL
+                reader.readAsDataURL(image);
+      // au chargement de la variable reader, on lui affecte l'evenement de l'input
+                reader.onload = e =>{
+      // on affecte à la variable photo le résultat de la cible de l'evenement, donc le fichier uploadé
+                    this.photo = e.target.result;
+                    this.chat.photo = this.photo;
+                };
   }
+}
 };
 </script>
 
@@ -251,8 +338,7 @@ export default {
   background-color: whitesmoke;
 }
 form {
-  /* padding: 20px; */
-  /* width: 100%; */
+ 
   font-family: cursive, sans-serif;
   font-size: 20px;
   display: flex;
@@ -260,9 +346,7 @@ form {
   justify-content: center;
   align-items: center;
   background-color: hotpink;
-  /* 
-         align-content: center;
-         justify-items: center; */
+  
 }
 
 .bigBox {
@@ -305,7 +389,7 @@ form {
 .chat {
   background-color: #ff2d95;
   width: 50%;
-  height: 820px;
+  
   padding-top: 20px;
   padding-left: 40px;
   display: flex;
@@ -313,6 +397,7 @@ form {
   justify-content: flex-start;
   align-items: space-around;
 }
+
 label {
   margin-top: 12px;
 }
@@ -336,12 +421,18 @@ select {
 textarea {
   border-radius: 25px;
   padding: 10px;
+  width: 90%;
 }
 .inputphoto {
- 
   width: 50%;
   height: 30px;
 }
+.divphoto {
+  width: 40%;
+  height: auto;
+  display: flex;
+}
+
 .btn {
   width: 50%;
   height: 40px;
@@ -402,9 +493,9 @@ input {
 .btn2 {
   width: 40%;
 }
-.chat {
+/* .chat {
   height: 1000px;
-}
+} */
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -435,27 +526,26 @@ input {
     height: 400px;
   }
   .chat {
-  background-color: #ff2d95;
-  width: 100%;
-  height: 1050px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: space-around;
-}
-h1 {
-  font-size: 30px;
-}
+    background-color: #ff2d95;
+    width: 100%;
+    height: 1050px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+  }
+  h1 {
+    font-size: 30px;
+  }
   p {
     text-align: justify;
   }
-  input.inputText {
-    width: 90%;
-    height: 35px;
+  .inputText {
+    text-transform: uppercase;
   }
   .btn {
-width: 90%;
+    width: 90%;
   }
   /* .chat {
   width: 50%;

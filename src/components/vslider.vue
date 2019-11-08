@@ -28,7 +28,7 @@ export default {
     mounted: function() {
         this.startSlide();
     },
-    methodes: {
+    methods: {
         startSlide: function() {
             this.timer = setInterval(this.next, 1000);
         },

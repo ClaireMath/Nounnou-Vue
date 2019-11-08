@@ -170,4 +170,14 @@ select {
 .checkbox {
   height: 20px;
 }
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+form {
+  width: 90%;
+}
+.btn {
+  width: 60%;
+}
+}
 </style>

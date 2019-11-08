@@ -6,18 +6,23 @@
 
       <div class="ctnchamps">
         <div class="sbchamps">
-          <input v-model="nounou.prenom" type="text" placeholder="Prénom" required readonly/>
+          <input v-model="nounou.prenom" type="text" placeholder="Prénom" required readonly />
 
-          <input v-model="nounou.nom" type="text" placeholder="Nom" required readonly/>
+          <input v-model="nounou.nom" type="text" placeholder="Nom" required readonly />
 
+          <input v-model="nounou.adresse" type="text" placeholder="Adresse" required readonly />
 
-          <input v-model="nounou.adresse" type="text" placeholder="Adresse" required readonly/>
-
-          <input v-model="nounou.code_postal" type="number" placeholder="Code postal" required readonly/>
+          <input
+            v-model="nounou.code_postal"
+            type="number"
+            placeholder="Code postal"
+            required
+            readonly
+          />
         </div>
 
         <div class="sbchamps2">
-          <input v-model="nounou.ville" type="text" placeholder="Ville" required readonly/>
+          <input v-model="nounou.ville" type="text" placeholder="Ville" required readonly />
 
           <!-- <input v-model="nounou.email" type="email" placeholder="Email" required />
           -->
@@ -25,7 +30,7 @@
         </div>
       </div>
       <div class="select">
-        <p>Nombre de chats que la nounou peut garder en même temps</p>
+        <p>Nombre de chats que la nounou peut garder en même temps :</p>
         <select v-model="nounou.capacite_d_accueil" required disabled>
           <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
           <option value="1">un chat</option>
@@ -35,11 +40,10 @@
         </select>
       </div>
 
-      <p>Cette nounou a déjà eu des chats</p>
+      <p>Cette nounou a déjà eu des chats :</p>
       <div class="radio">
         <div class="oui">
           <input
-          
             type="radio"
             v-model="nounou.a_deja_eu_des_chats"
             name="chat"
@@ -58,12 +62,11 @@
             name="chat"
             id="nonchats"
             value="false"
-            
           />
           <label for="nonchats">non</label>
         </div>
       </div>
-      <p>Cette nounoun a déjà eu des animaux?</p>
+      <p>Cette nounou a déjà eu des animaux :</p>
       <div class="radio">
         <div class="oui">
           <input
@@ -88,7 +91,7 @@
           <label for="nonanimaux">non</label>
         </div>
       </div>
-      <div class="select" >
+      <div class="select">
         <p>Nombre d'heures consacrées au matou par jour : (minmum une heure)</p>
         <select v-model="nounou.peut_consacrer_n_heure_par_jour" required disabled>
           <!-- v-model="selected" -->
@@ -118,7 +121,7 @@
             name="dispo"
             id="dispo"
             value="true"
-           disabled
+            disabled
           />
           <label for="dispo">oui</label>
         </div>
@@ -129,18 +132,32 @@
             name="dispo"
             id="pasdispo"
             value="false"
-           disabled
+            disabled
           />
           <label for="pasdispo">non</label>
         </div>
       </div>
       <div class="radio">
         <div class="oui">
-          <input type="radio" v-model="nounou.non_fumeur" id="Nfumeur" name="fumeur" value="true" disabled />
+          <input
+            type="radio"
+            v-model="nounou.non_fumeur"
+            id="Nfumeur"
+            name="fumeur"
+            value="true"
+            disabled
+          />
           <label for="Nfumeur">Non fumeur</label>
         </div>
         <div class="non">
-          <input type="radio" v-model="nounou.non_fumeur" id="fumeur" name="fumeur" value="false" disabled/>
+          <input
+            type="radio"
+            v-model="nounou.non_fumeur"
+            id="fumeur"
+            name="fumeur"
+            value="false"
+            disabled
+          />
           <label for="fumeur">Fumeur</label>
         </div>
       </div>
@@ -157,7 +174,7 @@
             id="maison"
             name="logement"
             value="maison"
-           disabled
+            disabled
           />
           <label for="maison">Maison</label>
         </div>
@@ -168,16 +185,16 @@
             id="appartement"
             name="logement"
             value="appartement"
-           disabled
+            disabled
           />
           <label for="appartement">Appartement</label>
         </div>
       </div>
       <p>Superficie :</p>
-      <input v-model="logement.superficie" type="text" required readonly/>
+      <input v-model="logement.superficie" type="text" required readonly />
 
       <p>Nombre de personnes habitants dans mon logement :</p>
-      <input v-model="logement.nombre_d_habitants" type="number" required readonly/>
+      <input v-model="logement.nombre_d_habitants" type="number" required readonly />
 
       <p>Des enfants habitent dans mon logement ?</p>
       <div class="radio">
@@ -264,56 +281,64 @@ export default {
   name: "showNounous",
   components: {},
   data() {
-      return {
-          nounou: {},
-        logement: {}
+    return {
+      nounou: {},
+      logement: {}
     };
   },
   // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
   // au created, on récupère le param data
   created: function() {
-      this.nounou=this.$route.params.data
-      this.logement=this.$route.params.data.logement
-}
+    this.nounou = this.$route.params.data;
+    this.logement = this.$route.params.data.logement;
+  }
 };
 </script>
       
       <style scoped>
 .ctn {
-    display: flex;
-    /* flex-direction: row; */
-}.bigctn {
-  /* padding: 20px; */
-  background-color: whitesmoke;
+  display: flex;
+  
   font-family: cursive, sans-serif;
+  font-size: 20px;
+   /* background-color: whitesmoke; */
 }
-form {
+.nounou {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background-color: aqua;
+}
+/* form {
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hotpink;
+  background-color: hotpink; */
   /* 
          align-content: center;
          justify-items: center; */
-}
+/* } */
 
-.bigBox {
+/* .bigBox {
   background-color: brown;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-.smallBoxNou {
+} */
+/* .smallBoxNou {
   background-color: greenyellow;
   width: 50%;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
+} */
 .ctnchamps {
   background-color: lightslategray;
   width: 100%;
@@ -337,17 +362,21 @@ form {
 }
 .logement {
   background-color: #ff2d95;
+  width: 50%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: space-around;
+  align-items: center;
 }
 label {
   margin-top: 12px;
 }
 .select {
   width: 100%;
+  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 h2 {
   margin: 20px;
@@ -395,9 +424,11 @@ input {
   padding: 10px;
 }
 .radio {
+  width: 70%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  /* align-items: center; */
   /* padding: 10px; */
 }
 .oui {
@@ -413,35 +444,36 @@ input {
 /* TABLETTE */
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
+/* .ctn {
+  flex-wrap: wrap;
+
+} */
 .ctnchamps {
   display: flex;
   flex-direction: column;
   height: 280px;
 }
+textarea {
+  width: 90%;
+}
+
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  form {
-    background-color: hotpink;
-    padding: 0px;
+  
+  .ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
   }
-  .bigBox {
+  .nounou {
     width: 100%;
-    background-color: brown;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
-  .smallBoxNou {
-    background-color: goldenrod;
+  .logement {
     width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
   }
-
+  
   .ctnchamps {
     background-color: lightslategray;
     width: 100%;
@@ -454,15 +486,11 @@ input {
     font-size: 29px;
   }
   textarea {
-  width: 99%;
-}
- .btn {
-width: 90%;
+    width: 99%;
   }
-
-  /* .logement {
-  width: 50%;
-} */
+  .btn {
+    width: 90%;
+  }
 }
 </style>
       

@@ -8,7 +8,6 @@
           <p>Merci de bien vouloir remplir votre profil sans quoi il n'apparaitra pas aux utilisateurs.</p>
           <div class="ctnchamps">
             <div class="sbchamps">
-             
               <input v-model="nounou.prenom" type="text" placeholder="Prénom" required />
 
               <input v-model="nounou.adresse" type="text" placeholder="Adresse" required />
@@ -96,7 +95,13 @@
             </select>
           </div>
 
-          <textarea v-model="nounou.description" cols="40" rows="12" placeholder="Décrivez-vous et votre expérience avec les chats." required>Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
+          <textarea
+            v-model="nounou.description"
+            cols="40"
+            rows="12"
+            placeholder="Décrivez-vous et votre expérience avec les chats."
+            required
+          >Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
 
           <p>Je suis disponible immédiatement :</p>
           <div class="radio">
@@ -148,7 +153,7 @@
 
         <div class="logement">
           <h2>Mon logement</h2>
-          
+
           <!-- <div class="radio"></div> -->
           <div class="radio">
             <div class="oui">
@@ -248,6 +253,7 @@
               <label for="noext">non</label>
             </div>
           </div>
+        
         </div>
       </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
@@ -290,17 +296,51 @@ export default {
     !localStorage.getItem("token")
       ? this.$router.push("/login")
       : (this.nounou = VueJwtDecode.decode(localStorage.getItem("token")));
+
+    this.displayFlat();
   },
 
   methods: {
+    displayFlat() {
+      this.axios
+        .get(
+          `http://localhost:6001/logement/getOneByIdNounou/${this.nounou.idNounou}`
+        )
+        .then(res => {
+          console.log(res);
+          this.logement = res.data;
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+
+    updateFlat() {
+      this.axios.put(
+        `http://localhost:6001/logement/update/${this.nounou.idNounou}`, this.logement
+      )
+      this.logement.id_nounou = this.nounou.idNounou
+
+        .then(res => {
+          console.log(res);
+         
+          alert("Votre profil a été mis à jour avec succès.");
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+
     updateProfileNou() {
       this.axios.post(
-        "http://localhost:6001/nounou/updateByEmail", this.nounou);
-      this.logement.id_nounou=this.nounou.idNounou;
-      this.axios.post(
-        "http://localhost:6001/logement/create", this.logement)
+        "http://localhost:6001/nounou/updateByEmail",
+        this.nounou
+      );
+      this.logement.id_nounou = this.nounou.idNounou;
+      this.axios
+        .post("http://localhost:6001/logement/create", this.logement)
         .then(res => {
-          // console.log(res);
+          console.log(res);
           this.$router.push("/");
           alert("Votre profil a été mis à jour avec succès.");
         })
@@ -485,10 +525,10 @@ input {
     font-size: 29px;
   }
   textarea {
-  width: 99%;
-}
- .btn {
-width: 90%;
+    width: 99%;
+  }
+  .btn {
+    width: 90%;
   }
 
   /* .logement {

@@ -3,7 +3,7 @@
     
     <form @submit.prevent="addNewNounou">
       <div class="ctninput">
-        <!-- <legend>Merci de bien vouloir remplir le formulaire</legend> -->
+       
         <input v-model="nounou.nom" type="text" name id placeholder="Nom" required />
 
         <input v-model="nounou.prenom" type="text" name id placeholder="Prénom" required />

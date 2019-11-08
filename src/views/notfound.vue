@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <h1>404 NOT FOUND</h1>
     <myfooter></myfooter>
   </div>
@@ -16,6 +16,9 @@ export default {
 }
 </script>
 <style scoped>
+div {
+  background-color: whitesmoke;
+}
 h1 {
     color: red;
 }

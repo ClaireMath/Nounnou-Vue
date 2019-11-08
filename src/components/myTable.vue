@@ -34,16 +34,6 @@
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.email}}</td>
-          <td>{{data.nombre_de_chats}}</td>
-          <td>{{data.statut_disponible}}</td>
-          <td>{{data.chat.prenom_chat}}</td>
-          <td>{{data.chat.photo}}</td>/
-          <td>{{data.chat.sterilise}}</td>
-          <td>{{data.chat.tolere_les_chats}}</td>
-          <td>{{data.chat.tolere_les_animaux}}</td>
-          <td>{{data.chat.a_peur_des_enfants}}</td>
-          <td>{{data.chat.probleme_de_sante_particulier}}</td>
-          <td class="">{{data.chat.description}}</td>
 
           <td>
             <button v-on:click="learnmoreM(data)" class="btn">En savoir plus</button>
