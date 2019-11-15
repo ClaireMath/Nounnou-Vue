@@ -4,7 +4,7 @@
       <div class="ctninput">
         <input type="email" placeholder="Email" v-model="email" required />
 
-        <input type="text" placeholder="Mot de passe" v-model="password" required />
+        <input type="password" placeholder="Mot de passe" v-model="password" required />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
     </form>
@@ -40,19 +40,20 @@ export default {
           mdp: this.password
         })
         .then(res => {
-          var test = VueJwtDecode.decode(res.data.token);
-          console.log(test);
-          console.log(res.data);
-          localStorage.setItem("token", res.data.token);
-
-          // this.$router.push("/");
-          // le $ c'est pour récupérer des variables définies en global dans main.js
-          this.$router.push({ name: "home", query: { redirect: "/" } });
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            // this.$router.push("/");
+            // le $ c'est pour récupérer des variables définies en global dans main.js
+            this.$router.push({ name: "home", query: { redirect: "/" } });
+             window.location.reload();
+          }
+          else {
+            alert(res.data)
+          }
         })
         .catch(err => {
           console.log(err);
         });
-      //  window.location.reload();
     }
   }
 };

@@ -1,65 +1,116 @@
 <template>
-  <div class="sorties">
-    <img src="../assets/blackCat-eyes-yellow.jpg" alt="white cat" width=100% class="chatnoir">
-    <div>
-   <h1>Nos sorties à venir :</h1>
-   <br>
-   <div class="cine">
-    <h2>Cinéma Gaumont Pathé Opéra, Paris</h2>
-    <p>Comme des Bêtes, film d'animation</p>
-    <p>Le samedi 25 janvier 2020 à 15h50</p>
-    <p>Comme à notre habitude, nous nous retrouverons également après le film pour boire un chocolat ensemble afin de faire connaissance.</p>
-   </div>
-   <br>
-   <div>
-     <h2>Restaurant, Le Grenier de Notre-Dame</h2>
-     <p>Venez tester avec nous ce restaurant végétarien</p>
-     <p>Le samedi 1er février 2020 à 20h00</p>
-     <p>18 rue de la Bucherie, 75005 Paris</p>
-   </div>
-   </div>
-   
-   <myNav></myNav>
-   <br>
-   <myfooter></myfooter>
+  <div class="ctn">
+    <div class="sorties">
+      <img src="../assets/blackCat-eyes-yellow.jpg" alt="black cat" class="chatnoir" />
+      <div class="text">
+        <h1>Nos sorties à venir :</h1>
+
+        <div class="cineEtresto">
+          <h4>Cinéma Gaumont Pathé Opéra, Paris</h4>
+          <p>Comme des Bêtes, film d'animation</p>
+          <p>Le samedi 25 janvier 2020 à 15h50</p>
+          <p>Comme à notre habitude, nous nous retrouverons également après le film pour boire un chocolat ensemble afin de faire connaissance.</p>
+        </div>
+
+        <div class="cineEtresto">
+          <h4>Restaurant, Le Grenier de Notre-Dame</h4>
+          <p>Venez tester avec nous ce restaurant végétarien</p>
+          <p>Le samedi 1er février 2020 à 20h00</p>
+          <p>18 rue de la Bucherie, 75005 Paris</p>
+        </div>
+      </div>
+    </div>
+
+    <myfooter></myfooter>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '../components/HelloWorld.vue'
-import myfooter from '../components/myfooter'
-import myNav from '../components/myNav'
+import myfooter from "../components/myfooter";
+
 
 export default {
-  name: 'sorties',
+  name: "sorties",
   components: {
     myfooter,
-    myNav
-    // HelloWorld
   },
   data() {
-      return {
-       
-      }
-    },
-    methods: {
-        
-        }
-}
+    return {};
+  },
+  methods: {}
+};
 </script>
 
 <style scoped>
-  .sorties {
-    color: white;
-    position: absolute;
-    
-  }
-  .chatnoir {
-    position: absolute;
-  }
-  .cine { 
-    color: whitesmoke;
-    z-index: 10;
-  }
+/* .ctn {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+} */
+.sorties {
+  padding : 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.text {
+ /* text-align: center; */
+  width: 95%;
+  padding: 20px;
+  font-family: "merienda one", cursive, sans-serif;
+}
+.cineEtresto {
+  padding : 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin-bottom: 20px;
+}
+h4 {
+  margin-top: 20px;
+}
+h1,
+h4 {
+  text-align: center;
+}
+p {
+  text-align: justify;
+}
+img {
+  width: 95%;
+}
+/* Tablette*/
+@media screen and (min-width: 481px) and (max-width: 768px) {
+.chatnoir {
+  width: 50%;
+  height: 200px;
+}
+
+}
+/* Téléphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+.sorties {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+img {
+  width: 100%;
+}
+.text {
+ 
+  width: 100%;
+}
+}
 </style>

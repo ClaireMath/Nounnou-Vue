@@ -2,8 +2,7 @@
   <div id="app">
         
     <headertemplate/>
-    <!-- <aside1/> -->
-    <!-- <myNav/> -->
+ 
     
     
     <router-view/>
@@ -14,13 +13,13 @@
 // headertemplate c'est une variable que je crée, qui est égale au document header.vue 
 //pour ne pas avoir à récrire le chemin à chaque fois
 import headertemplate from './components/header.vue'
-// import myfooter from './components/myfooter.vue'
 
 
 
 export default {
       components: {
          headertemplate,
+         
       
     },
     data() {

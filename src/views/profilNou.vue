@@ -18,8 +18,8 @@
             <div class="sbchamps2">
               <input v-model="nounou.ville" type="text" placeholder="Ville" required />
 
-              <!-- <input v-model="nounou.email" type="email" placeholder="Email" required />
-              -->
+              <input v-model="nounou.email" type="email" placeholder="Email" disabled />
+            
               <!-- <input v-model="nounou.mdp" type="password" placeholder="Mot de passe" required /> -->
 
               <input v-model="nounou.telephone" type="number" placeholder="Téléphone" required />
@@ -178,10 +178,10 @@
             </div>
           </div>
           <p>Superficie :</p>
-          <input v-model="logement.superficie" type="text" required />
+          <input v-model="logement.superficie" type="text" class="logInputText" required />
 
           <p>Nombre de personnes habitants dans mon logement :</p>
-          <input v-model="logement.nombre_d_habitants" type="number" required />
+          <input v-model="logement.nombre_d_habitants" type="number" class="logInputText" required />
 
           <p>Des enfants habitent dans mon logement ?</p>
           <div class="radio">
@@ -279,8 +279,6 @@ export default {
     return {
       nounou: {},
       logement: {}
-
-      //  urlLogement: http://localhost:6001/logement/create
     };
   },
   created: function() {
@@ -296,12 +294,16 @@ export default {
     !localStorage.getItem("token")
       ? this.$router.push("/login")
       : (this.nounou = VueJwtDecode.decode(localStorage.getItem("token")));
+console.log(this.nounou.idNounou)
 
     this.displayFlat();
   },
 
   methods: {
     displayFlat() {
+      if (!this.nounou.logement) {
+        return
+      } else {
       this.axios
         .get(
           `http://localhost:6001/logement/getOneByIdNounou/${this.nounou.idNounou}`
@@ -313,34 +315,36 @@ export default {
         .catch(err => {
           // console.log(err);
         });
+      }
     },
 
-    updateFlat() {
-      this.axios.put(
-        `http://localhost:6001/logement/update/${this.nounou.idNounou}`, this.logement
-      )
-      this.logement.id_nounou = this.nounou.idNounou
+    // updateFlat() {
+    //   this.axios.put(
+    //     `http://localhost:6001/logement/update/${this.nounou.idNounou}`, this.logement
+    //   )
+    //   this.logement.id_nounou = this.nounou.idNounou
 
-        .then(res => {
-          console.log(res);
+    //     .then(res => {
+    //       console.log(res);
          
-          alert("Votre profil a été mis à jour avec succès.");
-        })
-        .catch(err => {
-          // console.log(err);
-        });
-    },
+    //       alert("Votre profil a été mis à jour avec succès.");
+    //     })
+    //     .catch(err => {
+    //       // console.log(err);
+    //     });
+    // },
 
     updateProfileNou() {
       this.axios.post(
         "http://localhost:6001/nounou/updateByEmail",
-        this.nounou
-      );
-      this.logement.id_nounou = this.nounou.idNounou;
-      this.axios
-        .post("http://localhost:6001/logement/create", this.logement)
+        this.nounou);
+        this.logement.id_nounou = this.nounou.idNounou;
+
+      this.axios.post(
+        "http://localhost:6001/logement/create", 
+        this.logement)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.$router.push("/");
           alert("Votre profil a été mis à jour avec succès.");
         })
@@ -356,7 +360,7 @@ export default {
 .bigctn {
   /* padding: 20px; */
   background-color: whitesmoke;
-  font-family: cursive, sans-serif;
+  font-family: "merienda one", cursive, sans-serif;
 }
 form {
   padding: 20px;
@@ -364,21 +368,18 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hotpink;
-  /* 
-         align-content: center;
-         justify-items: center; */
+  /* background-color: hotpink; */
 }
 
 .bigBox {
-  background-color: brown;
+  /* background-color: brown; */
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .smallBoxNou {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   width: 50%;
   padding: 30px;
   display: flex;
@@ -386,7 +387,7 @@ form {
   justify-content: center;
 }
 .ctnchamps {
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
   width: 100%;
   height: 280px;
   display: flex;
@@ -395,24 +396,27 @@ form {
   align-items: center;
 }
 .sbchamps {
-  background-color: teal;
+  /* background-color: teal; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .sbchamps2 {
-  background-color: turquoise;
+  /* background-color: turquoise; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .logement {
-  background-color: #ff2d95;
-  padding: 20px;
+  /* background-color: #ff2d95; */
+  width: 50%;
+  padding-top: 20px;
+  padding-left: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: space-around;
+  
 }
 label {
   margin-top: 12px;
@@ -465,6 +469,9 @@ input {
   margin: 10px;
   padding: 10px;
 }
+.logInputText {
+  width: 50%;
+}
 .radio {
   display: flex;
   flex-direction: row;
@@ -493,18 +500,18 @@ input {
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   form {
-    background-color: hotpink;
+    /* background-color: hotpink; */
     padding: 0px;
   }
   .bigBox {
     width: 100%;
-    background-color: brown;
+    /* background-color: brown; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .smallBoxNou {
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     width: 100%;
     padding: 20px;
     display: flex;
@@ -514,7 +521,7 @@ input {
   }
 
   .ctnchamps {
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
     width: 100%;
     height: 280px;
   }
@@ -531,8 +538,9 @@ input {
     width: 90%;
   }
 
-  /* .logement {
-  width: 50%;
-} */
+  .logement {
+  width: 100%;
+  padding: 20px;
+}
 }
 </style>

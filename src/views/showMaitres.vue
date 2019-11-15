@@ -1,171 +1,177 @@
 <template>
-  <div class="ctn">
-    <div class="chat">
-      <h2>Le Matou</h2>
-      <input v-model="chat.prenom_chat" type="text" placeholder="Prénom" required readonly />
-   
-   <div class="input">
-   
-      <div class="radio">
-        <div class="oui">
-          <input
-            type="radio"
-            v-model="chat.sterilise"
-            id="sterilise"
-            name="sterilise"
-            value="true"
-            disabled
-          />
-          <label for="sterilise">est stérilisé</label>
+  <div>
+    <div class="ctn">
+      <div class="chat">
+        <h2>Le Matou</h2>
+        <input v-model="chat.prenom_chat" type="text" placeholder="Prénom" required readonly />
+
+        <div class="input">
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="chat.sterilise"
+                id="sterilise"
+                name="sterilise"
+                value="true"
+                disabled
+              />
+              <label for="sterilise">est stérilisé</label>
+            </div>
+            <div class="non">
+              <input
+                type="radio"
+                v-model="chat.sterilise"
+                id="nsterilise"
+                name="sterilise"
+                value="false"
+                disabled
+              />
+              <label for="nsterilise">n'est pas stérilisé</label>
+            </div>
+          </div>
+
+          <p>s'entend bien avec les autres chats :</p>
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="chat.tolere_les_chats"
+                name="tolereleschats"
+                id="tolereleschats"
+                value="true"
+                disabled
+              />
+              <label for="tolereleschats">oui</label>
+            </div>
+
+            <div class="non">
+              <input
+                type="radio"
+                v-model="chat.tolere_les_chats"
+                name="tolereleschats"
+                id="netolerePASleschats"
+                value="false"
+                disabled
+              />
+              <label for="netolerePASleschats">non</label>
+            </div>
+          </div>
+
+          <p>s'entend bien avec les autres animaux :</p>
+
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="chat.tolere_les_animaux"
+                name="tolerelesanimaux"
+                id="tolerelesanimaux"
+                value="true"
+                disabled
+              />
+              <label for="tolerelesanimaux">oui</label>
+            </div>
+
+            <div class="non">
+              <input
+                type="radio"
+                v-model="chat.tolere_les_animaux"
+                name="tolerelesanimaux"
+                id="netolerePASlesanimaux"
+                value="false"
+                disabled
+              />
+              <label for="netolerePASlesanimaux">non</label>
+            </div>
+          </div>
+
+          <p>a peur des enfants :</p>
+
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="chat.a_peur_des_enfants"
+                name="apeurdesenfants"
+                id="apeurdesenfants"
+                value="true"
+                disabled
+              />
+              <label for="apeurdesenfants">oui</label>
+            </div>
+
+            <div class="non">
+              <input
+                type="radio"
+                v-model="chat.a_peur_des_enfants"
+                name="apeurdesenfants"
+                id="memePasPeur"
+                value="false"
+                disabled
+              />
+              <label for="memePasPeur">non</label>
+            </div>
+          </div>
         </div>
-        <div class="non">
-          <input
-            type="radio"
-            v-model="chat.sterilise"
-            id="nsterilise"
-            name="sterilise"
-            value="false"
-            disabled
-          />
-          <label for="nsterilise">n'est pas stérilisé</label>
-        </div>
+        <label for="pbsante">Problème de santé particulier :</label>
+        <input
+          v-model="chat.probleme_de_sante_particulier"
+          type="text"
+          placeholder="Problème de santé particulier"
+          class="inputText"
+          id="pbsante"
+          required
+          readonly
+        />
+        <textarea
+          v-model="chat.description"
+          cols="40"
+          rows="12"
+          placeholder="Décrivez-vous et votre expérience avec les chats."
+          required
+          readonly
+        >Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
       </div>
+      <div class="maitre">
+        <!-- <div class="catsitter"> -->
+        <h1>Son maitre</h1>
 
-      <p>s'entend bien avec les autres chats :</p>
-      <div class="radio">
-        <div class="oui">
-          <input
-            type="radio"
-            v-model="chat.tolere_les_chats"
-            name="tolereleschats"
-            id="tolereleschats"
-            value="true"
-            disabled
-          />
-          <label for="tolereleschats">oui</label>
-        </div>
+        <div class="ctnchamps">
+          <div class="sbchamps">
+            <input v-model="maitre.prenom" type="text" placeholder="Prénom" required readonly />
+            <input v-model="maitre.nom" type="text" placeholder="Prénom" required readonly />
 
-        <div class="non">
-          <input
-            type="radio"
-            v-model="chat.tolere_les_chats"
-            name="tolereleschats"
-            id="netolerePASleschats"
-            value="false"
-            disabled
-          />
-          <label for="netolerePASleschats">non</label>
+            <input
+              v-model="maitre.code_postal"
+              type="number"
+              placeholder="Code postal"
+              required
+              readonly
+            />
+          </div>
+
+          <div class="sbchamps2">
+            <input v-model="maitre.ville" type="text" placeholder="Ville" required readonly />
+
+            <!-- <input v-model="maitre.email" type="email" placeholder="Email" required /> -->
+          </div>
         </div>
+        <input @click="sendRequestForm" type="button" class="btn" value="Envoyer une demande de garde" />
       </div>
-
-      <p>s'entend bien avec les autres animaux :</p>
-
-      <div class="radio">
-        <div class="oui">
-          <input
-            type="radio"
-            v-model="chat.tolere_les_animaux"
-            name="tolerelesanimaux"
-            id="tolerelesanimaux"
-            value="true"
-            disabled
-          />
-          <label for="tolerelesanimaux">oui</label>
-        </div>
-
-        <div class="non">
-          <input
-            type="radio"
-            v-model="chat.tolere_les_animaux"
-            name="tolerelesanimaux"
-            id="netolerePASlesanimaux"
-            value="false"
-            disabled
-          />
-          <label for="netolerePASlesanimaux">non</label>
-        </div>
-      </div>
-
-      <p>a peur des enfants :</p>
-
-      <div class="radio">
-        <div class="oui">
-          <input
-            type="radio"
-            v-model="chat.a_peur_des_enfants"
-            name="apeurdesenfants"
-            id="apeurdesenfants"
-            value="true"
-            disabled
-          />
-          <label for="apeurdesenfants">oui</label>
-        </div>
-
-        <div class="non">
-          <input
-            type="radio"
-            v-model="chat.a_peur_des_enfants"
-            name="apeurdesenfants"
-            id="memePasPeur"
-            value="false"
-            disabled
-          />
-          <label for="memePasPeur">non</label>
-        </div>
-      </div>
-      </div>
-      <label for="pbsante">Problème de santé particulier :</label>
-      <input
-        v-model="chat.probleme_de_sante_particulier"
-        type="text"
-        placeholder="Problème de santé particulier"
-        class="inputText"
-        id="pbsante"
-        required
-        readonly
-      />
-      <textarea
-        v-model="chat.description"
-        cols="40"
-        rows="12"
-        placeholder="Décrivez-vous et votre expérience avec les chats."
-        required
-        readonly
-      >Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
     </div>
-    <div class="maitre">
-      <!-- <div class="catsitter"> -->
-      <h1>Son maitre</h1>
-
-      <div class="ctnchamps">
-        <div class="sbchamps">
-          <input v-model="maitre.prenom" type="text" placeholder="Prénom" required readonly />
-          <input v-model="maitre.nom" type="text" placeholder="Prénom" required readonly />
-
-          <input
-            v-model="maitre.code_postal"
-            type="number"
-            placeholder="Code postal"
-            required
-            readonly
-          />
-        </div>
-
-        <div class="sbchamps2">
-          <input v-model="maitre.ville" type="text" placeholder="Ville" required readonly />
-
-          <input v-model="maitre.email" type="email" placeholder="Email" required />
-
-        </div>
-      </div>
-    </div>
+    <myfooter />
   </div>
 </template>
       
       <script>
+import myfooter from "../components/myfooter";
+import Router from "../router";
 export default {
   name: "showMaitres",
-  components: {},
+  components: {
+    myfooter
+  },
   data() {
     return {
       maitre: {},
@@ -177,6 +183,12 @@ export default {
   created: function() {
     this.maitre = this.$route.params.data;
     this.chat = this.$route.params.data.chat;
+    console.log(this.chat)
+  },
+  methods: {
+    sendRequestForm() {
+    Router.push({ name: "demandeGarde" });
+    }
   }
 };
 </script>
@@ -210,7 +222,7 @@ form {
   height: 230px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 .sbchamps {
@@ -270,7 +282,7 @@ textarea {
   padding: 10px;
 }
 .btn {
-  width: 50%;
+  width: 80%;
   height: 40px;
   font-family: "Livvic", sans-serif;
   border-radius: 15px;
@@ -338,34 +350,34 @@ textarea {
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-    .ctn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
+  .ctn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   .maitre {
     width: 100%;
   }
-     
-   .ctnchamps {
-    background-color: lightslategray;
+
+  .ctnchamps {
+    /* background-color: lightslategray; */
     width: 100%;
     height: 400px;
   }
   .chat {
-  background-color: #ff2d95;
-  width: 100%;
-  height: 1050px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: space-around;
-}
-h1 {
-  font-size: 30px;
-}
+    /* background-color: #ff2d95; */
+    width: 100%;
+    height: 1050px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+  }
+  h1 {
+    font-size: 30px;
+  }
   p {
     text-align: justify;
   }
@@ -374,9 +386,8 @@ h1 {
     height: 35px;
   }
   .btn {
-width: 90%;
+    width: 90%;
   }
-
 }
 </style>
       

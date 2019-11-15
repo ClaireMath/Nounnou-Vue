@@ -69,14 +69,14 @@ data() {
   .ctn {
   /* height: 600px; */
   color: black;
-  font-family: cursive, sans-serif;
+  font-family: "Merienda one", cursive, sans-serif;
 }
 .login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 55vh;
+  height: 75vh;
   background-color: whitesmoke;
 }
 /* .ctnCompo {

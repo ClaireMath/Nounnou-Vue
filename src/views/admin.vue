@@ -1,30 +1,127 @@
 <template>
   <div>
+    <div class="admin">
 
+   <div class="nounous">
+         <input @click="catSittersList" type="button" class="btn" value="Liste des Nounous" />
+ <tableAdmin v-if="showNounous" :resultats="allNounous"></tableAdmin>
+</div>
+
+<div class="maitres">
+         <input @click="ownersList" type="button" class="btn" value="Liste des Maitres" />
+ <tableAdmin v-if="showMaitres" :resultats="allMaitres"></tableAdmin>
+  </div>
+
+
+    </div>
+    <myfooter/>
   </div>
 </template>
 
 <script>
+import myfooter from "../components/myfooter";
+import VueJwtDecode from "vue-jwt-decode";
+import tableAdmin from "../components/tableAdmin";
+
 export default {
     name: "admin",
     components: {
-    
+    myfooter,
+    tableAdmin
     },
     data() {
         return {
-
+        urlNounou: "http://localhost:6001/nounou/All",
+        urlMaitre: "http://localhost:6001/maitre/displayAll",
+        showNounous: false,
+        showMaitres: false,
+        allNounous: [],
+        allMaitres: [],
+        token: {}
         }
     },
     created: function() {
 
     },
 
-    method: {
+    methods: {
+catSittersList() {
+  console.log(this.allNounous);
+this.axios
+        .get(this.urlNounou)
+        .then(res => {
+          console.log(res);
+          this.allNounous = res.data;
+          this.showNounous = true;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
 
-    }
+    ownersList() {
+  console.log(this.allMaitres);
+      this.axios
+        .get(this.urlMaitre)
+        .then(res => {
+          console.log(res);
+          this.allMaitres = res.data;
+          this.showMaitres = true;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+} 
+},
+
+ beforeRouteEnter(from, to, next) {
+   if (localStorage.getItem("token") !== null)  {
+    var token = VueJwtDecode.decode(localStorage.getItem("token"))
+    console.log(token);
+      if (token.admin === 0) {
+       next("/home");
+      } else {
+          next();
+      }
+   }
 }
+    }
+
 </script>
 
 <style scoped>
-
+.admin {
+  width: 100%;
+  background-color: whitesmoke;
+  color: black;
+  font-family: "Merienda One", cursive, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.btn {
+  width: 100%;
+  height: 50px;
+  font-family: "Livvic", sans-serif;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  color: hsl(330, 78%, 23%);
+  background-color: whitesmoke;
+  /* font-family: cursive, "sans-serif"; */
+  font-weight: bold;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: #680d3b;
+  text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
 </style>

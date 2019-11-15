@@ -7,7 +7,9 @@
         </tr>
 
         <tr v-for="data in resultats" :key="data.idNounou" v-else>
+         <td>{{data.idNounou}}</td>
          <td>{{data.prenom}}</td>
+         <td>{{data.nom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.email}}</td>
           <!-- <td>capacite d'accueil :{{data.capacite_d_accueil}}</td> -->
@@ -46,7 +48,7 @@
 
 <script>
 export default {
-  name: "myTable",
+  name: "tableAdmin",
   props: ["resultats"],
 
   data() {
@@ -86,7 +88,6 @@ export default {
 <style scoped>
 .divtable {
   width: 100%;
-  height: 200px;
 }
 table {
   width: 100%;
@@ -98,6 +99,8 @@ tr {
     height: 50px;
 }
 td {
+    padding: 10px;
+    text-align: center;
   height: 50px;
   width: 100%;
   display: flex; 

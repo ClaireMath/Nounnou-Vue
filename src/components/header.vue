@@ -4,7 +4,7 @@
       <div class="burgerAndUser">
         <div class="divSpans">
           <input type="checkbox" name="menuB" id="menuB" />
-          <div class="ctnNav">
+          <div class="ctnHeaderNav">
             <myNav></myNav>
           </div>
           <span class="span1"></span>
@@ -27,7 +27,7 @@
         <img src="../assets/logosansbords.jpg" alt="logo du site" class="logo" />
       </div>
       <div class="divButtons">
-        <button @click="sendform" class="btn btn1">S'inscrire</button>
+        <button v-show="login" @click="sendform" class="btn btn1">S'inscrire</button>
         <button v-if="login" @click="flogin" class="btn btn2">Se connecter</button>
         <button v-if="logout" @click="flogout" class="btn btn2">Se deconnecter</button>
       </div>
@@ -365,92 +365,90 @@ export default {
 
 /* NAV */
 
-.ctnNav {
+.ctnHeaderNav {
   display: flex;
   flex-direction: column;
-  background-color: #ff2d95;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* align-content: center; */
-  opacity: 0.8;
+  margin-left: -720px;
   width: 40%;
-  height: 450px;
+  height: 500px;
   position: absolute;
   font-family: cursive, sans-serif;
   font-weight: bold;
-  left: -500px;
+  opacity: .8;
   top: 160px;
   border-radius: 20px;
-  display: none;
+  
 }
 /* Apparition de la nav */
-#menuB:checked ~ .ctnNav {
-  animation: animationNav linear 1s;
+#menuB:checked ~ .ctnHeaderNav{
+  animation: apparitionNav ease-in-out 1.5s;
   animation-iteration-count: 1;
-  transform-origin: 50% 50%; /* point autour duquel l'élément tourne, si jamais rotation
+  transform-origin: 50% 50%;
   animation-fill-mode:forwards; /*when the spec is finished*/
-  -webkit-animation: animationNav linear 1s;
+  -webkit-animation: apparitionNav ease-in-out 1.5s;
   -webkit-animation-iteration-count: 1;
   -webkit-transform-origin: 50% 50%;
-  -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
-  -moz-animation: animationNav linear 1s;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+  -moz-animation: apparitionNav ease-in-out 1.5s;
   -moz-animation-iteration-count: 1;
   -moz-transform-origin: 50% 50%;
-  -moz-animation-fill-mode: forwards; /*FF 5+*/
-  -o-animation: animationNav linear 1s;
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation: apparitionNav ease-in-out 1.5s;
   -o-animation-iteration-count: 1;
   -o-transform-origin: 50% 50%;
-  -o-animation-fill-mode: forwards; /*Not implemented yet*/
-  -ms-animation: animationNav linear 1s;
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation: apparitionNav ease-in-out 1.5s;
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%;
-  -ms-animation-fill-mode: forwards; /*IE 10+*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
 }
 
-@keyframes animationNav {
+@keyframes apparitionNav{
   0% {
-    transform: translate(0px, 0px);
+    transform:  translate(0px,0px)  ;
   }
   100% {
-    transform: translate(1000px, 0px);
-  }
-}
-
-@-moz-keyframes animationNav {
-  0% {
-    -moz-transform: translate(0px, 0px);
-  }
-  100% {
-    -moz-transform: translate(1000px, 0px);
+    transform:  translate(700px,0px)  ;
   }
 }
 
-@-webkit-keyframes animationNav {
+@-moz-keyframes apparitionNav{
   0% {
-    -webkit-transform: translate(0px, 0px);
+    -moz-transform:  translate(0px,0px)  ;
   }
   100% {
-    -webkit-transform: translate(1000px, 0px);
+    -moz-transform:  translate(700px,0px)  ;
   }
 }
 
-@-o-keyframes animationNav {
+@-webkit-keyframes apparitionNav {
   0% {
-    -o-transform: translate(0px, 0px);
+    -webkit-transform:  translate(0px,0px)  ;
   }
   100% {
-    -o-transform: translate(1000px, 0px);
+    -webkit-transform:  translate(700px,0px)  ;
   }
 }
 
-@-ms-keyframes animationNav {
+@-o-keyframes apparitionNav {
   0% {
-    -ms-transform: translate(0px, 0px);
+    -o-transform:  translate(0px,0px)  ;
   }
   100% {
-    -ms-transform: translate(1000px, 0px);
+    -o-transform:  translate(700px,0px)  ;
   }
 }
+
+@-ms-keyframes apparitionNav {
+  0% {
+    -ms-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    -ms-transform:  translate(700px,0px)  ;
+  }
+}
+
+
 
 .divLogoAndTitle {
   display: flex;
@@ -460,13 +458,13 @@ export default {
   width: 380px;
   height: 100px;
   text-align: center;
-  color: #b61666;
-  font-family: "Merienda One", cursive;
   cursor: pointer;
 }
 .divLogoAndTitle h1 {
   font-size: 22px;
   width: 190px;
+  color: #b61666;
+  font-family: "Merienda One", cursive;
 }
 .logo {
   width: 105px;
@@ -553,7 +551,6 @@ export default {
   cursor: pointer;
 }
 .recherche > div:nth-child(2):hover {
-  /* background-color:  #9f1459; */
   background-color: #b61666;
 }
 .recherche > div > p {
@@ -565,18 +562,9 @@ export default {
 .divloupe {
   display: none;
 }
-
-/*
-.ctnNav a {
-  text-decoration: none;
-  color: black;
-  padding: 10px;
- } */
-
-/* .noDisplay {
-left: -500px;
-bottom: 120px;
-}  */
+.textrecherche {
+  font-size: 18px;
+}
 
 /* Tablette*/
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -603,77 +591,12 @@ bottom: 120px;
     height: 30px;
   }
 
-  .ctnNav {
-    left: -940px;
+  .ctnHeaderNav {
+    margin-left: -720px;
+    width: 50%;
+    height: 430px;
   }
   /* Apparition de la nav */
-  #menuB:checked ~ .ctnNav {
-    animation: animationNav linear 1s;
-    animation-iteration-count: 1;
-    transform-origin: 50% 50%; /* point autour duquel l'élément tourne, si jamais rotation
-  animation-fill-mode:forwards; /*when the spec is finished*/
-    -webkit-animation: animationNav linear 1s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-transform-origin: 50% 50%;
-    -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
-    -moz-animation: animationNav linear 1s;
-    -moz-animation-iteration-count: 1;
-    -moz-transform-origin: 50% 50%;
-    -moz-animation-fill-mode: forwards; /*FF 5+*/
-    -o-animation: animationNav linear 1s;
-    -o-animation-iteration-count: 1;
-    -o-transform-origin: 50% 50%;
-    -o-animation-fill-mode: forwards; /*Not implemented yet*/
-    -ms-animation: animationNav linear 1s;
-    -ms-animation-iteration-count: 1;
-    -ms-transform-origin: 50% 50%;
-    -ms-animation-fill-mode: forwards; /*IE 10+*/
-  }
-
-  @keyframes animationNav {
-    0% {
-      transform: translate(0px, 0px);
-    }
-    100% {
-      transform: translate(200px, 0px);
-    }
-  }
-
-  @-moz-keyframes animationNav {
-    0% {
-      -moz-transform: translate(0px, 0px);
-    }
-    100% {
-      -moz-transform: translate(200px, 0px);
-    }
-  }
-
-  @-webkit-keyframes animationNav {
-    0% {
-      -webkit-transform: translate(0px, 0px);
-    }
-    100% {
-      -webkit-transform: translate(200px, 0px);
-    }
-  }
-
-  @-o-keyframes animationNav {
-    0% {
-      -o-transform: translate(0px, 0px);
-    }
-    100% {
-      -o-transform: translate(200px, 0px);
-    }
-  }
-
-  @-ms-keyframes animationNav {
-    0% {
-      -ms-transform: translate(0px, 0px);
-    }
-    100% {
-      -ms-transform: translate(200px, 0px);
-    }
-  }
 }
 
 /* Téléphone */
@@ -696,81 +619,82 @@ bottom: 120px;
   .btn {
     display: none;
   }
-  /* Apparition de la nav */
-  #menuB:checked ~ .ctnNav {
-    animation: animationNav linear 1s;
-    animation-iteration-count: 1;
-    transform-origin: 50% 50%; /* point autour duquel l'élément tourne, si jamais rotation
-  animation-fill-mode:forwards; /*when the spec is finished*/
-    -webkit-animation: animationNav linear 1s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-transform-origin: 50% 50%;
-    -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
-    -moz-animation: animationNav linear 1s;
-    -moz-animation-iteration-count: 1;
-    -moz-transform-origin: 50% 50%;
-    -moz-animation-fill-mode: forwards; /*FF 5+*/
-    -o-animation: animationNav linear 1s;
-    -o-animation-iteration-count: 1;
-    -o-transform-origin: 50% 50%;
-    -o-animation-fill-mode: forwards; /*Not implemented yet*/
-    -ms-animation: animationNav linear 1s;
-    -ms-animation-iteration-count: 1;
-    -ms-transform-origin: 50% 50%;
-    -ms-animation-fill-mode: forwards; /*IE 10+*/
-  }
-
-  @keyframes animationNav {
-    0% {
-      transform: translate(0px, 0px);
-    }
-    100% {
-      transform: translate(500px, 0px);
-    }
-  }
-
-  @-moz-keyframes animationNav {
-    0% {
-      -moz-transform: translate(0px, 0px);
-    }
-    100% {
-      -moz-transform: translate(500px, 0px);
-    }
-  }
-
-  @-webkit-keyframes animationNav {
-    0% {
-      -webkit-transform: translate(0px, 0px);
-    }
-    100% {
-      -webkit-transform: translate(500px, 0px);
-    }
-  }
-
-  @-o-keyframes animationNav {
-    0% {
-      -o-transform: translate(0px, 0px);
-    }
-    100% {
-      -o-transform: translate(500px, 0px);
-    }
-  }
-
-  @-ms-keyframes animationNav {
-    0% {
-      -ms-transform: translate(0px, 0px);
-    }
-    100% {
-      -ms-transform: translate(500px, 0px);
-    }
-  }
-}
-
-.ctnNav {
-  /* background-color: #00e600; */
+  .ctnHeaderNav {
+  margin-left: -420px;
   width: 100%;
-  background-color: #ff2d95;
+  height: 80%;
 }
+  /* Apparition de la nav */
+  #menuB:checked ~ .ctnHeaderNav{
+  animation: navTel linear 1s;
+  animation-iteration-count: 1;
+  transform-origin: 50% 50%;
+  animation-fill-mode:forwards; /*when the spec is finished*/
+  -webkit-animation: navTel linear 1s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+  -moz-animation: navTel linear 1s;
+  -moz-animation-iteration-count: 1;
+  -moz-transform-origin: 50% 50%;
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation: navTel linear 1s;
+  -o-animation-iteration-count: 1;
+  -o-transform-origin: 50% 50%;
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation: navTel linear 1s;
+  -ms-animation-iteration-count: 1;
+  -ms-transform-origin: 50% 50%;
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+}
+
+@keyframes navTel{
+  0% {
+    transform:  translate(0px,0px)  ;
+  }
+  100% {
+    transform:  translate(400px,0px)  ;
+  }
+}
+
+@-moz-keyframes navTel{
+  0% {
+    -moz-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    -moz-transform:  translate(400px,0px)  ;
+  }
+}
+
+@-webkit-keyframes navTel {
+  0% {
+    -webkit-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    -webkit-transform:  translate(400px,0px)  ;
+  }
+}
+
+@-o-keyframes navTel {
+  0% {
+    -o-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    -o-transform:  translate(400px,0px)  ;
+  }
+}
+
+@-ms-keyframes navTel {
+  0% {
+    -ms-transform:  translate(0px,0px)  ;
+  }
+  100% {
+    -ms-transform:  translate(400px,0px)  ;
+  }
+}
+}
+
+
 
 /* Extra small devices (phones, 600px and down) */
 /* @media only screen and (max-width: 600px) {...} */

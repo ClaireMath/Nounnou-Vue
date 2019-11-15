@@ -73,10 +73,8 @@ export default {
       this.axios
         .post(this.url, this.nounou)
         .then(res => {
-          console.log(res.data[0].capacite_d_accueil)
           this.resultatnounou = res.data;
           this.show = true;
-          console.log(this.resultatnounou);
         })
         .catch(err => {
           // console.log(err)

@@ -1,7 +1,7 @@
 <template>
  <div>
    <div class="catsearch">
-         <h1>TROUVER UN CHAT A GARDER</h1>
+         <h1>Trouver un chat à garder</h1>
         
         <form @submit.prevent="showcats">
         
@@ -22,6 +22,7 @@
         <input class="btn"  type="submit" value="Rechercher">
         
     </form>
+    
     <div class="results">
        
         <!-- boucler pour afficher tous les résultats (v-for)
@@ -88,6 +89,9 @@ data() {
 };
 </script>
 <style scoped>
+.cursive {
+  font-family: "Merienda One";
+}
 .catsearch {
   background-color: whitesmoke;
   color: black;

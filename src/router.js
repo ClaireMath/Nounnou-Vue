@@ -23,6 +23,7 @@ import Login from './views/login.vue'
 import ShowNounous from './views/showNounous.vue'
 import ShowMaitres from './views/showMaitres.vue'
 import Admin from './views/admin.vue'
+import DemandeGarde from './views/demandeGarde.vue'
 
 Vue.use(Router)
 
@@ -119,6 +120,11 @@ redirect: '/notfound'
       path: '/showMaitres',
       name: 'showMaitres',
       component: ShowMaitres
+    },
+    {
+      path: '/demandeGarde',
+      name: 'demandeGarde',
+      component: DemandeGarde
     },
     {
       path: '/admin',

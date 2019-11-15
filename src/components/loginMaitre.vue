@@ -4,7 +4,7 @@
       <div class="ctninput">
         <input type="email" placeholder="Email" v-model="email" required />
 
-        <input type="text" placeholder="Mot de passe" v-model="password" required />
+        <input type="password" placeholder="Mot de passe" v-model="password" required />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
     </form>
@@ -67,6 +67,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 .div {
   height: 90%;
@@ -87,7 +88,7 @@ legend {
 .btn {
   width: 150px;
   height: 30px;
-  font-family: "Livvic", sans-serif;
+  font-family: cursive, sans-serif;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

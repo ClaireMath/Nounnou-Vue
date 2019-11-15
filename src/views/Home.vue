@@ -45,15 +45,15 @@ export default {
 <style scoped>
 .home {
   width: 100%;
-  height: 600px;
-  font-family: cursive, "sans-serif";
 }
 .monMain {
   width: 100%;
-  height: 1090px;
-  background-image: url("../assets/3SnugglingCats.jpg");
+  /* height: 1090px; */
+  background: url("../assets/3SnugglingCats.jpg") no-repeat center;
   background-size: cover; 
   /* opacity: 0.5; */
+  height: 1200px;
+  font-family: "merienda one", cursive, "sans-serif";
 }
 
 h1 {
@@ -76,6 +76,7 @@ h1 {
 @media screen and (min-width: 481px) and (max-width : 768px) {
 .monMain {
   height: 575px;
+  
 }
 h1 {
   position: relative;
@@ -90,6 +91,8 @@ h1 {
 @media screen and (min-width: 320px) and (max-width: 480px) {
 .monMain {
   height: 300px;
+  background: url("../assets/3SnugglingCats.jpg") no-repeat center;
+  background-size: 320px; 
 }
 h1 {
   font-size: 1em;

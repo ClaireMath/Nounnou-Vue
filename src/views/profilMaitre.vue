@@ -199,7 +199,7 @@
             v-model="chat.probleme_de_sante_particulier"
             type="text"
             placeholder="Problème de santé particulier"
-            class="inputText"
+            class="inputText pbsante"
             style="resize:horizontal; width:60%; height:30px"
             required
           />
@@ -255,7 +255,6 @@ export default {
 
   methods: {
     displayCats() {
-      
       this.axios
         .get(
           `http://localhost:6001/chat/AllChatsByMaitre/${this.maitre.idMaitre}`
@@ -302,7 +301,7 @@ export default {
         this.maitre
       );
       this.chat.id_maitre = this.maitre.idMaitre;
-      console.log(this.chat)
+      // console.log(this.chat)
       this.axios
         .post("http://localhost:6001/chat/newCat", this.chat)
         .then(res => {
@@ -339,18 +338,18 @@ export default {
 }
 form {
  
-  font-family: cursive, sans-serif;
+  font-family: "merienda one", cursive, sans-serif;
   font-size: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: hotpink;
+  /* background-color: hotpink; */
   
 }
 
 .bigBox {
-  background-color: brown;
+  /* background-color: brown; */
   width: 95%;
   display: flex;
   flex-direction: row;
@@ -358,7 +357,7 @@ form {
   flex-wrap: wrap;
 }
 .smallBoxNou {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   width: 50%;
   padding: 30px;
   display: flex;
@@ -366,30 +365,29 @@ form {
   justify-content: flex-start;
 }
 .ctnchamps {
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
   width: 100%;
   height: 230px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 .sbchamps {
-  background-color: teal;
+  /* background-color: teal; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .sbchamps2 {
-  background-color: turquoise;
+  /* background-color: turquoise; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .chat {
-  background-color: #ff2d95;
+  /* background-color: #ff2d95; */
   width: 50%;
-  
   padding-top: 20px;
   padding-left: 40px;
   display: flex;
@@ -434,7 +432,7 @@ textarea {
 }
 
 .btn {
-  width: 50%;
+  width: 65%;
   height: 40px;
   font-family: "Livvic", sans-serif;
   border-radius: 15px;
@@ -493,6 +491,9 @@ input {
 .btn2 {
   width: 40%;
 }
+ .smallBoxNou h1 {
+text-align: center;
+  }
 /* .chat {
   height: 1000px;
 } */
@@ -500,18 +501,18 @@ input {
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   form {
-    background-color: hotpink;
+    /* background-color: hotpink; */
     padding: 0px;
   }
   .bigBox {
     width: 100%;
-    background-color: brown;
+    /* background-color: brown; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .smallBoxNou {
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     width: 100%;
     padding: 20px;
     display: flex;
@@ -519,14 +520,15 @@ input {
     justify-content: space-between;
     align-items: center;
   }
+ 
 
   .ctnchamps {
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
     width: 100%;
     height: 400px;
   }
   .chat {
-    background-color: #ff2d95;
+    /* background-color: #ff2d95; */
     width: 100%;
     height: 1050px;
     padding: 20px;
@@ -538,12 +540,25 @@ input {
   h1 {
     font-size: 30px;
   }
+  h2 {
+    text-align: center
+  }
   p {
     text-align: justify;
   }
   .inputText {
     text-transform: uppercase;
+    /* width: 80%; */
   }
+  select {
+  /* margin: 10px;
+  border-radius: 25px; */
+  width: 80%;
+  /* height: 25px; */
+}
+  /* .pbsante {
+    width: 250px;
+  } */
   .btn {
     width: 90%;
   }

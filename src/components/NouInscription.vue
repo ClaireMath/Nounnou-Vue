@@ -4,14 +4,18 @@
     <form @submit.prevent="addNewNounou">
       <div class="ctninput">
        
-        <input v-model="nounou.nom" type="text" name id placeholder="Nom" required />
+        <input v-model="nounou.prenom" type="text" placeholder="Prénom" required />
 
-        <input v-model="nounou.prenom" type="text" name id placeholder="Prénom" required />
+        <input v-model="nounou.nom" type="text" placeholder="Nom" required />
 
-        <input v-model="nounou.email" type="email" name id placeholder="Email" required />
+        <input v-model="nounou.email" type="email" placeholder="Email" required />
 
-        <input v-model="nounou.mdp" type="tel" name id placeholder="mot de passe" required />
-
+        <input v-model="nounou.mdp" type="password" placeholder="mot de passe" required />
+ 
+ <div class="regles">
+        <label id="regles">Je m'engage à respecter les règles énoncées sur le site sous peine de poursuites pénales</label>
+        <input type="checkbox" id="regles" required />
+</div>
         <!--  -->
       </div>
       <input type="submit" value="Créer mon compte" class="btn" />
@@ -40,7 +44,7 @@ export default {
         .post(this.url, this.nounou)
         .then(res => {
           localStorage.setItem("token", res.data.token);
-
+          console.log(res.data);
           this.$router.push("/profilNou");
         })
         .catch(err => {
@@ -60,15 +64,13 @@ export default {
   align-items: center;
 }
 form {
-  width: 600px;
-  /* height: 600px; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .div {
-  height: 90%;
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,6 +112,17 @@ legend {
 input {
   border-radius: 10px;
   height: 30px;
+}
+.regles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#regles {
+  text-align: justify;
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {

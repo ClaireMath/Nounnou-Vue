@@ -66,18 +66,23 @@ export default {
 <style scoped>
 .ctn {
   /* height: 600px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: black;
-  font-family: cursive, sans-serif;
+  font-family: "merienda one", cursive, sans-serif;
 }
 .inscription {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 90vh;
+  width: 100%;
   background-color: whitesmoke;
 }
 form {
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +91,7 @@ form {
   border-radius: 25px;
   -webkit-box-shadow: 4px 4px 8px 2px rgba(0,0,0,0.2) ;
   box-shadow: 4px 4px 8px 2px rgba(0,0,0,0.2) ;
-  padding: 30px;
+  padding: 20px;
 
 }
 

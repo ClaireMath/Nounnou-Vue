@@ -1,10 +1,11 @@
 <template>
     <div class="ctn">
-        <router-link to="/inscription">S'incrire</router-link> 
+        <router-link 
+        to="/inscription">S'incrire</router-link> 
         
         <router-link to="/login">Se connecter</router-link> 
         
-        <router-link to="/fonctionnement">Mon profil</router-link> 
+        <p @click="showprofile">Mon profil</p> 
         
         <router-link to="/fonctionnement">Fonctionnement du service</router-link> 
         
@@ -13,8 +14,6 @@
         <router-link to="/todoliste">La to-do liste du propriétaire</router-link> 
         
         <router-link to="/conseilsnounous">Conseils pour nos Nounous</router-link> 
-        
-        <router-link to="/alimentsdangereux">Aliments dangereux pour nos matous</router-link> 
         
         <router-link to="/objetsutiles">Objets vraiment utiles</router-link> 
         
@@ -25,19 +24,30 @@
     </template>
 
 <script>
-
+import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "myNav",
   
 
 data() {
       return {
-       
-       
+       user: {}
       }
     },
 
     methods: {
+      showprofile() {
+      if (!localStorage.getItem("token")) {
+        this.$router.push({ name: "login" });
+      } else {
+        this.user = VueJwtDecode.decode(localStorage.getItem("token"));
+        if (this.user.idNounou) {
+          this.$router.push("/profilNou");
+        } else {
+          this.$router.push({ name: "profilMaitre" });
+        }
+      }
+    }
         
 }}
 </script>
@@ -53,10 +63,8 @@ data() {
     font-family: cursive, sans-serif;
     font-size: 1.5em;
     font-weight: bold;
-    left: -500px;
-    /* top: 160px; */
-    width: 35%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     z-index: 5;
     border-radius: 20px;
   }
@@ -65,16 +73,22 @@ data() {
     padding: 5px;
     color: black
   }
- 
+  p {
+    cursor:pointer;
+  }
+ /* Ecran d'ordi portable*/
+@media screen and (min-width: 769px) and (max-width :1280px) {
+}
 /* Tablettes */
-@media screen and (min-width: 481px) and (max-width: 1024px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   
 .ctn {
-    width: 50%;
-    height: 450px;
+    width: 90%;
+    height: 400px;
     font-size: 1.2em;
   }
 }
+/* Téléphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .ctn {
    
