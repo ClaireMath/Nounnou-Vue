@@ -3,7 +3,13 @@
     <div class="ctn">
       <div class="chat">
         <h2>Le Matou</h2>
-        <input v-model="chat.prenom_chat" type="text" placeholder="Prénom" required readonly />
+        <input
+          v-model="chat.prenom_chat"
+          type="text"
+          placeholder="Prénom"
+          required
+          readonly
+        />
 
         <div class="input">
           <div class="radio">
@@ -131,7 +137,9 @@
           placeholder="Décrivez-vous et votre expérience avec les chats."
           required
           readonly
-        >Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
+        >
+Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea
+        >
       </div>
       <div class="maitre">
         <!-- <div class="catsitter"> -->
@@ -139,8 +147,43 @@
 
         <div class="ctnchamps">
           <div class="sbchamps">
-            <input v-model="maitre.prenom" type="text" placeholder="Prénom" required readonly />
-            <input v-model="maitre.nom" type="text" placeholder="Prénom" required readonly />
+            <input
+              v-model="maitre.prenom"
+              type="text"
+              placeholder="Prénom"
+              required
+              readonly
+            />
+            <input
+              v-model="maitre.nom"
+              type="text"
+              placeholder="Prénom"
+              required
+              readonly
+            />
+
+            <div v-show="admin" class="divadmin">
+              <div class="champsAdmin">
+                <label for="id">ID Maitre :</label>
+                <input
+                  v-model="maitre.idMaitre"
+                  type="number"
+                  id="id"
+                  required
+                  readonly
+                />
+              </div>
+
+              <div class="champsAdmin">
+                <label for="banni">Banni :</label>
+                <input v-model="maitre.banni" type="checkbox" id="banni" required />
+              </div>
+
+              <div class="champsAdmin">
+                <label for="admin">Admin :</label>
+                <input v-model="maitre.admin" type="checkbox" id="admin" required />
+              </div>
+            </div>
 
             <input
               v-model="maitre.code_postal"
@@ -149,22 +192,65 @@
               required
               readonly
             />
-          </div>
-
-          <div class="sbchamps2">
-            <input v-model="maitre.ville" type="text" placeholder="Ville" required readonly />
-
-            <!-- <input v-model="maitre.email" type="email" placeholder="Email" required /> -->
+            <input
+              v-model="maitre.ville"
+              type="text"
+              placeholder="Ville"
+              required
+              readonly
+            />
           </div>
         </div>
-        <input @click="sendRequestForm" type="button" class="btn" value="Envoyer une demande de garde" />
+        <input
+          v-show="user"
+          @click="sendRequestForm"
+          type="button"
+          class="btn"
+          value="Envoyer une demande de garde"
+        />
+        <div v-show="admin" class="divBtn">
+         
+            <input
+              v-show="ban"
+              @click="banUnBanF"
+              type="button"
+              class="btn"
+              value="Bannir cet utilisateur"
+            />
+            <input
+              v-show="unBan"
+              @click="banUnBanF"
+              type="button"
+              class="btn"
+              value="Retirer le statut 'banni' à cet utilisateur"
+            />
+        
+        
+            <!-- @click="convertToAdmin" -->
+            <input
+              v-show="makeAdmin"
+              @click="makeUnMakeAdminF"
+              type="button"
+              class="btn"
+              value="Convertir en admin"
+            />
+            <input
+              v-show="unMakeAdmin"
+              @click="makeUnMakeAdminF"
+              type="button"
+              class="btn"
+              value="Retirer le statut admin"
+            />
+          
+        </div>
       </div>
     </div>
     <myfooter />
   </div>
 </template>
-      
-      <script>
+
+<script>
+import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import Router from "../router";
 export default {
@@ -175,25 +261,102 @@ export default {
   data() {
     return {
       maitre: {},
-      chat: {}
+      chat: {},
+      token: {},
+      user: null,
+      admin: null,
+      ban: null,
+      unBan: null,
+      makeAdmin: null,
+      unMakeAdmin: null,
+      url: "http://localhost:6001/maitre/banUnBanById",
+      url2: "http://localhost:6001/maitre/makeUnMakeAdminById"
     };
   },
   // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
   // au created, on récupère le param data
   created: function() {
+    // console.log(this.$route.params.data);
     this.maitre = this.$route.params.data;
-    this.chat = this.$route.params.data.chat;
-    console.log(this.chat)
+this.chat = this.$route.params.data.chat;
+
+    // this.maitre = this.$route.params.data;
+    // this.chat = this.maitre.chat;
+    localStorage.setItem("idMaitre", this.maitre.idMaitre);
+
+    // (pour l'apparition des boutons)
+    this.token = VueJwtDecode.decode(localStorage.getItem("token"));
+    if (this.token.admin == true) {
+      this.admin = true;
+      this.user = false;
+    } else {
+      this.admin = false;
+      this.user = true;
+    }
+    if (this.maitre.banni == true) {
+      this.ban = false;
+      this.unBan = true;
+    } else {
+      this.ban = true;
+      this.unBan = false;
+    }
+    if (this.maitre.admin == true) {
+      this.makeAdmin = false;
+      this.unMakeAdmin = true;
+    } else {
+      this.makeAdmin = true;
+      this.unMakeAdmin = false;
+    }
   },
   methods: {
     sendRequestForm() {
-    Router.push({ name: "demandeGarde" });
+      Router.push({ name: "demandeGarde" });
+    },
+    banUnBanF() {
+      this.axios
+        .put(this.url, this.maitre)
+        .then(res => {
+          console.log(res.data);
+
+          alert("Statut 'banni' modifié avec succès.");
+          Router.push({ name: "admin" });
+          localStorage.removeItem("idMaitre")
+        })
+        .catch(err => {
+          alert("Impossible d'effectuer l'action sur le statut 'banni'.");
+        });
+    },
+
+    makeUnMakeAdminF() {
+      this.axios
+        .put(this.url2, this.maitre)
+        .then(res => {
+          console.log(res.data);
+          this.maitre = res.data;
+
+          alert("Statut 'admin' modifié avec succès.");
+          Router.push({ name: "admin" });
+          localStorage.removeItem("idMaitre")
+        })
+        .catch(err => {
+          alert("Impossible d'effectuer l'action sur le statut 'admin'.");
+        });
+    },
+  },
+  beforeRouteEnter(from, to, next) {
+    if (localStorage.getItem("token") == null) {
+      next("/login");
+    // } else if (localStorage.getItem(token.banni = 1)) {
+    //   next()
+      }
+     else {
+      next();
     }
-  }
+   }
 };
 </script>
-      
-      <style scoped>
+
+<style scoped>
 .ctn {
   width: 100%;
   display: flex;
@@ -211,15 +374,12 @@ form {
   justify-content: center;
   align-items: center;
   /* background-color: hotpink; */
-  /* 
-         align-content: center;
-         justify-items: center; */
 }
 
 .ctnchamps {
   /* background-color: lightslategray; */
   width: 100%;
-  height: 230px;
+  height: 450px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -231,16 +391,19 @@ form {
   flex-direction: column;
   justify-content: space-between;
 }
-.sbchamps2 {
-  /* background-color: turquoise; */
+.champsAdmin {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+}
+
+.divadmin {
+  margin-left: 20px;
 }
 .maitre {
   /* background-color: #ff2d95; */
   width: 50%;
-  height: 820px;
+  margin-top: 20px;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -250,7 +413,6 @@ form {
 .chat {
   /* background-color: yellowgreen; */
   width: 50%;
-  height: 820px;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -263,7 +425,9 @@ label {
 .select {
   width: 100%;
 }
-
+#id {
+  width: 40%;
+}
 h2 {
   margin: 20px;
 }
@@ -281,8 +445,16 @@ textarea {
   border-radius: 25px;
   padding: 10px;
 }
+.divBtn {
+  width: 100%;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .btn {
-  width: 80%;
+  margin-top: 50px;
+  width: 60%;
   height: 40px;
   font-family: "Livvic", sans-serif;
   border-radius: 15px;
@@ -304,9 +476,6 @@ textarea {
   text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
-}
-.btn2 {
-  padding: 0px;
 }
 input {
   border-radius: 10px;
@@ -336,16 +505,13 @@ input {
 .ctnchamps {
   display: flex;
   flex-direction: column;
-  height: 380px;
 }
-.btn2 {
-  width: 40%;
-}
-.chat {
-  height: 1000px;
-}
+
 textarea {
   width: 90%;
+}
+.btn {
+  font-size: 65%;
 }
 
 /* Smartphone */
@@ -363,12 +529,10 @@ textarea {
   .ctnchamps {
     /* background-color: lightslategray; */
     width: 100%;
-    height: 400px;
   }
   .chat {
     /* background-color: #ff2d95; */
     width: 100%;
-    height: 1050px;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -383,11 +547,10 @@ textarea {
   }
   input.inputText {
     width: 90%;
-    height: 35px;
+    /* height: 35px; */
   }
   .btn {
-    width: 90%;
+    width: 100%;
   }
 }
 </style>
-      

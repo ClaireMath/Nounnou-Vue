@@ -31,7 +31,6 @@ export default {
   methods: {
     loginSubmit: function(e) {
       e.preventDefault();
-      console.log(this.email, this.password);
       this.axios
         .post("http://localhost:6001/nounou/login", {
           email: this.email,
@@ -44,11 +43,11 @@ export default {
             localStorage.setItem("token", res.data.token);
             // this.$router.push("/");
             // le $ c'est pour récupérer des variables définies en global dans main.js
-            this.$router.push({ name: "home", query: { redirect: "/" } });
+            this.$router.push({ name: "home"});
              window.location.reload();
           }
-          else {
-            alert(res.data)
+          else if (res.data.banni) { 
+          alert("Vous êtes banni, vous ne pouvez plus vous connecter")
           }
         })
         .catch(err => {

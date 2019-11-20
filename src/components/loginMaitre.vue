@@ -39,12 +39,17 @@ export default {
         })
         .then(res => {
           console.log(res.data);
+          if (res.data.token) {
+
           localStorage.setItem("token", res.data.token);
           // le $ c'est pour récupérer des variables définies en global dans main.js
           this.$router.push({ name: "home" });
-
           window.location.reload();
-        })
+          } 
+        else if (res.data.banni) { 
+          alert("Vous êtes banni, vous ne pouvez plus vous connecter")
+          }
+          })
         .catch(err => {
           console.log(err);
         });

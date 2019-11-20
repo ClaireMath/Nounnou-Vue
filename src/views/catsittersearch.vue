@@ -64,11 +64,6 @@ export default {
   // },
   methods: {
     shownounou() {
-      // console.log(this.nounou)
-
-      //  console.log(this.nounou.statut_disponible)
-      //  console.log(this.nounou.sans_enfant)
-      //  console.log(this.url);
 
       this.axios
         .post(this.url, this.nounou)

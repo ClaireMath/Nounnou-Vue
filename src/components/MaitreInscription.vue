@@ -38,7 +38,7 @@ export default {
         .then(res => {
           localStorage.setItem("token", res.data.token);
           this.$router.push("/profilMaitre");
-          // window.location.reload();
+          window.location.reload();
         })
         .catch(err => {
           //   console.log(err);

@@ -7,11 +7,52 @@
 
         <div class="ctnchamps">
           <div class="sbchamps">
-            <input v-model="nounou.prenom" type="text" placeholder="Prénom" required readonly />
+            <input
+              v-model="nounou.prenom"
+              type="text"
+              placeholder="Prénom"
+              required
+              readonly
+            />
 
-            <input v-model="nounou.nom" type="text" placeholder="Nom" required readonly />
+            <input
+              v-model="nounou.nom"
+              type="text"
+              placeholder="Nom"
+              required
+              readonly
+            />
 
-            <input v-model="nounou.adresse" type="text" placeholder="Adresse" required readonly />
+            <div v-show="admin" class="divadmin">
+              <div class="champsAdmin">
+                <label for="id">ID Nounou :</label>
+                <input
+                  v-model="nounou.idNounou"
+                  type="number"
+                  id="id"
+                  required
+                  readonly
+                />
+              </div>
+
+              <div class="champsAdmin">
+                <label for="banni">Banni :</label>
+                <input v-model="nounou.banni" type="checkbox" id="banni" required />
+              </div>
+
+              <div class="champsAdmin">
+                <label for="admin">Admin :</label>
+                <input v-model="nounou.admin" type="checkbox" id="admin" required />
+              </div>
+            </div>
+
+            <input
+              v-model="nounou.adresse"
+              type="text"
+              placeholder="Adresse"
+              required
+              readonly
+            />
 
             <input
               v-model="nounou.code_postal"
@@ -20,146 +61,154 @@
               required
               readonly
             />
+            <input
+              v-model="nounou.ville"
+              type="text"
+              placeholder="Ville"
+              required
+              readonly
+            />
           </div>
 
-          <div class="sbchamps2">
-            <input v-model="nounou.ville" type="text" placeholder="Ville" required readonly />
+          <div class="select">
+            <p>Nombre de chats que la nounou peut garder en même temps :</p>
+            <select v-model="nounou.capacite_d_accueil" required disabled>
+              <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
+              <option value="1">un chat</option>
+              <option value="2">deux chats</option>
+              <option value="3">trois chats</option>
+              <option value="4">quatre chats</option>
+            </select>
+          </div>
 
-            <!-- <input v-model="nounou.email" type="email" placeholder="Email" required />
-            -->
-            <!-- <input v-model="nounou.mdp" type="password" placeholder="Mot de passe" required /> -->
+          <p>Cette nounou a déjà eu des chats :</p>
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="nounou.a_deja_eu_des_chats"
+                name="chat"
+                id="ouichats"
+                value="true"
+                disabled
+              />
+              <label for="ouichats">oui</label>
+            </div>
+            <!-- v-model="picked" -->
+            <div class="non">
+              <input
+                disabled
+                type="radio"
+                v-model="nounou.a_deja_eu_des_chats"
+                name="chat"
+                id="nonchats"
+                value="false"
+              />
+              <label for="nonchats">non</label>
+            </div>
           </div>
-        </div>
-        <div class="select">
-          <p>Nombre de chats que la nounou peut garder en même temps :</p>
-          <select v-model="nounou.capacite_d_accueil" required disabled>
-            <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
-            <option value="1">un chat</option>
-            <option value="2">deux chats</option>
-            <option value="3">trois chats</option>
-            <option value="4">quatre chats</option>
-          </select>
-        </div>
+          <p>Cette nounou a déjà eu des animaux :</p>
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="nounou.a_deja_eu_des_animaux"
+                name="animaux"
+                id="ouianimaux"
+                value="true"
+                disabled
+              />
+              <label for="ouianimaux">oui</label>
+            </div>
+            <div class="non">
+              <input
+                type="radio"
+                v-model="nounou.a_deja_eu_des_animaux"
+                name="animaux"
+                id="nonanimaux"
+                value="false"
+                disabled
+              />
+              <label for="nonanimaux">non</label>
+            </div>
+          </div>
+          <div class="select">
+            <p>
+              Nombre d'heures consacrées au matou par jour : (minmum une heure)
+            </p>
+            <select
+              v-model="nounou.peut_consacrer_n_heure_par_jour"
+              required
+              disabled
+            >
+              <!-- v-model="selected" -->
+              <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
+              <option value="1">une heure</option>
+              <option value="2">deux heures</option>
+              <option value="3">trois heures</option>
+              <option value="4">plus de trois heures</option>
+            </select>
+          </div>
 
-        <p>Cette nounou a déjà eu des chats :</p>
-        <div class="radio">
-          <div class="oui">
-            <input
-              type="radio"
-              v-model="nounou.a_deja_eu_des_chats"
-              name="chat"
-              id="ouichats"
-              value="true"
-              disabled
-            />
-            <label for="ouichats">oui</label>
-          </div>
-          <!-- v-model="picked" -->
-          <div class="non">
-            <input
-              disabled
-              type="radio"
-              v-model="nounou.a_deja_eu_des_chats"
-              name="chat"
-              id="nonchats"
-              value="false"
-            />
-            <label for="nonchats">non</label>
-          </div>
-        </div>
-        <p>Cette nounou a déjà eu des animaux :</p>
-        <div class="radio">
-          <div class="oui">
-            <input
-              type="radio"
-              v-model="nounou.a_deja_eu_des_animaux"
-              name="animaux"
-              id="ouianimaux"
-              value="true"
-              disabled
-            />
-            <label for="ouianimaux">oui</label>
-          </div>
-          <div class="non">
-            <input
-              type="radio"
-              v-model="nounou.a_deja_eu_des_animaux"
-              name="animaux"
-              id="nonanimaux"
-              value="false"
-              disabled
-            />
-            <label for="nonanimaux">non</label>
-          </div>
-        </div>
-        <div class="select">
-          <p>Nombre d'heures consacrées au matou par jour : (minmum une heure)</p>
-          <select v-model="nounou.peut_consacrer_n_heure_par_jour" required disabled>
-            <!-- v-model="selected" -->
-            <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
-            <option value="1">une heure</option>
-            <option value="2">deux heures</option>
-            <option value="3">trois heures</option>
-            <option value="4">plus de trois heures</option>
-          </select>
-        </div>
+          <textarea
+            v-model="nounou.description"
+            cols="40"
+            rows="12"
+            placeholder="Décrivez-vous et votre expérience avec les chats."
+            required
+            readonly
+          >
+Petit mot de la nounou :</textarea
+          >
 
-        <textarea
-          v-model="nounou.description"
-          cols="40"
-          rows="12"
-          placeholder="Décrivez-vous et votre expérience avec les chats."
-          required
-          readonly
-        >Petit mot de la nounou :</textarea>
-
-        <p>Disponible immédiatement :</p>
-        <div class="radio">
-          <div class="oui">
-            <input
-              type="radio"
-              v-model="nounou.statut_disponible"
-              name="dispo"
-              id="dispo"
-              value="true"
-              disabled
-            />
-            <label for="dispo">oui</label>
+          <p>Disponible immédiatement :</p>
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="nounou.statut_disponible"
+                name="dispo"
+                id="dispo"
+                value="true"
+                disabled
+              />
+              <label for="dispo">oui</label>
+            </div>
+            <div class="non">
+              <input
+                type="radio"
+                v-model="nounou.statut_disponible"
+                name="dispo"
+                id="pasdispo"
+                value="false"
+                disabled
+              />
+              <label for="pasdispo">non</label>
+            </div>
           </div>
-          <div class="non">
-            <input
-              type="radio"
-              v-model="nounou.statut_disponible"
-              name="dispo"
-              id="pasdispo"
-              value="false"
-              disabled
-            />
-            <label for="pasdispo">non</label>
-          </div>
-        </div>
-        <div class="radio">
-          <div class="oui">
-            <input
-              type="radio"
-              v-model="nounou.non_fumeur"
-              id="Nfumeur"
-              name="fumeur"
-              value="true"
-              disabled
-            />
-            <label for="Nfumeur">Non fumeur</label>
-          </div>
-          <div class="non">
-            <input
-              type="radio"
-              v-model="nounou.non_fumeur"
-              id="fumeur"
-              name="fumeur"
-              value="false"
-              disabled
-            />
-            <label for="fumeur">Fumeur</label>
+          <div class="radio">
+            <div class="oui">
+              <input
+                type="radio"
+                v-model="nounou.non_fumeur"
+                id="Nfumeur"
+                name="fumeur"
+                value="true"
+                disabled
+              />
+              <label for="Nfumeur">Non fumeur</label>
+            </div>
+            <div class="non">
+              <input
+                type="radio"
+                v-model="nounou.non_fumeur"
+                id="fumeur"
+                name="fumeur"
+                value="false"
+                disabled
+              />
+              <label for="fumeur">Fumeur</label>
+            </div>
           </div>
         </div>
       </div>
@@ -167,7 +216,7 @@
         <h2>Son logement</h2>
 
         <!-- <div class="radio"></div> -->
-        <div class="radio">
+        <div class="radiologement">
           <div class="oui">
             <input
               type="radio"
@@ -195,7 +244,12 @@
         <input v-model="logement.superficie" type="text" required readonly />
 
         <p>Nombre de personnes habitants dans mon logement :</p>
-        <input v-model="logement.nombre_d_habitants" type="number" required readonly />
+        <input
+          v-model="logement.nombre_d_habitants"
+          type="number"
+          required
+          readonly
+        />
 
         <p>Des enfants habitent dans mon logement ?</p>
         <div class="radio">
@@ -273,16 +327,60 @@
             <label for="noext">non</label>
           </div>
         </div>
-        <!-- @click="sendRequest" -->
-        <input  type="button" class="btn" value="Envoyer une demande de garde" />
+
+        <input
+          v-show="user"
+          @click="sendRequest"
+          type="button"
+          class="btn"
+          value="Envoyer une demande de garde"
+        />
+
+        <div v-show="admin">
+          <div>
+            <input
+              v-show="ban"
+              @click="banUnBanF"
+              type="button"
+              class="btn"
+              value="Bannir cet utilisateur"
+            />
+            <input
+              v-show="unBan"
+              @click="banUnBanF"
+              type="button"
+              class="btn"
+              value="Retirer le statut 'banni' à cet utilisateur"
+            />
+          </div>
+          <div>
+            <input
+              v-show="makeAdmin"
+              @click="makeUnMakeAdminF"
+              type="button"
+              class="btn"
+              value="Convertir en admin"
+            />
+            <input
+              v-show="unMakeAdmin"
+              @click="makeUnMakeAdminF"
+              type="button"
+              class="btn"
+              value="Retirer le statut admin"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <myfooter />
   </div>
 </template>
-      
-      <script>
+
+<script>
+import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
+import Router from "../router";
+
 export default {
   name: "showNounous",
   components: {
@@ -291,7 +389,16 @@ export default {
   data() {
     return {
       nounou: {},
-      logement: {}
+      logement: {},
+      token: {},
+      user: null,
+      admin: null,
+      ban: null,
+      unBan: null,
+      makeAdmin: null,
+      unMakeAdmin: null,
+      url: "http://localhost:6001/nounou/banUnBanById",
+      url2: "http://localhost:6001/nounou/makeUnMakeAdminById"
     };
   },
   // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
@@ -299,11 +406,78 @@ export default {
   created: function() {
     this.nounou = this.$route.params.data;
     this.logement = this.$route.params.data.logement;
-  }
+    localStorage.setItem("idNounou", this.nounou.idNounou);
+    
+    // (pour l'apparition des boutons)
+    this.token = VueJwtDecode.decode(localStorage.getItem("token"));
+    if (this.token.admin == true) {
+      this.admin = true;
+      this.user = false;
+    } else {
+      this.admin = false;
+      this.user = true;
+    }
+    if (this.nounou.banni == true) {
+      this.ban = false;
+      this.unBan = true;
+    } else {
+      this.ban = true;
+      this.unBan = false;
+    }
+    if (this.nounou.admin == true) {
+      this.makeAdmin = false;
+      this.unMakeAdmin = true;
+    } else {
+      this.makeAdmin = true;
+      this.unMakeAdmin = false;
+    }
+  },
+  methods: {
+    sendRequest() {
+      this.$router.push({ name: "demandeGarde", params: { idNounou: this.nounou.idNounou } });
+    },
+    banUnBanF() {
+      this.axios
+        .put(this.url, this.nounou)
+        .then(res => {
+          console.log(res.data);
+
+          alert("Statut 'banni' modifié avec succès.");
+          Router.push({ name: "admin" });
+          localStorage.removeItem("idNounou")
+        })
+        .catch(err => {
+          alert("Impossible d'effectuer l'action sur le statut 'banni'.");
+        });
+    },
+
+    makeUnMakeAdminF() {
+      this.axios
+        .put(this.url2, this.nounou)
+        .then(res => {
+          console.log(res.data);
+          this.nounou = res.data;
+
+          alert("Statut 'admin' modifié avec succès.");
+          Router.push({ name: "admin" });
+          localStorage.removeItem("idNounou")
+        })
+        .catch(err => {
+          alert("Impossible d'effectuer l'action sur le statut 'admin'.");
+        });
+    },
+  },
+   beforeRouteEnter(from, to, next) {
+    if (localStorage.getItem("token") == null) {
+      next("/login");
+    } else {
+      next();
+    }
+   }
 };
 </script>
-      
-      <style scoped>
+
+<style scoped>
 .ctn {
   display: flex;
   font-family: cursive, sans-serif;
@@ -316,15 +490,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px;
+  padding: 10px;
   /* background-color: aqua; */
 }
 .ctnchamps {
   /* background-color: lightslategray; */
   width: 100%;
-  height: 280px;
+  height: 1300px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -334,11 +508,13 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.sbchamps2 {
-  /* background-color: turquoise; */
+.champsAdmin {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
+}
+.divadmin {
+  margin-left: 20px;
 }
 .logement {
   /* background-color: #ff2d95; */
@@ -353,10 +529,13 @@ label {
   margin-top: 12px;
 }
 .select {
-  width: 100%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+#id {
+  width: 40%;
 }
 h2 {
   margin: 20px;
@@ -376,8 +555,8 @@ textarea {
 }
 .btn {
   margin-top: 50px;
-  width: 80%;
-  height:40px;
+  width: 100%;
+  height: 40px;
   font-family: "Livvic", cursive, sans-serif;
   border-radius: 15px;
   -webkit-border-radius: 15px;
@@ -409,8 +588,12 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* align-items: center; */
-  /* padding: 10px; */
+}
+.radiologement {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .oui {
   display: flex;
@@ -424,20 +607,24 @@ input {
 }
 /* TABLETTE */
 @media screen and (min-width: 481px) and (max-width: 768px) {
+  .ctnchamps {
+    display: flex;
+    flex-direction: column;
+  }
+  textarea {
+    width: 90%;
+  }
+  .btn {
+    font-size: 70%;
+  }
+  .radiologement {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 70px;
+  }
 }
-/* .ctn {
-  flex-wrap: wrap;
-
-} */
-.ctnchamps {
-  display: flex;
-  flex-direction: column;
-  height: 280px;
-}
-textarea {
-  width: 90%;
-}
-
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .ctn {
@@ -456,7 +643,7 @@ textarea {
   .ctnchamps {
     /* background-color: lightslategray; */
     width: 100%;
-    height: 280px;
+    height: 1500px;
   }
   p {
     text-align: justify;
@@ -472,4 +659,3 @@ textarea {
   }
 }
 </style>
-      

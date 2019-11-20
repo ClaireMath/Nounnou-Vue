@@ -4,11 +4,13 @@
       <form>
         <h1>Merci de bien vouloir remplir le formulaire de garde</h1>
         <label for="dateD">Date de début de garde :</label>
-        <input v-model="garder.debut" type="date" name id="dateD" required/>
+        <input v-model="garder.debut" type="date" id="dateD" required/>
 
         <label for="dateF">Date de fin de garde :</label>
-        <input v-model="garder.fin" type="date" name id="dateF" required/>
+        <input v-model="garder.fin" type="date" id="dateF" required/>
+  	    <textarea v-model="garder.message" placeholder="Veuillez taper le message pour votre destinataire ici." rows="15" cols="60">
 
+        </textarea>
         <input
           @click="sendRequestForm"
           type="button"
@@ -23,6 +25,7 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import Router from "../router";
 export default {
@@ -33,42 +36,84 @@ export default {
   data() {
     return {
         garder: {},
+        resultatchats: [],
+        idChats: [],
+        url2: "http://localhost:6001/chat/AllChatsByMaitre/",
         url: "http://localhost:6001/garder/new"
     };
   },
+ created: function() {
+    var token = VueJwtDecode.decode(localStorage.getItem('token'))
+    var idToken = token.idMaitre
+    console.log(idToken);
+   this.garder.id_nounou = this.$route.params.idNounou;
+    console.log(this.garder.id_nounou);
+    this.recupIdChat(idToken)
+  },
 
   methods: {
-      sendRequestForm() {
+              recupIdChat(idToken) {
+              this.axios
+              .get(this.url2 + idToken)
+              .then((res) => {
+            console.log(res.data)
+            this.resultatchats = res.data;
+            console.log(this.resultatchats);
+
+           // .map (boucler et retourne le resultat en tableau)
+            this.idChats = this.resultatchats.map(chat => {
+                return chat.idChat
+            })
+            this.garder.id_chat = this.idChats
+            console.log(this.idChats);
+          })
+          .catch(err => {
+            // console.log(err)
+          })
+            },
+            sendRequestForm() {
           this.axios
-        .post(this.url, this.garder)
-        .then(res => {
-         alert("Votre demande vient d'être envoyée.")
-          Router.push({ name: "home" });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-          
-      }
-  }
+              .post(this.url, this.garder)
+              .then(res => {
+               console.log(res.data)
+               alert("Votre demande vient d'être envoyée.")
+               this.$router.push("/catsittersearch");
+              })
+              .catch(err => {
+                console.log(err);
+              });
+                
+            },
+  },
+     beforeRouteEnter(from, to, next) {
+    if (localStorage.getItem("token") == null) {
+      next("/login");
+    } else {
+      next();
+    }
+   }
 };
 </script>
 <style scoped>
 .ctn {
-  /* height: 600px; */
   color: black;
   font-family: "Merienda one", cursive, sans-serif;
 }
 .demandeGarde {
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 55vh;
   background-color: whitesmoke;
 }
+textarea {
+  border-radius: 25px;
+  padding: 10px;
+  margin-top: 10px;
+}
 .btn {
-  margin-top: 20px;
+  margin-top: 40px;
   width: 80%;
   height: 40px;
   font-family: "Livvic", sans-serif;
@@ -113,34 +158,36 @@ h1 {
   font-size: 20px;
   margin-bottom: 20px;
 }
-p {
-  margin-bottom: 10px;
+label {
+  margin: 5px;
 }
-select {
-  border-radius: 10px;
-  height: 30px;
+input {
+  border-radius: 15px;
+  padding: 5px;
 }
 
-/* TABLETTE */
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  .login {
-    height: 70vh;
-  }
-}
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
+  .demandeGarde {
+  padding: 20px;
+  }
   h1 {
     text-align: center;
   }
   .ctn {
     width: 100%;
   }
-  .login {
-    width: 100%;
-    height: 75vh;
-  }
   form {
-    width: 80%;
+    width: 100%;
+  }
+  textarea {
+  width: 90%;
+  border-radius: 25px;
+  padding: 10px;
+  margin-top: 10px;
+}
+  .btn {
+    width: 90%;
   }
 }
 </style>

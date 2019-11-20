@@ -10,13 +10,8 @@
          <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.email}}</td>
-          <!-- <td>capacite d'accueil :{{data.capacite_d_accueil}}</td> -->
-          <!-- <td>{{data.a_deja_eu_des_chats}}</td>
-          <td>{{data.a_deja_eu_des_animaux}}</td>
-          <td>{{data.non_fumeur}}</td>
-          <td>{{data.peut_consacrer_n_heure_par_jour}}</td>
-          <td>{{data.description}}</td>
-          <td>{{data.statut_disponible}}</td> -->
+   
+
           <td>
             <button v-on:click="learnmoreN(data)" class="btn">En savoir plus</button>
           </td>
@@ -31,6 +26,8 @@
 
         <tr id="ctn" v-for="data in resultats" :key="data.idMaitre" v-else>
         
+          <td>{{data.chat.prenom_chat}}</td>
+          <td><img :src="data.chat.photo" width="100px"></td>
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.description}}</td>
@@ -55,7 +52,7 @@ export default {
     };
   },
   created() {
-    console.log("this.resultats", JSON.stringify(this.resultats));
+    console.log("this.resultats", this.resultats);
   
     if (this.resultats[0].hasOwnProperty("idNounou")) {
       this.show = true;
@@ -73,6 +70,7 @@ export default {
       }
     },
     learnmoreM(data) {
+      console.log(data);
       if (this.resultats[0].hasOwnProperty("idMaitre")) {
         // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
         this.$router.push({ name: "showMaitres", params: { data: data } });
@@ -86,7 +84,6 @@ export default {
 <style scoped>
 .divtable {
   width: 100%;
-  height: 200px;
 }
 table {
   width: 100%;
@@ -95,10 +92,10 @@ tr {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 50px;
+    height: 100px;
 }
 td {
-  height: 50px;
+  height: 100px;
   width: 100%;
   display: flex; 
   justify-content: center;

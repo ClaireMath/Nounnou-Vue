@@ -2,43 +2,47 @@
   <div class="divtable">
     <table v-if="show">
       <tbody>
-        <tr class v-if="resultats == null || resultats == 0 ">
+        <tr class v-if="resultats == null || resultats == 0">
           <td>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
 
         <tr v-for="data in resultats" :key="data.idNounou" v-else>
-         <td>{{data.idNounou}}</td>
-         <td>{{data.prenom}}</td>
-         <td>{{data.nom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.email}}</td>
-          <!-- <td>capacite d'accueil :{{data.capacite_d_accueil}}</td> -->
-          <!-- <td>{{data.a_deja_eu_des_chats}}</td>
-          <td>{{data.a_deja_eu_des_animaux}}</td>
-          <td>{{data.non_fumeur}}</td>
-          <td>{{data.peut_consacrer_n_heure_par_jour}}</td>
-          <td>{{data.description}}</td>
-          <td>{{data.statut_disponible}}</td> -->
+          <td>{{ data.idNounou }}</td>
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.nom }}</td>
+          <td>{{ data.ville }}</td>
+           <td>{{ data.email }}</td>
+          <td>{{ data.admin }}</td>
+          <td>{{ data.banni }}</td>
+          
           <td>
-            <button v-on:click="learnmoreN(data)" class="btn">En savoir plus</button>
+            <button v-on:click="learnmoreN(data)" class="btn">
+              En savoir plus
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
     <table v-else>
       <tbody>
-        <tr class v-if="resultats == 0 ">
+        <tr class v-if="resultats == 0">
           <td class>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
 
-        <tr id="ctn" v-for="data in resultats" :key="data.idMaitre" v-else>
-        
-          <td>{{data.prenom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.description}}</td>
-
+        <tr v-for="data in resultats" :key="data.idMaitre" v-else id="ctn">
+          <td>{{ data.idMaitre }}</td>
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.nom }}</td>
+          <td>{{ data.ville }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.admin }}</td>
+          <td>{{ data.banni }}</td>
+          <!-- <td>{{data.chat.prenom_chat}}</td> -->
           <td>
-            <button v-on:click="learnmoreM(data)" class="btn">En savoir plus</button>
+          
+            <button v-on:click="learnmoreM(data)" class="btn">
+              En savoir plus
+            </button>
           </td>
         </tr>
       </tbody>
@@ -57,13 +61,13 @@ export default {
     };
   },
   created() {
-    console.log("this.resultats", JSON.stringify(this.resultats));
-  
+    console.log("this.resultats de la table Admin", JSON.stringify(this.resultats));
+
     if (this.resultats[0].hasOwnProperty("idNounou")) {
       this.show = true;
     } else {
       this.show = false;
-     }
+    }
   },
   methods: {
     learnmoreN(data) {
@@ -75,6 +79,7 @@ export default {
       }
     },
     learnmoreM(data) {
+      console.log(data);
       if (this.resultats[0].hasOwnProperty("idMaitre")) {
         // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
         this.$router.push({ name: "showMaitres", params: { data: data } });
@@ -93,17 +98,17 @@ table {
   width: 100%;
 }
 tr {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
 }
 td {
-    padding: 10px;
-    text-align: center;
+  padding: 10px;
+  text-align: center;
   height: 50px;
   width: 100%;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }

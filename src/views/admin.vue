@@ -78,8 +78,8 @@ this.axios
    if (localStorage.getItem("token") !== null)  {
     var token = VueJwtDecode.decode(localStorage.getItem("token"))
     console.log(token);
-      if (token.admin === 0) {
-       next("/home");
+      if (token.admin == false) {
+       next("/");
       } else {
           next();
       }
@@ -101,8 +101,12 @@ this.axios
   align-items: center;
   padding: 20px;
 }
-.btn {
+.nounous, .maitres {
   width: 100%;
+  margin: 10px;
+}
+.btn {
+  width: 30%;
   height: 50px;
   font-family: "Livvic", sans-serif;
   border-radius: 15px;
@@ -114,7 +118,7 @@ this.axios
   background-color: whitesmoke;
   /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1em;
   letter-spacing: 1px;
 }
 .btn:hover {
