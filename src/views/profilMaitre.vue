@@ -65,8 +65,10 @@
 
         <div class="chat">
           <h2>Mon (Mes) chat(s)</h2>
+          <div class="prenomEtPhoto">
           <select @change="selectCat">
             <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
+            <option>Veuillez cliquer sur votre chat</option>
             <option
               v-for="chat in chats"
               :value="chat.idChat"
@@ -91,6 +93,7 @@
             placeholder="Prénom de mon chat"
             required
           />
+          </div>
           <!-- <label for="avatar">Photo de mon chat:</label> -->
 
           <!-- <input class="inputphoto" type="file" v-on:change="handleFileUpload()" accept="image/png, image/jpeg" /> -->
@@ -220,19 +223,15 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '../components/HelloWorld.vue'
-// import headertemplate from '../components/header.vue'
+
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
-// import formChat from "../components/formChat";
 
 export default {
   name: "profilMaitre",
   components: {
     myfooter
-    // formChat,
-    // HelloWorld
+    
   },
   data() {
     return {
@@ -421,13 +420,17 @@ textarea {
   padding: 10px;
   width: 90%;
 }
-.inputphoto {
-  width: 50%;
-  height: 30px;
+.prenomEtPhoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }
 .divphoto {
   width: 40%;
-  height: auto;
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  margin-left: 20px;
   display: flex;
 }
 

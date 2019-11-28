@@ -59,12 +59,16 @@ data() {
         url: "http://localhost:6001/maitre/AllByVilleEtStatut",
       }
     },
+    created: function() {
+      
+    },
 
     methods: {
        showcats() {
-          
+          // this.chat = this.maitre.chat
         this.axios
-        .post(this.url,this.maitre)
+        .post(this.url,{maitre:this.maitre, chat:this.chat})
+        // this.chat = this.maitre.chat
           .then((res) => {
             console.log(res.data)
              this.resultatmaitres = res.data;
@@ -72,7 +76,7 @@ data() {
           console.log(this.resultatmaitres);
           })
           .catch(err => {
-            // console.log(err)
+            console.log(err)
           })
        } 
 },

@@ -12,8 +12,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import VueJwtDecode from "vue-jwt-decode";
+
 export default {
   name: "loginMaitre",
 
@@ -24,8 +23,7 @@ export default {
     };
   },
   created: function() {
-    console.log("nounou");
-    // this.nounou = VueJwtDecode.decode(localStorage.getItem('token'));
+       
   },
 
   methods: {
@@ -34,7 +32,7 @@ export default {
         .post("http://localhost:6001/maitre/login", {
           email: this.email,
           // le 1er mdp fait référence au champs dans node alors que
-          // le this.password fait référence à ce quil y a dans v-model
+          // le this.password fait référence à ce qu'il y a dans v-model
           mdp: this.password
         })
         .then(res => {

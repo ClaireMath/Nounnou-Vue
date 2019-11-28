@@ -12,8 +12,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-import VueJwtDecode from "vue-jwt-decode";
+
 export default {
   name: "loginNou",
 
@@ -48,6 +47,8 @@ export default {
           }
           else if (res.data.banni) { 
           alert("Vous êtes banni, vous ne pouvez plus vous connecter")
+          } else {
+            alert("Erreur dans l'identifiant ou le mot de passe.")
           }
         })
         .catch(err => {

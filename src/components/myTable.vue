@@ -28,6 +28,7 @@
         
           <td>{{data.chat.prenom_chat}}</td>
           <td><img :src="data.chat.photo" width="100px"></td>
+          <td>{{data.chat.idChat}}</td>
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.description}}</td>
@@ -42,13 +43,16 @@
 </template>
 
 <script>
+import VueJwtDecode from "vue-jwt-decode";
+
 export default {
   name: "myTable",
   props: ["resultats"],
 
   data() {
     return {
-      show: true
+      show: true,
+      tokenNounou: {}
     };
   },
   created() {
@@ -74,6 +78,9 @@ export default {
       if (this.resultats[0].hasOwnProperty("idMaitre")) {
         // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
         this.$router.push({ name: "showMaitres", params: { data: data } });
+        localStorage.setItem("idChat", data.chat.idChat);
+        this.tokenNounou = VueJwtDecode.decode(localStorage.getItem('token'));
+        localStorage.setItem("idNounou", this.tokenNounou.idNounou);
       } else {
         return;
       }

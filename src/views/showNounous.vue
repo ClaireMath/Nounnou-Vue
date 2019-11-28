@@ -434,7 +434,7 @@ export default {
   },
   methods: {
     sendRequest() {
-      this.$router.push({ name: "demandeGarde", params: { idNounou: this.nounou.idNounou } });
+      this.$router.push({ name: "maitreChercheNounou", params: { idNounou: this.nounou.idNounou } });
     },
     banUnBanF() {
       this.axios

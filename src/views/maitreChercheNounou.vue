@@ -4,11 +4,11 @@
       <form>
         <h1>Merci de bien vouloir remplir le formulaire de garde</h1>
         <label for="dateD">Date de début de garde :</label>
-        <input v-model="garder.debut" type="date" id="dateD" required/>
+        <input v-model="garde.debut" type="date" id="dateD" required/>
 
         <label for="dateF">Date de fin de garde :</label>
-        <input v-model="garder.fin" type="date" id="dateF" required/>
-  	    <textarea v-model="garder.message" placeholder="Veuillez taper le message pour votre destinataire ici." rows="15" cols="60">
+        <input v-model="garde.fin" type="date" id="dateF" required/>
+  	    <textarea v-model="garde.message" placeholder="Veuillez taper le message pour votre destinataire ici." rows="15" cols="60">
 
         </textarea>
         <input
@@ -29,25 +29,25 @@ import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import Router from "../router";
 export default {
-  name: "demandeGarde",
+  name: "maitreChercheNounou",
   components: {
     myfooter
   },
   data() {
     return {
-        garder: {},
+        garde: {},
         resultatchats: [],
         idChats: [],
         url2: "http://localhost:6001/chat/AllChatsByMaitre/",
-        url: "http://localhost:6001/garder/new"
+        url: "http://localhost:6001/garde/new"
     };
   },
  created: function() {
     var token = VueJwtDecode.decode(localStorage.getItem('token'))
     var idToken = token.idMaitre
     console.log(idToken);
-   this.garder.id_nounou = this.$route.params.idNounou;
-    console.log(this.garder.id_nounou);
+   this.garde.id_nounou = this.$route.params.idNounou;
+    console.log(this.garde.id_nounou);
     this.recupIdChat(idToken)
   },
 
@@ -64,7 +64,7 @@ export default {
             this.idChats = this.resultatchats.map(chat => {
                 return chat.idChat
             })
-            this.garder.id_chat = this.idChats
+            this.garde.id_chat = this.idChats
             console.log(this.idChats);
           })
           .catch(err => {
@@ -73,7 +73,7 @@ export default {
             },
             sendRequestForm() {
           this.axios
-              .post(this.url, this.garder)
+              .post(this.url, this.garde)
               .then(res => {
                console.log(res.data)
                alert("Votre demande vient d'être envoyée.")

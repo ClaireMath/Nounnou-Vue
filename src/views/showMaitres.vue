@@ -276,12 +276,8 @@ export default {
   // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
   // au created, on récupère le param data
   created: function() {
-    // console.log(this.$route.params.data);
     this.maitre = this.$route.params.data;
-this.chat = this.$route.params.data.chat;
-
-    // this.maitre = this.$route.params.data;
-    // this.chat = this.maitre.chat;
+    this.chat = this.$route.params.data.chat;
     localStorage.setItem("idMaitre", this.maitre.idMaitre);
 
     // (pour l'apparition des boutons)
@@ -310,7 +306,7 @@ this.chat = this.$route.params.data.chat;
   },
   methods: {
     sendRequestForm() {
-      Router.push({ name: "demandeGarde" });
+      this.$router.push({ name: "nounouChercheChat", params: { idChat: this.chat.idChat } });
     },
     banUnBanF() {
       this.axios
