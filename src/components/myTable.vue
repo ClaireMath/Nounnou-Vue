@@ -31,6 +31,7 @@
           <td>{{data.chat.idChat}}</td>
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
+          <td>{{data.email}}</td>
           <td>{{data.description}}</td>
 
           <td>

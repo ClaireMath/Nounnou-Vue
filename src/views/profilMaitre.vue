@@ -214,6 +214,7 @@
             placeholder="Décrivez votre boule de poils."
           ></textarea>
           <input @click="deleteCat" type="button" class="btn" value="Supprimer mon chat" />
+          <input @click="mesGardes" type="button" class="btn" value="Mes gardes" />
         </div>
       </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
@@ -238,6 +239,7 @@ export default {
       maitre: {},
       chats: {},
       chat: {},
+      garde: {},
       photo:null
     };
   },
@@ -312,6 +314,26 @@ export default {
           // console.log(err);
         });
     },
+
+    mesGardes() {
+        this.axios.get(
+        "http://localhost:6001/garde/AllgardeChatsByMaitre",
+        this.garde
+      );
+      this.chat.id_maitre = this.maitre.idMaitre;
+      // console.log(this.chat)
+      this.axios
+        .post("http://localhost:6001/chat/newCat", this.chat)
+        .then(res => {
+          // console.log(res);
+          this.$router.push("/");
+          alert("Votre profil a été mis à jour avec succès.");
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+
     uploadImage(e){
       // on affecte à la variable image, le fichier en position 
                 const image = e.target.files[0];

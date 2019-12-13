@@ -38,27 +38,79 @@ export default {
         garde: {},
         resultatchats: [],
         idChats: [],
+        maitre: {},
+        nounou: {},
+        chat: {},
+        url: "http://localhost:6001/garde/new",
         url2: "http://localhost:6001/chat/AllChatsByMaitre/",
-        url: "http://localhost:6001/garde/new"
+        url3: "http://localhost:6001/garde/mail",
+        urlM: "http://localhost:6001/maitre/getOneById/",
+        urlN: "http://localhost:6001/nounou/getOneById/",
+        urlC: "http://localhost:6001/chat/getOneById/",
+
     };
   },
  created: function() {
     var token = VueJwtDecode.decode(localStorage.getItem('token'))
     var idToken = token.idMaitre
-    console.log(idToken);
-   this.garde.id_nounou = this.$route.params.idNounou;
-    console.log(this.garde.id_nounou);
+    console.log(`idMaitre : ${idToken}`);
+    // this.garde.id_nounou 
+    console.log(`idNounou : ${this.$route.params.idNounou}`) ;
+    this.garde.id_nounou = this.$route.params.idNounou
     this.recupIdChat(idToken)
+    this.recupMaitre(idToken)
+    this.recupNounou(this.garde.id_nounou)
+    this.recupChat(this.garde.id_chat)
   },
 
   methods: {
+    recupNounou(id_nounou) {
+      this.axios
+              .get(this.urlN + id_nounou)
+              .then((res) => {
+                console.log(res.data.nounou.email);
+                this.nounou = res.data;
+            
+            // console.log(this.nounou);
+    console.log(`email nounou : ${this.nounou.nounou.email}`);
+      
+          })
+          .catch(err => {
+            // console.log(err)
+          })
+            },
+                //   recupChat(id_chat) {
+                //      this.axios
+                //      .get(this.urlC + id_chat)
+                //      .then((res) => {
+                //    this.chat = res.data;
+                //    console.log(this.chat);
+                //  })
+                //  .catch(err => {
+                //    // console.log(err)
+                //  })
+                //    },
+              recupMaitre(idToken) {
+              this.axios
+              .get(this.urlM + idToken)
+              .then((res) => {
+            this.maitre = res.data;
+            console.log(this.maitre);
+          })
+          .catch(err => {
+            // console.log(err)
+          })
+            },
+
+
+
               recupIdChat(idToken) {
               this.axios
               .get(this.url2 + idToken)
               .then((res) => {
-            console.log(res.data)
+            // console.log(res.data)
             this.resultatchats = res.data;
-            console.log(this.resultatchats);
+            // console.log(this.resultatchats);
 
            // .map (boucler et retourne le resultat en tableau)
             this.idChats = this.resultatchats.map(chat => {
@@ -72,17 +124,29 @@ export default {
           })
             },
             sendRequestForm() {
+              
           this.axios
               .post(this.url, this.garde)
               .then(res => {
-               console.log(res.data)
-               alert("Votre demande vient d'être envoyée.")
-               this.$router.push("/catsittersearch");
+                this.garde = res.data
+               console.log(res.data.garde.idChat)
+
+            this.axios.post(this.url3, {nounou: this.nounou, maitre: this.maitre, garde: res.data})
+              .then(res=> {
+                if (res.data.hasOwnProperty("error")) {
+                  console.log(res.data.error);
+                }
+                console.log(res.data);
+                this.$router.push('/');
+              }).catch(err=> {
+                console.log(err);
+              })
               })
               .catch(err => {
                 console.log(err);
               });
-                
+              console.log(this.chat);
+             
             },
   },
      beforeRouteEnter(from, to, next) {

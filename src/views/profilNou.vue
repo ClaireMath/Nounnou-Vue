@@ -254,6 +254,7 @@
             </div>
           </div>
         
+          <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi" />
         </div>
       </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
@@ -278,10 +279,14 @@ export default {
   data() {
     return {
       nounou: {},
-      logement: {}
+      logement: {}, 
+      avis: []
     };
   },
   created: function() {
+    console.log(this.logement)
+    console.log(this.nounou)
+    console.log(this.nounou.logement)
     // if (!localStorage.getItem("token")) {
     //   this.$router.push("/login");
     // }
@@ -294,59 +299,59 @@ export default {
     !localStorage.getItem("token")
       ? this.$router.push("/login")
       : (this.nounou = VueJwtDecode.decode(localStorage.getItem("token")));
-console.log(this.nounou.idNounou)
-
+    console.log(this.nounou.idNounou)
+    console.log(this.nounou)
     this.displayFlat();
   },
 
   methods: {
     displayFlat() {
-      if (!this.nounou.logement) {
-        return
-      } else {
       this.axios
         .get(
           `http://localhost:6001/logement/getOneByIdNounou/${this.nounou.idNounou}`
         )
         .then(res => {
-          console.log(res);
-          this.logement = res.data;
+          console.log(res.data);
+          if (res.data !== null) {
+            this.logement = res.data
+          } else {
+            return
+          }
+
+          // this.logement = res.data;
         })
         .catch(err => {
           // console.log(err);
         });
-      }
     },
 
-    // updateFlat() {
-    //   this.axios.put(
-    //     `http://localhost:6001/logement/update/${this.nounou.idNounou}`, this.logement
-    //   )
-    //   this.logement.id_nounou = this.nounou.idNounou
-
-    //     .then(res => {
-    //       console.log(res);
-         
-    //       alert("Votre profil a été mis à jour avec succès.");
-    //     })
-    //     .catch(err => {
-    //       // console.log(err);
-    //     });
-    // },
-
     updateProfileNou() {
-      this.axios.post(
-        "http://localhost:6001/nounou/updateByEmail",
-        this.nounou);
-        this.logement.id_nounou = this.nounou.idNounou;
+      this.axios.post("http://localhost:6001/nounou/updateByEmail", this.nounou);
+      this.logement.id_nounou = this.nounou.idNounou;
 
-      this.axios.post(
-        "http://localhost:6001/logement/create", 
-        this.logement)
+      this.axios.post("http://localhost:6001/logement/create", this.logement)
         .then(res => {
           // console.log(res);
           this.$router.push("/");
           alert("Votre profil a été mis à jour avec succès.");
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    },
+
+        mesAvis() {
+        this.axios
+        .get(
+          `http://localhost:6001/avis/AllAvisByNounou/${this.nounou.idNounou}`
+        )
+        .then(res => {
+          console.log(res.data);
+          if (res.data !== null) {
+            this.avis = res.data
+          } else {
+            return
+          }
         })
         .catch(err => {
           // console.log(err);
@@ -455,6 +460,9 @@ textarea {
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
+}
+.btn2 {
+  width: 100%;
 }
 .btn:hover {
   color: #ffffff;

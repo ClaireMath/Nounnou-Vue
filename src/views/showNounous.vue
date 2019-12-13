@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="ctn">
+    <div class="bigCtn">
+      <div class="ctn">
       <div class="nounou">
         <!-- <div class="catsitter"> -->
         <h1>Nounou</h1>
@@ -328,13 +329,6 @@ Petit mot de la nounou :</textarea
           </div>
         </div>
 
-        <input
-          v-show="user"
-          @click="sendRequest"
-          type="button"
-          class="btn"
-          value="Envoyer une demande de garde"
-        />
 
         <div v-show="admin">
           <div>
@@ -370,8 +364,26 @@ Petit mot de la nounou :</textarea
             />
           </div>
         </div>
+         <input
+          v-show="user"
+          @click="displayAvis"
+          type="button"
+          class="btn"
+          value="Avis des autres maitres sur cette nounou"
+        />
       </div>
-    </div>
+      </div>
+      <!-- <div class="ctnInput"> -->
+      
+        <input
+          v-show="user"
+          @click="sendRequest"
+          type="button"
+          class="btn btn2"
+          value="Envoyer une demande de garde"
+        />
+    <!-- </div> -->
+  </div>
     <myfooter />
   </div>
 </template>
@@ -478,6 +490,13 @@ export default {
 </script>
 
 <style scoped>
+.bigCtn {
+  background-color:yellow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .ctn {
   display: flex;
   font-family: cursive, sans-serif;
@@ -491,10 +510,10 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  /* background-color: aqua; */
+  background-color: aqua;
 }
 .ctnchamps {
-  /* background-color: lightslategray; */
+  background-color: lightslategray;
   width: 100%;
   height: 1300px;
   display: flex;
@@ -503,7 +522,7 @@ export default {
   align-items: center;
 }
 .sbchamps {
-  /* background-color: teal; */
+  background-color: teal;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -517,7 +536,7 @@ export default {
   margin-left: 20px;
 }
 .logement {
-  /* background-color: #ff2d95; */
+  background-color: #ff2d95;
   width: 50%;
   padding: 20px;
   display: flex;
@@ -553,6 +572,10 @@ textarea {
   border-radius: 25px;
   padding: 10px;
 }
+/* .ctnInput {
+  height: 150px;
+  width: 100%;
+} */
 .btn {
   margin-top: 50px;
   width: 100%;
@@ -569,6 +592,11 @@ textarea {
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
+}
+.btn2 {
+  width: 50%;
+  /* margin-top: 0px; */
+  margin: 30px;
 }
 .btn:hover {
   color: #ffffff;

@@ -25,6 +25,8 @@ import ShowMaitres from './views/showMaitres.vue'
 import Admin from './views/admin.vue'
 import MaitreChercheNounou from "./views/maitreChercheNounou.vue";
 import NounouChercheChat from "./views/nounouChercheChat.vue"; 
+import ConfirmationGardeN from "./views/confirmationGardeN.vue";
+import NewAvis from "./views/newAvis.vue";
 
 Vue.use(Router)
 
@@ -131,6 +133,16 @@ export default new Router({
       path: "/nounouChercheChat",
       name: "nounouChercheChat",
       component: NounouChercheChat
+    },
+    {
+      path: "/confirmationGardeN",
+      name: "confirmationGardeN",
+      component: ConfirmationGardeN
+    },
+    {
+      path: "/newAvis",
+      name: "newAvis",
+      component: NewAvis
     },
     {
       path: "/admin",

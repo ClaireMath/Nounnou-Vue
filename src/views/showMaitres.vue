@@ -199,15 +199,26 @@ Décrivez-vous, votre expérience avec les chats ou les animaux en général, po
               required
               readonly
             />
+            <input
+              v-model="maitre.email"
+              type="text"
+              placeholder="Email"
+              required
+              readonly
+            />
           </div>
         </div>
-        <input
+        <div class="indication"  v-show="user">
+          <p>Si vous souhaitez proposez de garder ce chat, vous pouvez contacter directement son propriétaire sur son adresse e-mail.
+          </p>
+        </div>
+        <!-- <input
           v-show="user"
           @click="sendRequestForm"
           type="button"
           class="btn"
           value="Envoyer une demande de garde"
-        />
+        /> -->
         <div v-show="admin" class="divBtn">
          
             <input
@@ -494,6 +505,20 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+.indication {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border:#680d3b solid 3px;
+  border-radius: 25px;
+  width: 90%;
+  padding: 20px;
+}
+.indication p {
+  /* text-align: justify; */
+  margin-top: 0px;
 }
 /* TABLETTE */
 @media screen and (min-width: 481px) and (max-width: 768px) {
