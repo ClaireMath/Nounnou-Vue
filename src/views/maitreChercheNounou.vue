@@ -123,8 +123,8 @@ export default {
             // console.log(err)
           })
             },
-            sendRequestForm() {
-              
+
+            sendRequestForm() {  
           this.axios
               .post(this.url, this.garde)
               .then(res => {

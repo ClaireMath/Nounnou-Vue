@@ -255,8 +255,9 @@
           </div>
         
           <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi" />
+      <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
+         </div>
         </div>
-      </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
     </form>
     <myfooter></myfooter>
@@ -269,18 +270,20 @@
 // import headertemplate from '../components/header.vue'
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
+import myTableAvis from "../components/myTableAvis";
 
 export default {
   name: "profilNou",
   components: {
-    myfooter
-    // HelloWorld
+    myfooter,
+    myTableAvis
   },
   data() {
     return {
       nounou: {},
       logement: {}, 
-      avis: []
+      resultatAvis: [], 
+      show: true 
     };
   },
   created: function() {
@@ -348,7 +351,7 @@ export default {
         .then(res => {
           console.log(res.data);
           if (res.data !== null) {
-            this.avis = res.data
+            this.resultatAvis = res.data
           } else {
             return
           }

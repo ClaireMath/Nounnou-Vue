@@ -1,7 +1,7 @@
 <template>
   <div class="ctn">
     <div class="newAvis">
-      <form>
+      <form preventDefault>
         <h1>Merci de bien vouloir remplir les champs suivants afin d'ajouter votre avis</h1>
         <label for="note">Note :</label>
         <div class="radio">
@@ -64,7 +64,7 @@
           <input type="number" v-model="avis.id_maitre" class="hidden">
           <input type="number" v-model="avis.id_nounou" class="hidden">
           </div>
-    <textarea required name="" id="" cols="60" rows="10" placeholder="Votre commentaire ici"></textarea>
+    <textarea required v-model="avis.commentaire" name="" id="" cols="60" rows="10" placeholder="Votre commentaire ici"></textarea>
        
         <input
           @click="newAvis"
@@ -102,11 +102,13 @@ export default {
     var token = VueJwtDecode.decode(localStorage.getItem('token'))
     this.avis.id_maitre = token.idMaitre
     console.log(`idMaitre : ${this.avis.id_maitre}`);
+this.$route.params.data
+console.log(`data: ${this.$route.params.data}`);
+    this.avis.id_nounou = this.$route.params.data.idNounou
+    this.avis.id_garde = this.$route.params.data.idGarde
 
-    this.avis.id_nounou = this.$route.params.idNounou
-
-    // console.log(`idNounou : ${this.$route.params.idNounou}`) ;
-  
+    console.log(`idNounou : ${this.$route.params.idNounou}`) ;
+  console.log(`idGarde : ${this.$route.params.idGarde}`) ;
   },
 
   methods: {
@@ -115,7 +117,7 @@ export default {
               .post(this.urlA, this.avis)
               .then(res => {
                console.log(res.data)
-               alert("Votre avis vient d'être posté.")
+              //  alert("Votre avis vient d'être posté.")
                this.$router.push("/");
               })
               .catch(err => {

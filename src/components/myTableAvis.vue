@@ -2,30 +2,33 @@
   <div class="divtable">
     <table v-if="show">
       <tbody>
-        <tr v-if="resultats == null || resultats == 0 ">
-          <td>Il n'y a pas de résultat correspondant à vos critères.</td>
+        <tr class v-if="resultats == null || resultats == 0 ">
+          <td>Vous n'avez pas encore d'avis</td>
         </tr>
-<!-- <thead>
-    <tr >
-    <th>Prénom de la nounou</th>
-    <th>Ville</th>
+<thead>
+    <tr>
+    <th>Note</th>
+    <th>Commentaire</th>
        
-        <th>E-mail</th>
+        <th>Ecrit par</th>
         </tr>
-</thead> -->
-        <tr v-for="data in resultats" :key="data.idNounou" v-else>
-         <td>{{data.prenom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.email}}</td>
-   
+</thead>
+        <tr v-for="data in resultats" :key="data.idAvis">
+         <!-- <td v-for="item in data" :key="item">{{item}}</td> -->
+         <td>{{data.note}}</td> 
+
+          <td>{{data.commentaire}}</td>
+          <td>{{data.prenom}} {{data.nom}}</td>
+          
+ 
 
           <td>
-            <button v-on:click="learnmoreN(data)" class="btn">En savoir plus</button>
+            <button v-on:click="avis(data)" class="btn">Emettre un avis sur cette garde</button>
           </td>
         </tr>
       </tbody>
     </table>
-    <table v-else>
+    <!-- <table v-else>
       <tbody>
         <tr class v-if="resultats == 0 ">
           <td class>Il n'y a pas de résultat correspondant à vos critères.</td>
@@ -46,7 +49,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 
@@ -54,67 +57,48 @@
 import VueJwtDecode from "vue-jwt-decode";
 
 export default {
-  name: "myTable",
+  name: "myTableGardes",
   props: ["resultats"],
 
   data() {
     return {
       show: true,
-      tokenNounou: {}
+    
     };
   },
   created() {
-    console.log("this.resultats", this.resultats);
+      
+    // console.log("this.resultats", this.resultats);
   
-    if (this.resultats[0].hasOwnProperty("idNounou")) {
-      this.show = true;
-    } else {
-      this.show = false;
-     }
+    // if (this.resultats[0].hasOwnProperty("idNounou")) {
+    //   this.show = true;
+    // } else {
+    //   this.show = false;
+    //  }
   },
   methods: {
-    learnmoreN(data) {
-      if (this.resultats[0].hasOwnProperty("idNounou")) {
-        // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
-        this.$router.push({ name: "showNounous", params: { data: data } });
-      } else {
-        return;
-      }
+    avis(data) {
+    this.$router.push({ name: "newAvis", params: {data: data}});
+//   this.$router.push({ name: "newAvis", params: {data: data , nounou: nounou,  garde: garde}});
+     
     },
-    learnmoreM(data) {
-      console.log(data);
-      if (this.resultats[0].hasOwnProperty("idMaitre")) {
-        // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
-        this.$router.push({ name: "showMaitres", params: { data: data } });
-        localStorage.setItem("idChat", data.chat.idChat);
-        this.tokenNounou = VueJwtDecode.decode(localStorage.getItem('token'));
-        localStorage.setItem("idNounou", this.tokenNounou.idNounou);
-      } else {
-        return;
-      }
-    }
   }
 };
 </script>
+
 <style scoped>
-.divtable {
+/* .divtable {
   width: 100%;
-}
+} */
 table {
   width: 100%;
 }
+
 tr {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100px;
-}
-th {
-  height: 100px;
-  width: 100%;
-  display: flex; 
-  justify-content: center;
-  align-items: center;
 }
 td {
   height: 100px;
@@ -122,6 +106,13 @@ td {
   display: flex; 
   justify-content: center;
   align-items: center;
+}
+th {
+  height: 100px;
+  width: 100%;
+  /* display: flex; 
+  justify-content: center;
+  align-items: center; */
 }
 #ctn {
   display: flex;

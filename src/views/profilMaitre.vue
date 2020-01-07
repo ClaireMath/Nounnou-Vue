@@ -216,6 +216,9 @@
           <input @click="deleteCat" type="button" class="btn" value="Supprimer mon chat" />
           <input @click="mesGardes" type="button" class="btn" value="Mes gardes" />
         </div>
+        <div class="results">
+        <myTableGardes v-if="show" :resultats="resultatgardes"></myTableGardes>
+      </div>
       </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
     </form>
@@ -227,11 +230,13 @@
 
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
+import myTableGardes from "../components/myTableGardes";
 
 export default {
   name: "profilMaitre",
   components: {
-    myfooter
+    myfooter,
+    myTableGardes
     
   },
   data() {
@@ -240,7 +245,12 @@ export default {
       chats: {},
       chat: {},
       garde: {},
-      photo:null
+      photo:null,
+      show: true,
+      resultatchats: [],
+      idChats: [],
+      resultatgardes: [],
+      url: "http://localhost:6001/chat/AllChatsByMaitre/",
     };
   },
   created: function() {
@@ -252,6 +262,10 @@ export default {
     }
 
     this.displayCats();
+    var token = VueJwtDecode.decode(localStorage.getItem('token'))
+    var idToken = token.idMaitre
+    console.log(`idMaitre : ${idToken}`);
+    this.recupIdChat(idToken)
   },
 
   methods: {
@@ -315,23 +329,40 @@ export default {
         });
     },
 
+    recupIdChat(idToken) {
+              this.axios
+              .get(this.url + idToken)
+              .then((res) => {
+            // console.log(res.data)
+            this.resultatchats = res.data;
+            // console.log(this.resultatchats);
+
+           // .map (boucler et retourne le resultat en tableau)
+            this.idChats = this.resultatchats.map(chat => {
+                return chat.idChat
+            })
+            this.garde.id_chat = this.idChats
+            console.log(`idChats = ${this.idChats}`);
+          })
+          .catch(err => {
+            // console.log(err)
+          })
+            },
+
     mesGardes() {
-        this.axios.get(
-        "http://localhost:6001/garde/AllgardeChatsByMaitre",
-        this.garde
-      );
-      this.chat.id_maitre = this.maitre.idMaitre;
-      // console.log(this.chat)
-      this.axios
-        .post("http://localhost:6001/chat/newCat", this.chat)
-        .then(res => {
-          // console.log(res);
-          this.$router.push("/");
-          alert("Votre profil a été mis à jour avec succès.");
+        this.axios.post(
+        "http://localhost:6001/garde/AllgardeChatsOfOneMaitre",
+        {idChats : this.idChats})
+      .then(res => {
+        console.log(res.data);
+          this.resultatgardes = res.data.gardes;
+          this.show = true;
         })
         .catch(err => {
-          // console.log(err);
-        });
+          // console.log(err)
+        });;
+      // show = true
+     
     },
 
     uploadImage(e){
@@ -368,7 +399,9 @@ form {
   /* background-color: hotpink; */
   
 }
-
+/* .results {
+  width: 100%;
+} */
 .bigBox {
   /* background-color: brown; */
   width: 95%;
