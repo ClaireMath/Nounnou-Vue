@@ -4,7 +4,8 @@
     <table >
       <tbody>
         <tr v-if="resultats == null || resultats == 0 ">
-          <td>Vous n'avez pas encore d'avis</td>
+          <td v-if="displayForNounou">Il n'y a pas encore d'avis écrit sur vous.</td>
+          <td v-if="displayForMaitre">Il n'y a pas encore d'avis sur cette nounou.</td>
         </tr>
 
     <tr class="titres" v-else>
@@ -15,7 +16,7 @@
 
         <tr v-for="data in resultats" :key="data.idAvis">
          
-          <td class="notes">{{data.note}}</td> 
+          <td class="notes">{{data.note}}/5</td> 
           <td class="commentaires com2">{{data.commentaire}}</td>
           <td class="ecritpar">{{data.maitre.prenom}} {{data.maitre.nom}}</td>
           
@@ -36,11 +37,23 @@ export default {
   data() {
     return {
       // show: true
+      myToken: null,
+      displayForNounou: null,
+      displayForMaitre: null
     
     };
   },
   created() {
-  
+    this.myToken =  VueJwtDecode.decode(localStorage.getItem("token"))
+    console.log(this.myToken);
+    console.log(this.myToken.idMaitre);
+    if (this.myToken.idNounou) {
+      this.displayForNounou = true;
+      this.displayForMaitre = false;
+    } else {
+      this.displayForMaitre = true;
+      this.displayForNounou = false;
+     }
   },
   methods: {
   }
@@ -51,28 +64,31 @@ export default {
 .divtable { 
   width: 100%;
   margin-top: 25px;
-  background-color: blue;
+  /* background-color: blue; */
 }
 table {
-    background-color: grey;
+    /* background-color: grey; */
   width: 100%;
+  border: 2px solid grey;
+  border-radius: 25px;
+  padding-bottom: 10px;
 }
 tbody {
-    background-color: #680d3b;
+    /* background-color: #680d3b; */
     width: 100%;
 }
 .titres {
     width: 100%;
 }
 tr {
-  background-color: orange;
+  /* background-color: orange; */
   display: flex;
   justify-content: center;
   width: 100%;
   /* height: 60px; */
 }
 td {
-    background-color: red;
+    /* background-color: red; */
   /* height: 60px; */
   width: 100%;
   display: flex;
@@ -81,7 +97,7 @@ td {
   margin-top: 20px;
 }
 th {
-  background-color: yellow;
+  /* background-color: yellow; */
   padding-top: 20px;
   height: 70px;
   width: 100%;

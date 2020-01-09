@@ -29,8 +29,8 @@
         dans data créer variable qui s'appelle resultats
         (voir datatable) 
          -->
-          <!-- // le premier maitres, c'est celui qui est dans props, donc dans l'enfant
-        // le deuxième maitres, c'est celui qui est dans data-->
+          <!-- // le premier resultat, c'est celui qui est dans props, donc dans l'enfant
+        // le deuxième resultat, c'est celui qui est dans data-->
         <myTable v-if="show" :resultats="resultatmaitres"></myTable>
      </div> 
     </div>    
@@ -105,6 +105,9 @@ data() {
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+h1 {
+  text-align: center;
 }
 .results {
   margin-top: 40px;

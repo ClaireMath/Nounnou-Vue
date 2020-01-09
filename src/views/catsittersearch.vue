@@ -5,12 +5,12 @@
       <h1>Trouver une Nounou</h1>
 
       <form @submit.prevent="shownounou">
-        <input v-model="nounou.ville" type="text" placeholder="Ville de l'hôte" class="ville" />
+        <input v-model="nounou.ville" type="text" placeholder="Ville de l'hôte" class="ville inputT"/>
 
         <input class="checkbox" v-model="nounou.statut_disponible" type="checkbox" id="dispo" />
         <label for="dispo">Disponible immédiatement</label>
 
-        <select v-model="nounou.capacite_d_accueil">
+        <select v-model="nounou.capacite_d_accueil" class="inputT">
           <option value="1">Pour un chat</option>
           <option value="2">Pour deux chats</option>
           <option value="3">Pour trois chats</option>
@@ -28,10 +28,10 @@
 
         <input type="submit" value="Rechercher" class="btn" />
       </form>
+
       <div class="results">
-        
-        <!-- // le premier nounou, c'est celui qui est dans props, donc dans l'enfant
-        // le deuxième nounou, c'est celui qui est dans data-->
+        <!-- // le premier "resultat", c'est celui qui est dans props, donc dans l'enfant
+        // le deuxième "resultat", c'est celui qui est dans data-->
         <myTable v-if="show" :resultats="resultatnounou"></myTable>
       </div>
     </div>
@@ -171,6 +171,13 @@ form {
 }
 .btn {
   width: 60%;
+}
+.inputT {
+width: 80%;
+}
+.results {
+  margin-top: 40px;
+  width: 100%;
 }
 }
 </style>

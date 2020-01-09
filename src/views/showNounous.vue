@@ -368,7 +368,7 @@ Petit mot de la nounou :</textarea
           v-show="user"
           @click="displayAvis"
           type="button"
-          class="btn"
+          class="btn btn1"
           value="Avis des autres maitres sur cette nounou"
         />
 
@@ -377,7 +377,7 @@ Petit mot de la nounou :</textarea
         <div class="results">
       <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
          </div>
-      <!-- <div class="ctnInput"> -->
+
       
         <input
           v-show="user"
@@ -386,9 +386,9 @@ Petit mot de la nounou :</textarea
           class="btn btn2"
           value="Envoyer une demande de garde"
         />
-    <!-- </div> -->
+
   </div>
-    <myfooter />
+    <myfooter/>
   </div>
 </template>
 
@@ -516,6 +516,7 @@ export default {
 <style scoped>
 .bigCtn {
   /* background-color:yellow; */
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -525,7 +526,7 @@ export default {
   display: flex;
   font-family: cursive, sans-serif;
   font-size: 20px;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
 }
 .nounou {
   width: 50%;
@@ -539,7 +540,7 @@ export default {
 .ctnchamps {
   /* background-color: lightslategray; */
   width: 100%;
-  height: 1300px;
+  height: 1100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -569,7 +570,8 @@ export default {
   align-items: center;
 }
 .results {
-  width: 100%;
+  width: 80%;
+  font-family: cursive, sans-serif;
 }
 label {
   margin-top: 12px;
@@ -599,10 +601,7 @@ textarea {
   border-radius: 25px;
   padding: 10px;
 }
-/* .ctnInput {
-  height: 150px;
-  width: 100%;
-} */
+
 .btn {
   margin-top: 50px;
   width: 100%;
@@ -617,13 +616,15 @@ textarea {
   background-color: whitesmoke;
   /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
-  font-size: 0.9em;
   letter-spacing: 1px;
+}
+.btn1 {
+  font-size: 20px;
 }
 .btn2 {
   width: 50%;
-  /* margin-top: 0px; */
   margin: 30px;
+  font-size: 20px;
 }
 .btn:hover {
   color: #ffffff;
@@ -669,8 +670,11 @@ input {
   textarea {
     width: 90%;
   }
-  .btn {
-    font-size: 70%;
+  .btn1 {
+    font-size: 15px;
+  }
+  .btn2 {
+    font-size: 18px;
   }
   .radiologement {
     width: 100%;
@@ -711,6 +715,13 @@ input {
   }
   .btn {
     width: 90%;
+  }
+  .btn1 {
+    width: 100%;
+    font-size: 14px;
+  }
+  .btn2 {
+    font-size: 14px;
   }
 }
 </style>

@@ -35,7 +35,7 @@
         
           <td>{{data.chat.prenom_chat}}</td>
           <td><img :src="data.chat.photo" width="100px"></td>
-          <td>{{data.chat.idChat}}</td>
+          <td class="hidden">{{data.chat.idChat}}</td>
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
           <td>{{data.email}}</td>
@@ -128,6 +128,10 @@ td {
   flex-direction: row;
   justify-content: center;
 }
+.hidden {
+  opacity: 0;
+  width: 5px;
+}
 .btn {
   width: 125px;
   height: 30px;
@@ -151,5 +155,13 @@ td {
   text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
+
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+.btn {
+  width: 100px;
+  height: 50px;
+}
 }
 </style>
