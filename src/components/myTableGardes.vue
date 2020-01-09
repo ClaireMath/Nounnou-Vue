@@ -1,56 +1,36 @@
 <template>
-  <div class="divtable">
-    <table v-if="show">
+  <div>
+      <div class="divtable">
+    <table>
       <tbody>
-        <tr class v-if="resultats == null || resultats == 0 ">
+        <tr v-if="resultats == null || resultats == 0">
           <td>Vos n'avez pas encore fait garder votre chat.</td>
         </tr>
-<thead>
-    <tr>
-    <th>Date du début de la garde</th>
-    <th>Date de fin</th>
-       
-        <th>Nom et prénom de la nounou</th>
-        <th>Prénom du chat gardé</th>
-        </tr>
-</thead>
-        <tr v-for="data in resultats" :key="data.idGarde">
-         <!-- <td v-for="item in data" :key="item">{{item}}</td> -->
-         <td>{{data.debut}}</td> 
 
-          <td>{{data.fin}}</td>
-          <td>{{data.prenom}}</td>
-          <td>{{data.prenom_chat}}</td>
- 
+        <tr class="titres" v-else>
+          <th>Début de la garde</th>
+          <th>Date de fin</th>
+          <th>Nounou</th>
+          <th>Prénom du chat</th>
+        </tr>
+
+        <tr v-for="data in resultats" :key="data.idGarde">
+         
+          <td>{{ data.debut }}</td>
+          <td>{{ data.fin }} </td>
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.prenom_chat }}</td>
 
           <td>
-            <button v-on:click="avis(data)" class="btn">Emettre un avis sur cette garde</button>
+              <button v-on:click="avis(data)" class="btn">
+              Emettre un avis sur cette garde
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- <table v-else>
-      <tbody>
-        <tr class v-if="resultats == 0 ">
-          <td class>Il n'y a pas de résultat correspondant à vos critères.</td>
-        </tr>
-
-        <tr id="ctn" v-for="data in resultats" :key="data.idMaitre" v-else>
-        
-          <td>{{data.chat.prenom_chat}}</td>
-          <td><img :src="data.chat.photo" width="100px"></td>
-          <td>{{data.chat.idChat}}</td>
-          <td>{{data.prenom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.email}}</td>
-          <td>{{data.description}}</td>
-
-          <td>
-            <button v-on:click="learnmoreM(data)" class="btn">En savoir plus</button>
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
+   
+    </div>
   </div>
 </template>
 
@@ -63,57 +43,56 @@ export default {
 
   data() {
     return {
-      show: true,
     
     };
   },
   created() {
-      
-    // console.log("this.resultats", this.resultats);
-  
-    // if (this.resultats[0].hasOwnProperty("idNounou")) {
-    //   this.show = true;
-    // } else {
-    //   this.show = false;
-    //  }
+    
   },
   methods: {
-    avis(data) {
-    this.$router.push({ name: "newAvis", params: {data: data}});
-//   this.$router.push({ name: "newAvis", params: {data: data , nounou: nounou,  garde: garde}});
-     
-    },
+      avis(data) {
+      this.$router.push({ name: "newAvis", params: { data: data }});
+      }
   }
 };
 </script>
 
 <style scoped>
-/* .divtable {
+.divtable { 
   width: 100%;
-} */
+  margin-top: 25px;
+  background-color: blue;
+}
 table {
+    background-color: grey;
   width: 100%;
 }
-
-tr {
-    display: flex;
-    justify-content: center;
+tbody {
+    background-color: #680d3b;
     width: 100%;
-    height: 100px;
+}
+.titres {
+    width: 80%;
+}
+tr {
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
 }
 td {
-  height: 100px;
+    background-color: red;
+  height: 60px;
   width: 100%;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 th {
+    background-color: yellow;
   height: 100px;
   width: 100%;
-  /* display: flex; 
-  justify-content: center;
-  align-items: center; */
 }
 #ctn {
   display: flex;
@@ -121,14 +100,14 @@ th {
   justify-content: center;
 }
 .btn {
-  width: 125px;
-  height: 30px;
+  width: 200px;
+  height: 50px;
   font-family: "Livvic", sans-serif;
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 430px;
+  -webkit-border-radius: 430px;
+  -moz-border-radius: 430px;
+  -ms-border-radius: 430px;
+  -o-border-radius: 430px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
   /* font-family: cursive, "sans-serif"; */
@@ -144,4 +123,11 @@ th {
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
+
+/* TABLETTE */
+/* @media screen and (min-width: 481px) and (max-width: 768px) {
+}
+.titres {
+    width: 68%;
+} */
 </style>

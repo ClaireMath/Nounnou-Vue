@@ -255,8 +255,10 @@
           </div>
         
           <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi" />
+     <div class="results">
       <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
          </div>
+          </div>
         </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
     </form>
@@ -283,13 +285,14 @@ export default {
       nounou: {},
       logement: {}, 
       resultatAvis: [], 
-      show: true 
+      show: true ,
+      id_nounou: {}
     };
   },
   created: function() {
     console.log(this.logement)
     console.log(this.nounou)
-    console.log(this.nounou.logement)
+
     // if (!localStorage.getItem("token")) {
     //   this.$router.push("/login");
     // }
@@ -343,18 +346,24 @@ export default {
         });
     },
 
+
         mesAvis() {
+          console.log("this.nounou.idNounou : "+ this.nounou.idNounou);
+          console.log(this.nounou.idNounou)
         this.axios
         .get(
-          `http://localhost:6001/avis/AllAvisByNounou/${this.nounou.idNounou}`
-        )
+          "http://localhost:6001/avis/AllAvisByNounou/"+ this.nounou.idNounou)
+        
         .then(res => {
           console.log(res.data);
-          if (res.data !== null) {
-            this.resultatAvis = res.data
-          } else {
-            return
-          }
+          // if (res.data !== null) {
+          //   this.resultatAvis = res.data.avis
+          //   this.show = true
+          // } else {
+          //   return
+          // }
+          this.resultatAvis = res.data;
+          this.show = true;
         })
         .catch(err => {
           // console.log(err);
@@ -378,7 +387,9 @@ form {
   align-items: center;
   /* background-color: hotpink; */
 }
-
+.results {
+  width: 100%;
+}
 .bigBox {
   /* background-color: brown; */
 

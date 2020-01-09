@@ -42,7 +42,7 @@
                 type="radio"
                 v-model="avis.note"
                 name="note"
-                id="n2"
+                id="n4"
                 value="4"
               />
               <label for="note">4</label>
@@ -52,7 +52,7 @@
                 type="radio"
                 v-model="avis.note"
                 name="note"
-                id="n2"
+                id="n5"
                 value="5"
                 
               />
@@ -102,13 +102,12 @@ export default {
     var token = VueJwtDecode.decode(localStorage.getItem('token'))
     this.avis.id_maitre = token.idMaitre
     console.log(`idMaitre : ${this.avis.id_maitre}`);
-this.$route.params.data
-console.log(`data: ${this.$route.params.data}`);
-    this.avis.id_nounou = this.$route.params.data.idNounou
-    this.avis.id_garde = this.$route.params.data.idGarde
+    this.$route.params.data
+    this.avis.id_nounou = this.$route.params.data.id_nounou
+    this.avis.id_garde = this.$route.params.data.id_garde
 
-    console.log(`idNounou : ${this.$route.params.idNounou}`) ;
-  console.log(`idGarde : ${this.$route.params.idGarde}`) ;
+    console.log(`idNounou : ${this.$route.params.data.id_nounou}`) ;
+  console.log(`idGarde : ${this.$route.params.data.id_garde}`) ;
   },
 
   methods: {
