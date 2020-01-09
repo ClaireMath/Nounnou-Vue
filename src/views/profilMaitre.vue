@@ -404,7 +404,7 @@ form {
   padding: 10px;
 }
 .bigBox {
-  background-color: brown;
+  /* background-color: brown; */
   width: 95%;
   display: flex;
   flex-direction: row;
@@ -412,7 +412,7 @@ form {
   flex-wrap: wrap;
 }
 .smallBoxNou {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   width: 50%;
   padding: 30px;
   display: flex;
@@ -420,7 +420,7 @@ form {
   justify-content: flex-start;
 }
 .ctnchamps {
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
   width: 100%;
   height: 230px;
   display: flex;
@@ -429,19 +429,19 @@ form {
   align-items: center;
 }
 .sbchamps {
-  background-color: teal;
+  /* background-color: teal; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .sbchamps2 {
-  background-color: turquoise;
+  /* background-color: turquoise; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .chat {
-  background-color: #ff2d95;
+  /* background-color: #ff2d95; */
   width: 50%;
   padding-top: 20px;
   padding-left: 40px;

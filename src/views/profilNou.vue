@@ -254,10 +254,12 @@
             </div>
           </div>
         
-          <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi" />
+          <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi (avis)" />
+    
      <div class="results">
       <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
          </div>
+
           </div>
         </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
@@ -285,7 +287,7 @@ export default {
       nounou: {},
       logement: {}, 
       resultatAvis: [], 
-      show: true ,
+      show: false ,
       id_nounou: {}
     };
   },
@@ -356,12 +358,6 @@ export default {
         
         .then(res => {
           console.log(res.data);
-          // if (res.data !== null) {
-          //   this.resultatAvis = res.data.avis
-          //   this.show = true
-          // } else {
-          //   return
-          // }
           this.resultatAvis = res.data;
           this.show = true;
         })

@@ -3,7 +3,7 @@
   <div class="divtable">
     <table >
       <tbody>
-        <tr class v-if="resultats == null || resultats == 0 ">
+        <tr v-if="resultats == null || resultats == 0 ">
           <td>Vous n'avez pas encore d'avis</td>
         </tr>
 
@@ -17,7 +17,7 @@
          
           <td class="notes">{{data.note}}</td> 
           <td class="commentaires com2">{{data.commentaire}}</td>
-          <td class="ecritpar">{{data.prenom}} {{data.nom}}</td>
+          <td class="ecritpar">{{data.maitre.prenom}} {{data.maitre.nom}}</td>
           
         </tr>
       </tbody>
@@ -89,15 +89,19 @@ th {
 }
 .notes {
   width: 10%;
+  text-align: center;
 }
 .commentaires {
   width: 70%;
 }
 .com2 {
  text-align: justify;
+ padding-right: 10px;
+ padding-left: 10px;
 }
 .ecritpar {
   width: 20%;
+  text-align: center;
 }
 #ctn {
   display: flex;

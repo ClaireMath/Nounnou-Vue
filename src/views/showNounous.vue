@@ -371,8 +371,12 @@ Petit mot de la nounou :</textarea
           class="btn"
           value="Avis des autres maitres sur cette nounou"
         />
+
       </div>
       </div>
+        <div class="results">
+      <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
+         </div>
       <!-- <div class="ctnInput"> -->
       
         <input
@@ -392,11 +396,13 @@ Petit mot de la nounou :</textarea
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import Router from "../router";
+import myTableAvis from "../components/myTableAvis";
 
 export default {
   name: "showNounous",
   components: {
-    myfooter
+    myfooter,
+    myTableAvis
   },
   data() {
     return {
@@ -410,7 +416,9 @@ export default {
       makeAdmin: null,
       unMakeAdmin: null,
       url: "http://localhost:6001/nounou/banUnBanById",
-      url2: "http://localhost:6001/nounou/makeUnMakeAdminById"
+      url2: "http://localhost:6001/nounou/makeUnMakeAdminById",
+      show: false,
+      resultatAvis: [], 
     };
   },
   // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
@@ -478,6 +486,22 @@ export default {
           alert("Impossible d'effectuer l'action sur le statut 'admin'.");
         });
     },
+    displayAvis() {
+          console.log("this.nounou.idNounou : "+ this.nounou.idNounou);
+          console.log(this.nounou.idNounou)
+        this.axios
+        .get(
+          "http://localhost:6001/avis/AllAvisByNounou/"+ this.nounou.idNounou)
+        
+        .then(res => {
+          console.log(res.data);
+          this.resultatAvis = res.data;
+          this.show = true;
+        })
+        .catch(err => {
+          // console.log(err);
+        });
+    }
   },
    beforeRouteEnter(from, to, next) {
     if (localStorage.getItem("token") == null) {
@@ -491,7 +515,7 @@ export default {
 
 <style scoped>
 .bigCtn {
-  background-color:yellow;
+  /* background-color:yellow; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -510,10 +534,10 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 .ctnchamps {
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
   width: 100%;
   height: 1300px;
   display: flex;
@@ -522,7 +546,7 @@ export default {
   align-items: center;
 }
 .sbchamps {
-  background-color: teal;
+  /* background-color: teal; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -536,13 +560,16 @@ export default {
   margin-left: 20px;
 }
 .logement {
-  background-color: #ff2d95;
+  /* background-color: #ff2d95; */
   width: 50%;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+.results {
+  width: 100%;
 }
 label {
   margin-top: 12px;
