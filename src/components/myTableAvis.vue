@@ -155,4 +155,18 @@ th {
 .titres {
     width: 68%;
 } */
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+/* .notes {
+  width: 10%;
+  text-align: center;
+} */
+.commentaires {
+  width: 65%;
+}
+.ecritpar {
+  width: 25%;
+  text-align: center;
+}
+}
 </style>

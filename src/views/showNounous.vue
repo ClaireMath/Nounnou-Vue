@@ -344,7 +344,7 @@ Petit mot de la nounou :</textarea
               @click="banUnBanF"
               type="button"
               class="btn"
-              value="Retirer le statut 'banni' à cet utilisateur"
+              value="Retirer le statut 'banni'"
             />
           </div>
           <div>
@@ -617,6 +617,7 @@ textarea {
   /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   letter-spacing: 1px;
+  font-size: 65%;
 }
 .btn1 {
   font-size: 20px;
@@ -704,6 +705,9 @@ input {
     width: 100%;
     height: 1500px;
   }
+  .results {
+  width: 95%;
+}
   p {
     text-align: justify;
   }

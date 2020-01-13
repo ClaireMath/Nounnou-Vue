@@ -105,6 +105,7 @@ data() {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  text-align: center;
 }
 h1 {
   text-align: center;
@@ -124,6 +125,7 @@ form {
 }
 #ville {
   margin: 20px;
+  width: 70%;
 }
 
 /* .catsitter {
@@ -180,6 +182,9 @@ form {
 }
 .btn {
   width: 60%;
+}
+.catsearch {
+  padding: 0px;
 }
 }
 </style>

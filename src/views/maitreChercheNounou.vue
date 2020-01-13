@@ -60,7 +60,7 @@ export default {
     this.recupIdChat(idToken)
     this.recupMaitre(idToken)
     this.recupNounou(this.garde.id_nounou)
-    this.recupChat(this.garde.id_chat)
+    // this.recupChat(this.garde.id_chat)
   },
 
   methods: {

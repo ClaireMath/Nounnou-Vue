@@ -13,6 +13,7 @@
         </div>
         <div @click="showprofile" class="profil">
           <img
+            v-if="logout"
             src="../assets/user.png"
             title="Mon profil"
             alt="mon compte"
@@ -53,10 +54,6 @@
           <img src="../assets/loupe.png" alt="loupe" width="28" class="loupe" />
         </div>
       </div>
-    </div>
-
-    <div>
-     
     </div>
   </div>
 </template>
@@ -374,7 +371,7 @@ export default {
   position: absolute;
   font-family: cursive, sans-serif;
   font-weight: bold;
-  opacity: .8;
+  /* opacity: .8; */
   top: 160px;
   border-radius: 20px;
   

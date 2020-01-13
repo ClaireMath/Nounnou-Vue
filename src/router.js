@@ -69,11 +69,11 @@ export default new Router({
       name: "alimentsdangereux",
       component: Alimentsdangereux
     },
-    {
-      path: "/objetsutiles",
-      name: "objetsutiles",
-      component: Objetsutiles
-    },
+    // {
+    //   path: "/objetsutiles",
+    //   name: "objetsutiles",
+    //   component: Objetsutiles
+    // },
     {
       path: "/sorties",
       name: "sorties",

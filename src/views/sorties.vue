@@ -105,6 +105,9 @@ img {
   align-content: center;
   width: 100%;
 }
+h1 {
+  font-size: 30px;
+}
 img {
   width: 100%;
 }

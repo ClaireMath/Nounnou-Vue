@@ -65,7 +65,6 @@ export default {
 </script>
 <style scoped>
 .ctn {
-  /* height: 600px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,12 +76,13 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  margin-top: 100px;
+  margin-bottom: 100px;
   width: 100%;
   background-color: whitesmoke;
 }
 form {
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,4 +107,11 @@ select {
   height: 30px;
 }
 
+/* TABLETTE */
+/* @media screen and (min-width: 481px) and (max-width: 768px) {
+  .login {
+    margin-top: 70px;
+  margin-bottom: 70px;
+  }  
+} */
 </style>

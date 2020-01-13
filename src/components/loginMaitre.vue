@@ -2,11 +2,12 @@
   <div class="bigctn">
     <form @submit.prevent="loginSubmit">
       <div class="ctninput">
-        <input type="email" placeholder="Email" v-model="email" required />
+        <input class="inputT" type="email" placeholder="Email" v-model="email" required />
 
-        <input type="password" placeholder="Mot de passe" v-model="password" required />
+        <input class="inputT" type="password" placeholder="Mot de passe" v-model="password" required />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
+      <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
     </form>
   </div>
 </template>
@@ -19,7 +20,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      erreur: null
     };
   },
   created: function() {
@@ -49,6 +51,7 @@ export default {
           }
           })
         .catch(err => {
+          this.erreur = true
           console.log(err);
         });
     }
@@ -84,10 +87,9 @@ input {
   margin: 5px;
   width: 80%;
 }
-/*
-legend {
-  padding: 3px 6px;
-} */
+.inputT {
+  padding: 5px;
+}
 .btn {
   width: 150px;
   height: 30px;
@@ -110,6 +112,9 @@ legend {
   text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
+p {
+  margin-top: 20px;
 }
 input {
   border-radius: 10px;

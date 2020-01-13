@@ -67,7 +67,7 @@ data() {
 </script>
 <style scoped>
   .ctn {
-  /* height: 600px; */
+    /* background-color: whitesmoke; */
   color: black;
   font-family: "Merienda one", cursive, sans-serif;
 }
@@ -76,7 +76,8 @@ data() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 75vh;
+  margin-top: 100px;
+  margin-bottom: 100px;
   background-color: whitesmoke;
 }
 /* .ctnCompo {
@@ -109,25 +110,19 @@ select {
 }
 
 /* TABLETTE */
-@media screen and (min-width: 481px) and (max-width: 768px) {
+/* @media screen and (min-width: 481px) and (max-width: 768px) {
   .login {
-        height: 70vh;
+    margin-top: 70px;
+  margin-bottom: 70px;
   }  
-}
+} */
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   h1 {
     text-align: center;
   }
-  .ctn {
-    width: 100%;
-  }
-  .login {
-    width: 100%;
-    height: 75vh;
-  }
   form {
-    width: 80%;
+    width: 90%;
   }
   }
 </style>

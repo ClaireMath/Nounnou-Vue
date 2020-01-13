@@ -126,6 +126,7 @@
           type="text"
           placeholder="Problème de santé particulier"
           class="inputText"
+          style="resize:horizontal; width:90%; height:30px"
           id="pbsante"
           required
           readonly
@@ -233,7 +234,7 @@ Décrivez-vous, votre expérience avec les chats ou les animaux en général, po
               @click="banUnBanF"
               type="button"
               class="btn"
-              value="Retirer le statut 'banni' à cet utilisateur"
+              value="Retirer le statut 'banni'"
             />
         
         

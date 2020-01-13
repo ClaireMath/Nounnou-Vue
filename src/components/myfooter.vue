@@ -13,7 +13,7 @@
 
         <router-link to="/todoliste">La to-do liste du propriétaire</router-link>
         <router-link to="/conseilsnounous">Conseils pour nos Nounous</router-link>
-        <router-link to="/objetsutiles">Objets vraiment utiles</router-link>
+        <!-- <router-link to="/objetsutiles">Objets vraiment utiles</router-link> -->
       </div>
       <div class="ubox2">
         <h4>Contactez-nous</h4>

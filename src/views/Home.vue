@@ -48,10 +48,8 @@ export default {
 }
 .monMain {
   width: 100%;
-  /* height: 1090px; */
   background: url("../assets/3SnugglingCats.jpg") no-repeat center;
   background-size: cover; 
-  /* opacity: 0.5; */
   height: 1200px;
   font-family: "merienda one", cursive, "sans-serif";
 }

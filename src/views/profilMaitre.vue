@@ -203,7 +203,7 @@
             type="text"
             placeholder="Problème de santé particulier"
             class="inputText pbsante"
-            style="resize:horizontal; width:60%; height:30px"
+            style="resize:horizontal; width:80%; height:30px"
             required
           />
 
@@ -400,7 +400,7 @@ form {
   
 }
 .results {
-  width: 80%;
+  width: 85%;
   padding: 10px;
 }
 .bigBox {
@@ -491,7 +491,7 @@ textarea {
 }
 
 .btn {
-  width: 65%;
+  width: 85%;
   height: 40px;
   font-family: "Livvic", sans-serif;
   border-radius: 15px;
@@ -514,9 +514,9 @@ textarea {
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
-.btn2 {
+/* .btn2 {
   padding: 0px;
-}
+} */
 input {
   border-radius: 10px;
   height: 30px;
@@ -547,15 +547,13 @@ input {
   flex-direction: column;
   height: 380px;
 }
-.btn2 {
-  width: 40%;
-}
+
  .smallBoxNou h1 {
 text-align: center;
   }
-/* .chat {
-  height: 1000px;
-} */
+  .results {
+  width: 100%;
+}
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -607,22 +605,15 @@ text-align: center;
   }
   .inputText {
     text-transform: uppercase;
-    /* width: 80%; */
+   
   }
   select {
-  /* margin: 10px;
-  border-radius: 25px; */
   width: 80%;
-  /* height: 25px; */
 }
-  /* .pbsante {
-    width: 250px;
-  } */
+
   .btn {
     width: 90%;
   }
-  /* .chat {
-  width: 50%;
-} */
+ 
 }
 </style>

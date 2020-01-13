@@ -42,5 +42,8 @@ export default {
   box-sizing:  border-box;
   outline: none;
 }
+#app {
+  background-color: whitesmoke;
+}
 
 </style>

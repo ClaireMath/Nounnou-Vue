@@ -8,23 +8,24 @@
         </tr>
 
         <tr class="titres" v-else>
-          <th>Début de la garde</th>
-          <th>Date de fin</th>
-          <th>Nounou</th>
-          <th>Prénom du chat</th>
+          <th class="debut">Début de la garde</th>
+          <th class="fin">Date de fin</th>
+          <th class="nounou">Nounou</th>
+          <th class="prenomChat">Prénom du chat</th>
         </tr>
 
         <tr v-for="data in resultats" :key="data.idGarde">
          
-          <td>{{ data.debut }}</td>
-          <td>{{ data.fin }} </td>
-          <td>{{ data.prenom }}</td>
-          <td>{{ data.prenom_chat }}</td>
+          <td class="Rdebut">{{ data.debut }}</td>
+          <td class="Rfin">{{ data.fin }} </td>
+          <td class="Rnounou">{{ data.prenom }}</td>
+          <td class="RprenomChat">{{ data.prenom_chat }}</td>
 
-          <td>
+          <td class="iconCom">
               <button v-on:click="avis(data)" class="btn">
-              Emettre un avis sur cette garde
+              Ecrire un avis
             </button>
+            <img v-on:click="avis(data)" src="../assets/ecrireUnCom.png" alt="écrire un commentaire" width="28" class="com" />
           </td>
         </tr>
       </tbody>
@@ -61,28 +62,28 @@ export default {
 .divtable { 
   width: 100%;
   margin-top: 25px;
-  background-color: blue;
+  /* background-color: blue; */
 }
 table {
-    background-color: grey;
+  /* background-color: grey; */
   width: 100%;
 }
 tbody {
-    background-color: #680d3b;
+    /* background-color: #680d3b; */
     width: 100%;
 }
 .titres {
     width: 80%;
 }
 tr {
-  background-color: orange;
+  /* background-color: orange; */
   display: flex;
   justify-content: center;
   width: 100%;
   height: 60px;
 }
 td {
-    background-color: red;
+  /* background-color: red; */
   height: 60px;
   width: 100%;
   display: flex;
@@ -90,7 +91,7 @@ td {
   align-items: center;
 }
 th {
-    background-color: yellow;
+  /* background-color: yellow; */
   height: 100px;
   width: 100%;
 }
@@ -100,8 +101,8 @@ th {
   justify-content: center;
 }
 .btn {
-  width: 200px;
-  height: 50px;
+  width: 130px;
+  height: 35px;
   font-family: "Livvic", sans-serif;
   border-radius: 430px;
   -webkit-border-radius: 430px;
@@ -123,11 +124,65 @@ th {
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
+.com {
+  display: none;
+}
 
 /* TABLETTE */
-/* @media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
 }
+
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+
+.btn {
+  width: 90px;
+  height: 49px;
+} 
 .titres {
-    width: 68%;
-} */
+    width: 90%;
+}
+.debut {
+width: 25%;
+}
+.fin {
+  width: 25%;
+}
+.nounou {
+  width: 25%;
+}
+.prenomChat {
+  width: 25%;
+}
+.Rdebut {
+width: 22.5%;
+font-size: 12px;
+}
+.Rfin {
+  width: 22.5%;
+  font-size: 12px;
+}
+.Rnounou {
+  width: 22.5%;
+}
+.RprenomChat {
+  width: 22.5%;
+}
+.iconCom {
+  width: 10%;
+}
+tr { 
+  font-size: 15px;
+  height: 60px;
+}
+td {
+ height: 60px; 
+}
+.com {
+  display: block;
+}
+.btn {
+  display: none;
+}
+}
 </style>

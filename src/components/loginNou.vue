@@ -2,11 +2,12 @@
   <div class="bigctn">
     <form @submit="loginSubmit">
       <div class="ctninput">
-        <input type="email" placeholder="Email" v-model="email" required />
+        <input class="inputT" type="email" placeholder="Email" v-model="email" required />
 
         <input type="password" placeholder="Mot de passe" v-model="password" required />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
+       <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
     </form>
   </div>
 </template>
@@ -19,7 +20,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      erreur: null
     };
   },
   // created: function () {
@@ -47,11 +49,10 @@ export default {
           }
           else if (res.data.banni) { 
           alert("Vous êtes banni, vous ne pouvez plus vous connecter")
-          } else {
-            alert("Erreur dans l'identifiant ou le mot de passe.")
-          }
+          } 
         })
         .catch(err => {
+           this.erreur = true
           console.log(err);
         });
     }
@@ -85,14 +86,16 @@ form {
   align-items: center;
   margin: 10px;
 }
+p {
+  margin-top: 20px;
+}
 input {
   margin: 5px;
   width: 80%;
 }
-/*
-legend {
-  padding: 3px 6px;
-} */
+.inputT {
+  padding: 5px;
+}
 .btn {
   width: 150px;
   height: 30px;

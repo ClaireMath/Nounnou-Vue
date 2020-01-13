@@ -21,6 +21,13 @@
 
           <td>
             <button v-on:click="learnmoreN(data)" class="btn">En savoir plus</button>
+             <img v-on:click="learnmoreN(data)"
+            src="../assets/user.png"
+            title="Mon profil"
+            alt="mon compte"
+            width="20px"
+            class="profile"
+          />
           </td>
         </tr>
       </tbody>
@@ -34,7 +41,7 @@
         <tr id="ctn" v-for="data in resultats" :key="data.idMaitre" v-else>
         
           <td>{{data.chat.prenom_chat}}</td>
-          <td><img :src="data.chat.photo" width="100px"></td>
+          <td class="photo"><img :src="data.chat.photo" width="100px"></td>
           <td class="hidden">{{data.chat.idChat}}</td>
           <td>{{data.prenom}}</td>
           <td>{{data.ville}}</td>
@@ -43,6 +50,13 @@
 
           <td>
             <button v-on:click="learnmoreM(data)" class="btn">En savoir plus</button>
+             <img
+            src="../assets/user.png"
+            title="Mon profil"
+            alt="mon compte"
+            width="20px"
+            class="profile"
+          />
           </td>
         </tr>
       </tbody>
@@ -156,12 +170,21 @@ td {
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
+.profile {
+  display: none;
+}
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
 .btn {
-  width: 100px;
-  height: 50px;
+  display: none;
 }
+.profile {
+  display: block;
+}
+.photo {
+  display: none;
+}
+
 }
 </style>

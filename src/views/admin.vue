@@ -128,4 +128,11 @@ this.axios
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
+
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+.btn {
+  width: 100%;
+}
+}
 </style>
