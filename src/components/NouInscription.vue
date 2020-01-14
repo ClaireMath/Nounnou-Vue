@@ -1,22 +1,37 @@
 <template>
   <div class="bigctn">
-    
     <form @submit.prevent="addNewNounou">
       <div class="ctninput">
-       
-        <input v-model="nounou.prenom" type="text" placeholder="Prénom" required />
+        <input
+          v-model="nounou.prenom"
+          type="text"
+          placeholder="Prénom"
+          required
+        />
 
         <input v-model="nounou.nom" type="text" placeholder="Nom" required />
 
-        <input v-model="nounou.email" type="email" placeholder="Email" required />
+        <input
+          v-model="nounou.email"
+          type="email"
+          placeholder="Email"
+          required
+        />
 
-        <input v-model="nounou.mdp" type="password" placeholder="mot de passe" required />
- 
- <div class="regles">
-        <label id="regles">Je m'engage à respecter les règles énoncées sur le site sous peine de poursuites pénales</label>
-        <input type="checkbox" id="regles" required />
-</div>
-        <!--  -->
+        <input
+          v-model="nounou.mdp"
+          type="password"
+          placeholder="mot de passe"
+          required
+        />
+
+        <div class="regles">
+          <label id="regles"
+            >Je m'engage à respecter les règles énoncées sur le site sous peine
+            de poursuites pénales</label
+          >
+          <input type="checkbox" id="regles" required />
+        </div>
       </div>
       <input type="submit" value="Créer mon compte" class="btn" />
     </form>
@@ -24,13 +39,11 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
-// import headertemplate from '../components/header.vue'
-
 import VueJwtDecode from "vue-jwt-decode";
+
 export default {
   name: "NouInscription",
+
   data() {
     return {
       nounou: {},
@@ -40,16 +53,15 @@ export default {
 
   methods: {
     addNewNounou() {
-      this.axios
-        .post(this.url, this.nounou)
+      this.axios.post(this.url, this.nounou)
         .then(res => {
           localStorage.setItem("token", res.data.token);
-          console.log(res.data);
+          // console.log(res.data);
           this.$router.push("/profilNou");
           window.location.reload();
         })
         .catch(err => {
-          console.log(err);
+          // console.log(err);
         });
     }
   }
@@ -76,17 +88,11 @@ form {
   flex-direction: column;
   align-items: center;
   margin: 10px;
-
-
 }
 input {
   margin: 5px;
   width: 80%;
 }
-/*
-legend {
-  padding: 3px 6px;
-} */
 .btn {
   width: 150px;
   height: 30px;
@@ -98,7 +104,6 @@ legend {
   -o-border-radius: 10px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -127,17 +132,11 @@ input {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
- /* .ctn {
-   width: 50%;
- } */
- /* .bigctn {
-   width: 100%;
- } */
- form {
-  width: 120px;
- }
- .ctninput {
-   width: 150%;
- }
-} 
+  form {
+    width: 120px;
+  }
+  .ctninput {
+    width: 150%;
+  }
+}
 </style>

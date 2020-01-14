@@ -459,14 +459,14 @@ export default {
     banUnBanF() {
       this.axios
         .put(this.url, this.nounou)
-        .then(res => {
-          console.log(res.data);
+        .then(() => {
+          // console.log(res.data);
 
           alert("Statut 'banni' modifié avec succès.");
           Router.push({ name: "admin" });
           localStorage.removeItem("idNounou")
         })
-        .catch(err => {
+        .catch(() => {
           alert("Impossible d'effectuer l'action sur le statut 'banni'.");
         });
     },
@@ -475,31 +475,31 @@ export default {
       this.axios
         .put(this.url2, this.nounou)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.nounou = res.data;
 
           alert("Statut 'admin' modifié avec succès.");
           Router.push({ name: "admin" });
           localStorage.removeItem("idNounou")
         })
-        .catch(err => {
+        .catch(() => {
           alert("Impossible d'effectuer l'action sur le statut 'admin'.");
         });
     },
     displayAvis() {
-          console.log("this.nounou.idNounou : "+ this.nounou.idNounou);
-          console.log(this.nounou.idNounou)
+          // console.log("this.nounou.idNounou : "+ this.nounou.idNounou);
+          // console.log(this.nounou.idNounou)
         this.axios
         .get(
           "http://localhost:6001/avis/AllAvisByNounou/"+ this.nounou.idNounou)
         
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.resultatAvis = res.data;
           this.show = true;
         })
         .catch(err => {
-          // console.log(err);
+          alert(err);
         });
     }
   },

@@ -4,19 +4,22 @@
       <form>
         <h1>Merci de bien vouloir remplir le formulaire de garde</h1>
         <label for="dateD">Date de début de garde :</label>
-        <input v-model="garde.debut" type="date" id="dateD" required/>
+        <input v-model="garde.debut" type="date" id="dateD" required />
 
         <label for="dateF">Date de fin de garde :</label>
-        <input v-model="garde.fin" type="date" id="dateF" required/>
-  	    <textarea v-model="garde.message" placeholder="Veuillez taper le message pour votre destinataire ici." rows="15" cols="60">
-
+        <input v-model="garde.fin" type="date" id="dateF" required />
+        <textarea
+          v-model="garde.message"
+          placeholder="Veuillez taper le message pour votre destinataire ici."
+          rows="15"
+          cols="60"
+        >
         </textarea>
         <input
           @click="sendRequestForm"
           type="button"
           class="btn"
           value="Envoyer une demande de garde"
-          
         />
       </form>
     </div>
@@ -27,7 +30,7 @@
 <script>
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
-import Router from "../router";
+
 export default {
   name: "maitreChercheNounou",
   components: {
@@ -35,127 +38,125 @@ export default {
   },
   data() {
     return {
-        garde: {},
-        resultatchats: [],
-        idChats: [],
-        maitre: {},
-        nounou: {},
-        chat: {},
-        url: "http://localhost:6001/garde/new",
-        url2: "http://localhost:6001/chat/AllChatsByMaitre/",
-        url3: "http://localhost:6001/garde/mail",
-        urlM: "http://localhost:6001/maitre/getOneById/",
-        urlN: "http://localhost:6001/nounou/getOneById/",
-        urlC: "http://localhost:6001/chat/getOneById/",
-
+      garde: {},
+      resultatchats: [],
+      idChats: [],
+      maitre: {},
+      nounou: {},
+      chat: {},
+      url: "http://localhost:6001/garde/new",
+      url2: "http://localhost:6001/chat/AllChatsByMaitre/",
+      url3: "http://localhost:6001/garde/mail",
+      urlM: "http://localhost:6001/maitre/getOneById/",
+      urlN: "http://localhost:6001/nounou/getOneById/",
+      urlC: "http://localhost:6001/chat/getOneById/"
     };
   },
- created: function() {
-    var token = VueJwtDecode.decode(localStorage.getItem('token'))
-    var idToken = token.idMaitre
-    console.log(`idMaitre : ${idToken}`);
-    // this.garde.id_nounou 
-    console.log(`idNounou : ${this.$route.params.idNounou}`) ;
-    this.garde.id_nounou = this.$route.params.idNounou
-    this.recupIdChat(idToken)
-    this.recupMaitre(idToken)
-    this.recupNounou(this.garde.id_nounou)
-    // this.recupChat(this.garde.id_chat)
+  created: function() {
+    var token = VueJwtDecode.decode(localStorage.getItem("token"));
+    var idToken = token.idMaitre;
+    // console.log(`idMaitre : ${idToken}`);
+    // console.log(`idNounou : ${this.$route.params.idNounou}`);
+    this.garde.id_nounou = this.$route.params.idNounou;
+    this.recupIdChat(idToken);
+    this.recupMaitre(idToken);
+    this.recupNounou(this.garde.id_nounou);
   },
 
   methods: {
     recupNounou(id_nounou) {
       this.axios
-              .get(this.urlN + id_nounou)
-              .then((res) => {
-                console.log(res.data.nounou.email);
-                this.nounou = res.data;
-            
-            // console.log(this.nounou);
-    console.log(`email nounou : ${this.nounou.nounou.email}`);
-      
-          })
-          .catch(err => {
-            // console.log(err)
-          })
-            },
-                //   recupChat(id_chat) {
-                //      this.axios
-                //      .get(this.urlC + id_chat)
-                //      .then((res) => {
-                //    this.chat = res.data;
-                //    console.log(this.chat);
-                //  })
-                //  .catch(err => {
-                //    // console.log(err)
-                //  })
-                //    },
-              recupMaitre(idToken) {
-              this.axios
-              .get(this.urlM + idToken)
-              .then((res) => {
-            this.maitre = res.data;
-            console.log(this.maitre);
-          })
-          .catch(err => {
-            // console.log(err)
-          })
-            },
+        .get(this.urlN + id_nounou)
+        .then(res => {
+          // console.log(res.data.nounou.email);
+          this.nounou = res.data;
 
+          // console.log(`email nounou : ${this.nounou.nounou.email}`);
+        })
+        .catch(() => {
+          // alert(err)
+        });
+    },
+    //   recupChat(id_chat) {
+    //      this.axios
+    //      .get(this.urlC + id_chat)
+    //      .then((res) => {
+    //    this.chat = res.data;
+    //    console.log(this.chat);
+    //  })
+    //  .catch(err => {
+    //    // console.log(err)
+    //  })
+    //    },
+    recupMaitre(idToken) {
+      this.axios
+        .get(this.urlM + idToken)
+        .then(res => {
+          this.maitre = res.data;
+          // console.log(this.maitre);
+        })
+        .catch(() => {
+          // alert(err)
+        });
+    },
 
+    recupIdChat(idToken) {
+      this.axios
+        .get(this.url2 + idToken)
+        .then(res => {
+          // console.log(res.data)
+          this.resultatchats = res.data;
+          // console.log(this.resultatchats);
 
-              recupIdChat(idToken) {
-              this.axios
-              .get(this.url2 + idToken)
-              .then((res) => {
-            // console.log(res.data)
-            this.resultatchats = res.data;
-            // console.log(this.resultatchats);
+          // .map (boucler et retourne le resultat en tableau)
+          this.idChats = this.resultatchats.map(chat => {
+            return chat.idChat;
+          });
+          this.garde.id_chat = this.idChats;
+          // console.log(this.idChats);
+        })
+        .catch(() => {
+          // console.log(err)
+        });
+    },
 
-           // .map (boucler et retourne le resultat en tableau)
-            this.idChats = this.resultatchats.map(chat => {
-                return chat.idChat
-            })
-            this.garde.id_chat = this.idChats
-            console.log(this.idChats);
-          })
-          .catch(err => {
-            // console.log(err)
-          })
-            },
+    sendRequestForm() {
+      this.axios
+        .post(this.url, this.garde)
+        .then(res => {
+          this.garde = res.data;
+          // console.log(res.data.garde.idChat);
 
-            sendRequestForm() {  
           this.axios
-              .post(this.url, this.garde)
-              .then(res => {
-                this.garde = res.data
-               console.log(res.data.garde.idChat)
-
-            this.axios.post(this.url3, {nounou: this.nounou, maitre: this.maitre, garde: res.data})
-              .then(res=> {
-                if (res.data.hasOwnProperty("error")) {
-                  console.log(res.data.error);
-                }
-                console.log(res.data);
-                this.$router.push('/');
-              }).catch(err=> {
-                console.log(err);
-              })
-              })
-              .catch(err => {
-                console.log(err);
-              });
-              console.log(this.chat);
-             
-            },
+            .post(this.url3, {
+              nounou: this.nounou,
+              maitre: this.maitre,
+              garde: res.data
+            })
+            .then(res => {
+              if (res.data.hasOwnProperty("error")) {
+                // console.log(res.data.error);
+              }
+              // console.log(res.data);
+              this.$router.push("/");
+            })
+            .catch(err => {
+              alert(err);
+            });
+        })
+        .catch(err => {
+          alert(err);
+        });
+      // console.log(this.chat);
+    }
   },
-     beforeRouteEnter(from, to, next) {
+  beforeRouteEnter(from, to, next) {
     if (localStorage.getItem("token") == null) {
       next("/login");
     } else {
       next();
     }
-   }
+  }
 };
 </script>
 <style scoped>
@@ -188,7 +189,6 @@ textarea {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -201,12 +201,6 @@ textarea {
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
-/* .ctnCompo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-} */
 form {
   display: flex;
   flex-direction: column;
@@ -233,7 +227,7 @@ input {
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .demandeGarde {
-  padding: 20px;
+    padding: 20px;
   }
   h1 {
     text-align: center;
@@ -245,11 +239,11 @@ input {
     width: 100%;
   }
   textarea {
-  width: 90%;
-  border-radius: 25px;
-  padding: 10px;
-  margin-top: 10px;
-}
+    width: 90%;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 10px;
+  }
   .btn {
     width: 90%;
   }

@@ -2,61 +2,56 @@
   <div class="divtable">
     <table v-if="show">
       <tbody>
-        <tr v-if="resultats == null || resultats == 0 ">
+        <tr v-if="resultats == null || resultats == 0">
           <td>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
-<!-- <thead>
-    <tr >
-    <th>Prénom de la nounou</th>
-    <th>Ville</th>
-       
-        <th>E-mail</th>
-        </tr>
-</thead> -->
         <tr v-for="data in resultats" :key="data.idNounou" v-else>
-         <td>{{data.prenom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.email}}</td>
-   
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.ville }}</td>
+          <td>{{ data.email }}</td>
 
           <td>
-            <button v-on:click="learnmoreN(data)" class="btn">En savoir plus</button>
-             <img v-on:click="learnmoreN(data)"
-            src="../assets/user.png"
-            title="Mon profil"
-            alt="mon compte"
-            width="20px"
-            class="profile"
-          />
+            <button v-on:click="learnmoreN(data)" class="btn">
+              En savoir plus
+            </button>
+            <img
+              v-on:click="learnmoreN(data)"
+              src="../assets/user.png"
+              title="Mon profil"
+              alt="mon compte"
+              width="20px"
+              class="profile"
+            />
           </td>
         </tr>
       </tbody>
     </table>
     <table v-else>
       <tbody>
-        <tr class v-if="resultats == 0 ">
+        <tr class v-if="resultats == 0">
           <td class>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
 
         <tr id="ctn" v-for="data in resultats" :key="data.idMaitre" v-else>
-        
-          <td>{{data.chat.prenom_chat}}</td>
-          <td class="photo"><img :src="data.chat.photo" width="100px"></td>
-          <td class="hidden">{{data.chat.idChat}}</td>
-          <td>{{data.prenom}}</td>
-          <td>{{data.ville}}</td>
-          <td>{{data.email}}</td>
-          <td>{{data.description}}</td>
+          <td>{{ data.chat.prenom_chat }}</td>
+          <td class="photo"><img :src="data.chat.photo" width="100px" /></td>
+          <td class="hidden">{{ data.chat.idChat }}</td>
+          <td>{{ data.prenom }}</td>
+          <td>{{ data.ville }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.description }}</td>
 
           <td>
-            <button v-on:click="learnmoreM(data)" class="btn">En savoir plus</button>
-             <img
-            src="../assets/user.png"
-            title="Mon profil"
-            alt="mon compte"
-            width="20px"
-            class="profile"
-          />
+            <button v-on:click="learnmoreM(data)" class="btn">
+              En savoir plus
+            </button>
+            <img
+              src="../assets/user.png"
+              title="Mon profil"
+              alt="mon compte"
+              width="20px"
+              class="profile"
+            />
           </td>
         </tr>
       </tbody>
@@ -78,30 +73,30 @@ export default {
     };
   },
   created() {
-    console.log("this.resultats", this.resultats);
-  
+    // console.log("this.resultats", this.resultats);
+
     if (this.resultats[0].hasOwnProperty("idNounou")) {
       this.show = true;
     } else {
       this.show = false;
-     }
+    }
   },
   methods: {
     learnmoreN(data) {
       if (this.resultats[0].hasOwnProperty("idNounou")) {
-        // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
+        // on passe le paramètre data dans l'url mais il n'est pas visible dans l'url, c'est propre à vuejs
         this.$router.push({ name: "showNounous", params: { data: data } });
       } else {
         return;
       }
     },
     learnmoreM(data) {
-      console.log(data);
+      // console.log(data);
       if (this.resultats[0].hasOwnProperty("idMaitre")) {
         // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
         this.$router.push({ name: "showMaitres", params: { data: data } });
         localStorage.setItem("idChat", data.chat.idChat);
-        this.tokenNounou = VueJwtDecode.decode(localStorage.getItem('token'));
+        this.tokenNounou = VueJwtDecode.decode(localStorage.getItem("token"));
         localStorage.setItem("idNounou", this.tokenNounou.idNounou);
       } else {
         return;
@@ -118,22 +113,22 @@ table {
   width: 100%;
 }
 tr {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
 }
 th {
   height: 100px;
   width: 100%;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 td {
   height: 100px;
   width: 100%;
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -157,7 +152,6 @@ td {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -176,15 +170,14 @@ td {
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-.btn {
-  display: none;
-}
-.profile {
-  display: block;
-}
-.photo {
-  display: none;
-}
-
+  .btn {
+    display: none;
+  }
+  .profile {
+    display: block;
+  }
+  .photo {
+    display: none;
+  }
 }
 </style>

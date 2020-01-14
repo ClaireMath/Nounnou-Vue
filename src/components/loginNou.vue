@@ -2,18 +2,28 @@
   <div class="bigctn">
     <form @submit="loginSubmit">
       <div class="ctninput">
-        <input class="inputT" type="email" placeholder="Email" v-model="email" required />
+        <input
+          class="inputT"
+          type="email"
+          placeholder="Email"
+          v-model="email"
+          required
+        />
 
-        <input type="password" placeholder="Mot de passe" v-model="password" required />
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          v-model="password"
+          required
+        />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
-       <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
+      <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
     </form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "loginNou",
 
@@ -44,16 +54,15 @@ export default {
             localStorage.setItem("token", res.data.token);
             // this.$router.push("/");
             // le $ c'est pour récupérer des variables définies en global dans main.js
-            this.$router.push({ name: "home"});
-             window.location.reload();
+            this.$router.push({ name: "home" });
+            window.location.reload();
+          } else if (res.data.banni) {
+            alert("Vous êtes banni, vous ne pouvez plus vous connecter");
           }
-          else if (res.data.banni) { 
-          alert("Vous êtes banni, vous ne pouvez plus vous connecter")
-          } 
         })
-        .catch(err => {
-           this.erreur = true
-          console.log(err);
+        .catch(() => {
+          this.erreur = true;
+          // console.log(err);
         });
     }
   }
@@ -73,7 +82,6 @@ export default {
 }
 form {
   width: 600px;
-  /* height: 600px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,7 +115,6 @@ input {
   -o-border-radius: 10px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -125,17 +132,11 @@ input {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
- /* .ctn {
-   width: 50%;
- } */
- /* .bigctn {
-   width: 100%;
- } */
- form {
-  width: 100%;
- }
- .ctninput {
-   width: 150%;
- }
-} 
+  form {
+    width: 100%;
+  }
+  .ctninput {
+    width: 150%;
+  }
+}
 </style>

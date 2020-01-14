@@ -1,34 +1,31 @@
 // Vue et Router sont deux dépendances du package-lock.json
 // Le nom de la variable importée est le mot qui se trouve plus bas dans "component"
 
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-
-import Home from './views/Home.vue'
-import Notfound from './views/notfound.vue'
-import Inscription from './views/inscription.vue'
-import Fonctionnement from './views/fonctionnement.vue'
-import Reglement from './views/reglement.vue'
-import Todoliste from './views/todolist.vue'
-import Conseilsnounous from './views/conseilsnounous.vue'
-import Alimentsdangereux from './views/alimentsdangereux.vue'
-import Objetsutiles from './views/objetsutiles.vue'
-import Sorties from './views/sorties.vue'
-import Catsittersearch from './views/catsittersearch.vue'
-import CatSearch from './views/catSearch.vue'
-import ProfilNou from './views/profilNou.vue'
-import ProfilMaitre from './views/profilMaitre.vue'
-import Login from './views/login.vue'
-import ShowNounous from './views/showNounous.vue'
-import ShowMaitres from './views/showMaitres.vue'
-import Admin from './views/admin.vue'
+import Home from "./views/Home.vue";
+import Notfound from "./views/notfound.vue";
+import Inscription from "./views/inscription.vue";
+import Fonctionnement from "./views/fonctionnement.vue";
+import Reglement from "./views/reglement.vue";
+import Todoliste from "./views/todolist.vue";
+import Conseilsnounous from "./views/conseilsnounous.vue";
+import Sorties from "./views/sorties.vue";
+import Catsittersearch from "./views/catsittersearch.vue";
+import CatSearch from "./views/catSearch.vue";
+import ProfilNou from "./views/profilNou.vue";
+import ProfilMaitre from "./views/profilMaitre.vue";
+import Login from "./views/login.vue";
+import ShowNounous from "./views/showNounous.vue";
+import ShowMaitres from "./views/showMaitres.vue";
+import Admin from "./views/admin.vue";
 import MaitreChercheNounou from "./views/maitreChercheNounou.vue";
-import NounouChercheChat from "./views/nounouChercheChat.vue"; 
+import NounouChercheChat from "./views/nounouChercheChat.vue";
 import ConfirmationGardeN from "./views/confirmationGardeN.vue";
 import NewAvis from "./views/newAvis.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: "history",
@@ -64,16 +61,6 @@ export default new Router({
       name: "conseilsnounous",
       component: Conseilsnounous
     },
-    {
-      path: "/alimentsdangereux",
-      name: "alimentsdangereux",
-      component: Alimentsdangereux
-    },
-    // {
-    //   path: "/objetsutiles",
-    //   name: "objetsutiles",
-    //   component: Objetsutiles
-    // },
     {
       path: "/sorties",
       name: "sorties",

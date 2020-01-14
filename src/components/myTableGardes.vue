@@ -111,7 +111,6 @@ th {
   -o-border-radius: 430px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;

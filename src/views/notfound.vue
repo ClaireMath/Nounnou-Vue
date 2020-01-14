@@ -6,20 +6,20 @@
 </template>
 
 <script>
-import myfooter from '../components/myfooter'
+import myfooter from "../components/myfooter";
 
 export default {
-  name: 'notfound',
+  name: "notfound",
   components: {
-    myfooter,
-  } 
-}
+    myfooter
+  }
+};
 </script>
 <style scoped>
 div {
   background-color: whitesmoke;
 }
 h1 {
-    color: red;
+  color: red;
 }
 </style>

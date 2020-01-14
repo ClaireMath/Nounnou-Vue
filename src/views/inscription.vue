@@ -22,7 +22,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import MaitreInscription from "../components/MaitreInscription";
 import NouInscription from "../components/NouInscription";
 import myfooter from "../components/myfooter";
@@ -92,9 +92,7 @@ form {
   -webkit-box-shadow: 4px 4px 8px 2px rgba(0,0,0,0.2) ;
   box-shadow: 4px 4px 8px 2px rgba(0,0,0,0.2) ;
   padding: 20px;
-
 }
-
 h1 {
   font-size: 20px;
   margin-bottom: 20px;
@@ -106,12 +104,4 @@ select {
   border-radius: 10px;
   height: 30px;
 }
-
-/* TABLETTE */
-/* @media screen and (min-width: 481px) and (max-width: 768px) {
-  .login {
-    margin-top: 70px;
-  margin-bottom: 70px;
-  }  
-} */
 </style>

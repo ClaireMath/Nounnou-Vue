@@ -11,10 +11,10 @@
           <td>{{ data.prenom }}</td>
           <td>{{ data.nom }}</td>
           <td>{{ data.ville }}</td>
-           <td>{{ data.email }}</td>
+          <td>{{ data.email }}</td>
           <td>{{ data.admin }}</td>
           <td>{{ data.banni }}</td>
-          
+
           <td>
             <button v-on:click="learnmoreN(data)" class="btn">
               En savoir plus
@@ -37,9 +37,7 @@
           <td>{{ data.email }}</td>
           <td>{{ data.admin }}</td>
           <td>{{ data.banni }}</td>
-          <!-- <td>{{data.chat.prenom_chat}}</td> -->
           <td>
-          
             <button v-on:click="learnmoreM(data)" class="btn">
               En savoir plus
             </button>
@@ -61,7 +59,7 @@ export default {
     };
   },
   created() {
-    console.log("this.resultats de la table Admin", JSON.stringify(this.resultats));
+    // console.log("this.resultats de la table Admin", JSON.stringify(this.resultats));
 
     if (this.resultats[0].hasOwnProperty("idNounou")) {
       this.show = true;
@@ -79,7 +77,7 @@ export default {
       }
     },
     learnmoreM(data) {
-      console.log(data);
+      // console.log(data);
       if (this.resultats[0].hasOwnProperty("idMaitre")) {
         // on passe le paramètre data dans l'url mais il n'est pas visible, c'est propre à vuejs
         this.$router.push({ name: "showMaitres", params: { data: data } });
@@ -128,7 +126,6 @@ td {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;

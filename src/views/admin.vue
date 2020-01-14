@@ -1,20 +1,27 @@
 <template>
   <div>
     <div class="admin">
+      <div class="nounous">
+        <input
+          @click="catSittersList"
+          type="button"
+          class="btn"
+          value="Liste des Nounous"
+        />
+        <tableAdmin v-if="showNounous" :resultats="allNounous"></tableAdmin>
+      </div>
 
-   <div class="nounous">
-         <input @click="catSittersList" type="button" class="btn" value="Liste des Nounous" />
- <tableAdmin v-if="showNounous" :resultats="allNounous"></tableAdmin>
-</div>
-
-<div class="maitres">
-         <input @click="ownersList" type="button" class="btn" value="Liste des Maitres" />
- <tableAdmin v-if="showMaitres" :resultats="allMaitres"></tableAdmin>
-  </div>
-
-
+      <div class="maitres">
+        <input
+          @click="ownersList"
+          type="button"
+          class="btn"
+          value="Liste des Maitres"
+        />
+        <tableAdmin v-if="showMaitres" :resultats="allMaitres"></tableAdmin>
+      </div>
     </div>
-    <myfooter/>
+    <myfooter />
   </div>
 </template>
 
@@ -24,69 +31,65 @@ import VueJwtDecode from "vue-jwt-decode";
 import tableAdmin from "../components/tableAdmin";
 
 export default {
-    name: "admin",
-    components: {
+  name: "admin",
+  components: {
     myfooter,
     tableAdmin
-    },
-    data() {
-        return {
-        urlNounou: "http://localhost:6001/nounou/All",
-        urlMaitre: "http://localhost:6001/maitre/displayAll",
-        showNounous: false,
-        showMaitres: false,
-        allNounous: [],
-        allMaitres: [],
-        token: {}
-        }
-    },
-    created: function() {
+  },
+  data() {
+    return {
+      urlNounou: "http://localhost:6001/nounou/All",
+      urlMaitre: "http://localhost:6001/maitre/displayAll",
+      showNounous: false,
+      showMaitres: false,
+      allNounous: [],
+      allMaitres: [],
+      token: {}
+    };
+  },
+  created: function() {},
 
-    },
-
-    methods: {
-catSittersList() {
-  console.log(this.allNounous);
-this.axios
-        .get(this.urlNounou)
+  methods: {
+    catSittersList() {
+      
+      this.axios.get(this.urlNounou)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.allNounous = res.data;
           this.showNounous = true;
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
     },
 
     ownersList() {
-  console.log(this.allMaitres);
+      // console.log(this.allMaitres);
       this.axios
         .get(this.urlMaitre)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.allMaitres = res.data;
           this.showMaitres = true;
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
-} 
-},
-
- beforeRouteEnter(from, to, next) {
-   if (localStorage.getItem("token") !== null)  {
-    var token = VueJwtDecode.decode(localStorage.getItem("token"))
-    console.log(token);
-      if (token.admin == false) {
-       next("/");
-      } else {
-          next();
-      }
-   }
-}
     }
+  },
 
+  beforeRouteEnter(from, to, next) {
+    if (localStorage.getItem("token") !== null) {
+      var token = VueJwtDecode.decode(localStorage.getItem("token"));
+      // console.log(token);
+      if (token.admin == false) {
+        next("/");
+      } else {
+        next();
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -101,7 +104,8 @@ this.axios
   align-items: center;
   padding: 20px;
 }
-.nounous, .maitres {
+.nounous,
+.maitres {
   width: 100%;
   margin: 10px;
 }
@@ -116,7 +120,6 @@ this.axios
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 1em;
   letter-spacing: 1px;
@@ -131,8 +134,8 @@ this.axios
 
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-.btn {
-  width: 100%;
-}
+  .btn {
+    width: 100%;
+  }
 }
 </style>

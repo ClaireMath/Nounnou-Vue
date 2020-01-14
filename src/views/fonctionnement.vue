@@ -13,16 +13,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '../components/HelloWorld.vue'
-// import headertemplate from '../components/header.vue'
+
 import myfooter from '../components/myfooter'
 
 export default {
   name: 'fonctionnement',
   components: {
     myfooter,
-    // HelloWorld
+    
   },
   data() {
       return {
@@ -49,13 +47,10 @@ export default {
     text-align: center;
     font-family: cursive, 'sans serif';
     margin-bottom: 10px;
-   
-
   }
   p {
     font-family: cursive, 'sans serif';
     margin-bottom: 10px;
-
   }
   /* Téléphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {

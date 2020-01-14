@@ -1,95 +1,101 @@
 <template>
- <div>
-   <div class="catsearch">
-         <h1>Trouver un chat à garder</h1>
-        
-        <form @submit.prevent="showcats">
-        
-        <input v-model="maitre.ville" type="text" name="" id="ville" placeholder="Ville de l'hôte">
-        
-        <input v-model="maitre.statut_disponible" type="checkbox" id="dispo">
+  <div>
+    <div class="catsearch">
+      <h1>Trouver un chat à garder</h1>
+
+      <form @submit.prevent="showcats">
+        <input
+          v-model="maitre.ville"
+          type="text"
+          name=""
+          id="ville"
+          placeholder="Ville de l'hôte"
+        />
+
+        <input v-model="maitre.statut_disponible" type="checkbox" id="dispo" />
         <label for="dispo">ayant besoin d'être gardé bientôt</label>
-        
-        <input v-model="chat.tolere_les_chats" type="checkbox" id="okchats">
+
+        <input v-model="chat.tolere_les_chats" type="checkbox" id="okchats" />
         <label for="okchats">qui s'entend avec les chats</label>
-        
-        <input v-model="chat.tolere_les_animaux" type="checkbox" id="okanimaux">
+
+        <input
+          v-model="chat.tolere_les_animaux"
+          type="checkbox"
+          id="okanimaux"
+        />
         <label for="okanimaux">qui s'entend avec les autres animaux</label>
-        
-        <input v-model="chat.a_peur_des_enfants" type="checkbox" id="peurdesenfants">
+
+        <input
+          v-model="chat.a_peur_des_enfants"
+          type="checkbox"
+          id="peurdesenfants"
+        />
         <label for="peurdesenfants">qui s'entend bien avec les enfants</label>
-        
-        <input class="btn"  type="submit" value="Rechercher">
-        
-    </form>
-    
-    <div class="results">
-       
+
+        <input class="btn" type="submit" value="Rechercher" />
+      </form>
+
+      <div class="results">
         <!-- boucler pour afficher tous les résultats (v-for)
         dans data créer variable qui s'appelle resultats
         (voir datatable) 
          -->
-          <!-- // le premier resultat, c'est celui qui est dans props, donc dans l'enfant
+        <!-- // le premier resultat, c'est celui qui est dans props, donc dans l'enfant
         // le deuxième resultat, c'est celui qui est dans data-->
         <myTable v-if="show" :resultats="resultatmaitres"></myTable>
-     </div> 
-    </div>    
-    
-     <myfooter></myfooter>
+      </div>
     </div>
-    </template>
+
+    <myfooter></myfooter>
+  </div>
+</template>
 
 <script>
-// @ is an alias to /src
-import myfooter from '../components/myfooter'
+import myfooter from "../components/myfooter";
 import myTable from "../components/myTable";
 
 export default {
-  name: 'catSearch',
- components: {
+  name: "catSearch",
+  components: {
     myfooter,
     myTable
-            },
-data() {
-      return {
-        maitre: {} ,
-        show: false,
-        chat: {},
-        resultatmaitres: [],
-        url: "http://localhost:6001/maitre/AllByVilleEtStatut",
-      }
-    },
-    created: function() {
-      
-    },
+  },
+  data() {
+    return {
+      maitre: {},
+      show: false,
+      chat: {},
+      resultatmaitres: [],
+      url: "http://localhost:6001/maitre/AllByVilleEtStatut"
+    };
+  },
+  created: function() {},
 
-    methods: {
-       showcats() {
-          // this.chat = this.maitre.chat
-        this.axios
-        .post(this.url,{maitre:this.maitre, chat:this.chat})
-        // this.chat = this.maitre.chat
-          .then((res) => {
-            console.log(res.data)
-             this.resultatmaitres = res.data;
+  methods: {
+    showcats() {
+      this.axios
+        .post(this.url, { maitre: this.maitre, chat: this.chat })
+        .then(res => {
+          // console.log(res.data);
+          this.resultatmaitres = res.data;
           this.show = true;
-          console.log(this.resultatmaitres);
-          })
-          .catch(err => {
-            console.log(err)
-          })
-       } 
-},
+          // console.log(this.resultatmaitres);
+        })
+        .catch(err => {
+          alert(err);
+        });
+    }
+  },
   // from: Route d'où je viens : the current route being navigated away from.
   // to: Route où je veux aller : the target Route Object being navigated to.
   // next: Fonction callback appelée quand ma condition est remplie
- beforeRouteEnter(from, to, next) {
+  beforeRouteEnter(from, to, next) {
     if (localStorage.getItem("token") == null) {
       next("/login");
     } else {
       next();
     }
-}
+  }
 };
 </script>
 <style scoped>
@@ -118,8 +124,8 @@ form {
   width: 65%;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;border: 2px solid #680d3b;
+  align-items: center;
+  border: 2px solid #680d3b;
   border-radius: 25px;
   padding: 20px;
 }
@@ -127,11 +133,6 @@ form {
   margin: 20px;
   width: 70%;
 }
-
-/* .catsitter {
-  display: flex;
-  justify-content: center;
-} */
 .btn {
   width: 250px;
   height: 50px;
@@ -143,7 +144,6 @@ form {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -176,15 +176,14 @@ select {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-
-form {
-  width: 90%;
-}
-.btn {
-  width: 60%;
-}
-.catsearch {
-  padding: 0px;
-}
+  form {
+    width: 90%;
+  }
+  .btn {
+    width: 60%;
+  }
+  .catsearch {
+    padding: 0px;
+  }
 }
 </style>

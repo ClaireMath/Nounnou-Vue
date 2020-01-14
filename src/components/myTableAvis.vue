@@ -1,29 +1,33 @@
 <template>
-<div>
-  <div class="divtable">
-    <table >
-      <tbody>
-        <tr v-if="resultats == null || resultats == 0 ">
-          <td v-if="displayForNounou">Il n'y a pas encore d'avis écrit sur vous.</td>
-          <td v-if="displayForMaitre">Il n'y a pas encore d'avis sur cette nounou.</td>
-        </tr>
+  <div>
+    <div class="divtable">
+      <table>
+        <tbody>
+          <tr v-if="resultats == null || resultats == 0">
+            <td v-if="displayForNounou">
+              Il n'y a pas encore d'avis écrit sur vous.
+            </td>
+            <td v-if="displayForMaitre">
+              Il n'y a pas encore d'avis sur cette nounou.
+            </td>
+          </tr>
 
-    <tr class="titres" v-else>
-      <th class="notes">Note</th>
-      <th class="commentaires">Commentaire</th>
-      <th class="ecritpar">Ecrit par</th>
-    </tr>
+          <tr class="titres" v-else>
+            <th class="notes">Note</th>
+            <th class="commentaires">Commentaire</th>
+            <th class="ecritpar">Ecrit par</th>
+          </tr>
 
-        <tr v-for="data in resultats" :key="data.idAvis">
-         
-          <td class="notes">{{data.note}}/5</td> 
-          <td class="commentaires com2">{{data.commentaire}}</td>
-          <td class="ecritpar">{{data.maitre.prenom}} {{data.maitre.nom}}</td>
-          
-        </tr>
-      </tbody>
-    </table>
-  </div>
+          <tr v-for="data in resultats" :key="data.idAvis">
+            <td class="notes">{{ data.note }}/5</td>
+            <td class="commentaires com2">{{ data.commentaire }}</td>
+            <td class="ecritpar">
+              {{ data.maitre.prenom }} {{ data.maitre.nom }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -36,49 +40,46 @@ export default {
 
   data() {
     return {
-      // show: true
       myToken: null,
       displayForNounou: null,
       displayForMaitre: null
-    
     };
   },
   created() {
-    this.myToken =  VueJwtDecode.decode(localStorage.getItem("token"))
-    console.log(this.myToken);
-    console.log(this.myToken.idMaitre);
+    this.myToken = VueJwtDecode.decode(localStorage.getItem("token"));
+    // console.log(this.myToken);
+    // console.log(this.myToken.idMaitre);
     if (this.myToken.idNounou) {
       this.displayForNounou = true;
       this.displayForMaitre = false;
     } else {
       this.displayForMaitre = true;
       this.displayForNounou = false;
-     }
+    }
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
 <style scoped>
-.divtable { 
+.divtable {
   width: 100%;
   margin-top: 25px;
   /* background-color: blue; */
 }
 table {
-    /* background-color: grey; */
+  /* background-color: grey; */
   width: 100%;
   border: 2px solid grey;
   border-radius: 25px;
   padding-bottom: 10px;
 }
 tbody {
-    /* background-color: #680d3b; */
-    width: 100%;
+  /* background-color: #680d3b; */
+  width: 100%;
 }
 .titres {
-    width: 100%;
+  width: 100%;
 }
 tr {
   /* background-color: orange; */
@@ -88,7 +89,7 @@ tr {
   /* height: 60px; */
 }
 td {
-    /* background-color: red; */
+  /* background-color: red; */
   /* height: 60px; */
   width: 100%;
   display: flex;
@@ -111,9 +112,9 @@ th {
   width: 70%;
 }
 .com2 {
- text-align: justify;
- padding-right: 10px;
- padding-left: 10px;
+  text-align: justify;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .ecritpar {
   width: 20%;
@@ -135,7 +136,6 @@ th {
   -o-border-radius: 430px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -151,22 +151,17 @@ th {
 
 /* TABLETTE */
 /* @media screen and (min-width: 481px) and (max-width: 768px) {
-}
-.titres {
-    width: 68%;
+
 } */
+
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-/* .notes {
-  width: 10%;
-  text-align: center;
-} */
-.commentaires {
-  width: 65%;
-}
-.ecritpar {
-  width: 25%;
-  text-align: center;
-}
+  .commentaires {
+    width: 65%;
+  }
+  .ecritpar {
+    width: 25%;
+    text-align: center;
+  }
 }
 </style>

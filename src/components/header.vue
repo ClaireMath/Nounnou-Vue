@@ -25,12 +25,22 @@
 
       <div @click="sendToHomePage" class="divLogoAndTitle">
         <h1>Une Nounou pour mon Matou</h1>
-        <img src="../assets/logosansbords.jpg" alt="logo du site" class="logo" />
+        <img
+          src="../assets/logosansbords.jpg"
+          alt="logo du site"
+          class="logo"
+        />
       </div>
       <div class="divButtons">
-        <button v-show="login" @click="sendform" class="btn btn1">S'inscrire</button>
-        <button v-if="login" @click="flogin" class="btn btn2">Se connecter</button>
-        <button v-if="logout" @click="flogout" class="btn btn2">Se deconnecter</button>
+        <button v-show="login" @click="sendform" class="btn btn1">
+          S'inscrire
+        </button>
+        <button v-if="login" @click="flogin" class="btn btn2">
+          Se connecter
+        </button>
+        <button v-if="logout" @click="flogout" class="btn btn2">
+          Se deconnecter
+        </button>
       </div>
     </div>
     <div class="recherche">
@@ -133,10 +143,6 @@ export default {
       localStorage.removeItem("token");
       window.location.reload();
     }
-
-    // sendform() {
-    //   Router.push({name: "nav"})
-    // }
   }
 };
 </script>
@@ -151,7 +157,6 @@ export default {
   outline: none;
 }
 .header {
-  /* position: fixed; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -371,81 +376,77 @@ export default {
   position: absolute;
   font-family: cursive, sans-serif;
   font-weight: bold;
-  /* opacity: .8; */
   top: 160px;
   border-radius: 20px;
-  
 }
 /* Apparition de la nav */
-#menuB:checked ~ .ctnHeaderNav{
+#menuB:checked ~ .ctnHeaderNav {
   animation: apparitionNav ease-in-out 1.5s;
   animation-iteration-count: 1;
   transform-origin: 50% 50%;
-  animation-fill-mode:forwards; /*when the spec is finished*/
+  animation-fill-mode: forwards; /*when the spec is finished*/
   -webkit-animation: apparitionNav ease-in-out 1.5s;
   -webkit-animation-iteration-count: 1;
   -webkit-transform-origin: 50% 50%;
-  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+  -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
   -moz-animation: apparitionNav ease-in-out 1.5s;
   -moz-animation-iteration-count: 1;
   -moz-transform-origin: 50% 50%;
-  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -moz-animation-fill-mode: forwards; /*FF 5+*/
   -o-animation: apparitionNav ease-in-out 1.5s;
   -o-animation-iteration-count: 1;
   -o-transform-origin: 50% 50%;
-  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -o-animation-fill-mode: forwards; /*Not implemented yet*/
   -ms-animation: apparitionNav ease-in-out 1.5s;
   -ms-animation-iteration-count: 1;
   -ms-transform-origin: 50% 50%;
-  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  -ms-animation-fill-mode: forwards; /*IE 10+*/
 }
 
-@keyframes apparitionNav{
+@keyframes apparitionNav {
   0% {
-    transform:  translate(0px,0px)  ;
+    transform: translate(0px, 0px);
   }
   100% {
-    transform:  translate(700px,0px)  ;
+    transform: translate(700px, 0px);
   }
 }
 
-@-moz-keyframes apparitionNav{
+@-moz-keyframes apparitionNav {
   0% {
-    -moz-transform:  translate(0px,0px)  ;
+    -moz-transform: translate(0px, 0px);
   }
   100% {
-    -moz-transform:  translate(700px,0px)  ;
+    -moz-transform: translate(700px, 0px);
   }
 }
 
 @-webkit-keyframes apparitionNav {
   0% {
-    -webkit-transform:  translate(0px,0px)  ;
+    -webkit-transform: translate(0px, 0px);
   }
   100% {
-    -webkit-transform:  translate(700px,0px)  ;
+    -webkit-transform: translate(700px, 0px);
   }
 }
 
 @-o-keyframes apparitionNav {
   0% {
-    -o-transform:  translate(0px,0px)  ;
+    -o-transform: translate(0px, 0px);
   }
   100% {
-    -o-transform:  translate(700px,0px)  ;
+    -o-transform: translate(700px, 0px);
   }
 }
 
 @-ms-keyframes apparitionNav {
   0% {
-    -ms-transform:  translate(0px,0px)  ;
+    -ms-transform: translate(0px, 0px);
   }
   100% {
-    -ms-transform:  translate(700px,0px)  ;
+    -ms-transform: translate(700px, 0px);
   }
 }
-
-
 
 .divLogoAndTitle {
   display: flex;
@@ -617,81 +618,79 @@ export default {
     display: none;
   }
   .ctnHeaderNav {
-  margin-left: -420px;
-  width: 100%;
-  height: 80%;
-}
+    margin-left: -420px;
+    width: 100%;
+    height: 80%;
+  }
   /* Apparition de la nav */
-  #menuB:checked ~ .ctnHeaderNav{
-  animation: navTel linear 1s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-  animation-fill-mode:forwards; /*when the spec is finished*/
-  -webkit-animation: navTel linear 1s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
-  -moz-animation: navTel linear 1s;
-  -moz-animation-iteration-count: 1;
-  -moz-transform-origin: 50% 50%;
-  -moz-animation-fill-mode:forwards; /*FF 5+*/
-  -o-animation: navTel linear 1s;
-  -o-animation-iteration-count: 1;
-  -o-transform-origin: 50% 50%;
-  -o-animation-fill-mode:forwards; /*Not implemented yet*/
-  -ms-animation: navTel linear 1s;
-  -ms-animation-iteration-count: 1;
-  -ms-transform-origin: 50% 50%;
-  -ms-animation-fill-mode:forwards; /*IE 10+*/
-}
+  #menuB:checked ~ .ctnHeaderNav {
+    animation: navTel linear 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+    -webkit-animation: navTel linear 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
+    -moz-animation: navTel linear 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode: forwards; /*FF 5+*/
+    -o-animation: navTel linear 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode: forwards; /*Not implemented yet*/
+    -ms-animation: navTel linear 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode: forwards; /*IE 10+*/
+  }
 
-@keyframes navTel{
-  0% {
-    transform:  translate(0px,0px)  ;
+  @keyframes navTel {
+    0% {
+      transform: translate(0px, 0px);
+    }
+    100% {
+      transform: translate(400px, 0px);
+    }
   }
-  100% {
-    transform:  translate(400px,0px)  ;
+
+  @-moz-keyframes navTel {
+    0% {
+      -moz-transform: translate(0px, 0px);
+    }
+    100% {
+      -moz-transform: translate(400px, 0px);
+    }
+  }
+
+  @-webkit-keyframes navTel {
+    0% {
+      -webkit-transform: translate(0px, 0px);
+    }
+    100% {
+      -webkit-transform: translate(400px, 0px);
+    }
+  }
+
+  @-o-keyframes navTel {
+    0% {
+      -o-transform: translate(0px, 0px);
+    }
+    100% {
+      -o-transform: translate(400px, 0px);
+    }
+  }
+
+  @-ms-keyframes navTel {
+    0% {
+      -ms-transform: translate(0px, 0px);
+    }
+    100% {
+      -ms-transform: translate(400px, 0px);
+    }
   }
 }
-
-@-moz-keyframes navTel{
-  0% {
-    -moz-transform:  translate(0px,0px)  ;
-  }
-  100% {
-    -moz-transform:  translate(400px,0px)  ;
-  }
-}
-
-@-webkit-keyframes navTel {
-  0% {
-    -webkit-transform:  translate(0px,0px)  ;
-  }
-  100% {
-    -webkit-transform:  translate(400px,0px)  ;
-  }
-}
-
-@-o-keyframes navTel {
-  0% {
-    -o-transform:  translate(0px,0px)  ;
-  }
-  100% {
-    -o-transform:  translate(400px,0px)  ;
-  }
-}
-
-@-ms-keyframes navTel {
-  0% {
-    -ms-transform:  translate(0px,0px)  ;
-  }
-  100% {
-    -ms-transform:  translate(400px,0px)  ;
-  }
-}
-}
-
-
 
 /* Extra small devices (phones, 600px and down) */
 /* @media only screen and (max-width: 600px) {...} */

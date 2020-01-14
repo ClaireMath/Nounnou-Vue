@@ -5,30 +5,60 @@
         <div class="smallBoxNou">
           <h1>Mon profil Nounou</h1>
 
-          <p>Merci de bien vouloir remplir votre profil sans quoi il n'apparaitra pas aux utilisateurs.</p>
+          <p>
+            Merci de bien vouloir remplir votre profil sans quoi il n'apparaitra
+            pas aux utilisateurs.
+          </p>
           <div class="ctnchamps">
             <div class="sbchamps">
-              <input v-model="nounou.prenom" type="text" placeholder="Prénom" required />
+              <input
+                v-model="nounou.prenom"
+                type="text"
+                placeholder="Prénom"
+                required
+              />
 
-              <input v-model="nounou.adresse" type="text" placeholder="Adresse" required />
+              <input
+                v-model="nounou.adresse"
+                type="text"
+                placeholder="Adresse"
+                required
+              />
 
-              <input v-model="nounou.code_postal" type="number" placeholder="Code postal" required />
+              <input
+                v-model="nounou.code_postal"
+                type="number"
+                placeholder="Code postal"
+                required
+              />
             </div>
 
             <div class="sbchamps2">
-              <input v-model="nounou.ville" type="text" placeholder="Ville" required />
+              <input
+                v-model="nounou.ville"
+                type="text"
+                placeholder="Ville"
+                required
+              />
 
-              <input v-model="nounou.email" type="email" placeholder="Email" disabled />
-            
-              <!-- <input v-model="nounou.mdp" type="password" placeholder="Mot de passe" required /> -->
+              <input
+                v-model="nounou.email"
+                type="email"
+                placeholder="Email"
+                disabled
+              />
 
-              <input v-model="nounou.telephone" type="number" placeholder="Téléphone" required />
+              <input
+                v-model="nounou.telephone"
+                type="number"
+                placeholder="Téléphone"
+                required
+              />
             </div>
           </div>
           <div class="select">
             <p>Nombre de chats que je peux garder en même temps</p>
             <select v-model="nounou.capacite_d_accueil" required>
-              <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
               <option value="1">un chat</option>
               <option value="2">deux chats</option>
               <option value="3">trois chats</option>
@@ -48,7 +78,7 @@
               />
               <label for="ouichats">oui</label>
             </div>
-            <!-- v-model="picked" -->
+
             <div class="non">
               <input
                 type="radio"
@@ -84,10 +114,10 @@
             </div>
           </div>
           <div class="select">
-            <p>Nombre d'heures consacrées au matou par jour : (minmum une heure)</p>
+            <p>
+              Nombre d'heures consacrées au matou par jour : (minmum une heure)
+            </p>
             <select v-model="nounou.peut_consacrer_n_heure_par_jour" required>
-              <!-- v-model="selected" -->
-              <!-- <option disabled value="">Nombre de chats que je peux garder en même temps</option> -->
               <option value="1">une heure</option>
               <option value="2">deux heures</option>
               <option value="3">trois heures</option>
@@ -101,7 +131,9 @@
             rows="12"
             placeholder="Décrivez-vous et votre expérience avec les chats."
             required
-          >Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea>
+          >
+Décrivez-vous, votre expérience avec les chats ou les animaux en général, pourquoi vous avez envie de vous en occuper.</textarea
+          >
 
           <p>Je suis disponible immédiatement :</p>
           <div class="radio">
@@ -154,7 +186,6 @@
         <div class="logement">
           <h2>Mon logement</h2>
 
-          <!-- <div class="radio"></div> -->
           <div class="radio">
             <div class="oui">
               <input
@@ -178,10 +209,20 @@
             </div>
           </div>
           <p>Superficie :</p>
-          <input v-model="logement.superficie" type="text" class="logInputText" required />
+          <input
+            v-model="logement.superficie"
+            type="text"
+            class="logInputText"
+            required
+          />
 
           <p>Nombre de personnes habitants dans mon logement :</p>
-          <input v-model="logement.nombre_d_habitants" type="number" class="logInputText" required />
+          <input
+            v-model="logement.nombre_d_habitants"
+            type="number"
+            class="logInputText"
+            required
+          />
 
           <p>Des enfants habitent dans mon logement ?</p>
           <div class="radio">
@@ -230,7 +271,9 @@
             </div>
           </div>
 
-          <p>Je possède un accès à l'extérieur (jardin, terrasse ou balcon) :</p>
+          <p>
+            Je possède un accès à l'extérieur (jardin, terrasse ou balcon) :
+          </p>
           <div class="radio">
             <div class="oui">
               <input
@@ -253,15 +296,19 @@
               <label for="noext">non</label>
             </div>
           </div>
-        
-          <input @click="mesAvis" type="button" class="btn btn2" value="Ce que l'on pense de moi (avis)" />
-    
-     <div class="results">
-      <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
-         </div>
 
+          <input
+            @click="mesAvis"
+            type="button"
+            class="btn btn2"
+            value="Ce que l'on pense de moi (avis)"
+          />
+
+          <div class="results">
+            <myTableAvis v-if="show" :resultats="resultatAvis"></myTableAvis>
           </div>
         </div>
+      </div>
       <input type="submit" class="btn" value="Mettre mon compte à jour" />
     </form>
     <myfooter></myfooter>
@@ -269,9 +316,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '../components/HelloWorld.vue'
-// import headertemplate from '../components/header.vue'
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import myTableAvis from "../components/myTableAvis";
@@ -285,15 +329,15 @@ export default {
   data() {
     return {
       nounou: {},
-      logement: {}, 
-      resultatAvis: [], 
-      show: false ,
+      logement: {},
+      resultatAvis: [],
+      show: false,
       id_nounou: {}
     };
   },
   created: function() {
-    console.log(this.logement)
-    console.log(this.nounou)
+    // console.log(this.logement);
+    // console.log(this.nounou);
 
     // if (!localStorage.getItem("token")) {
     //   this.$router.push("/login");
@@ -307,8 +351,8 @@ export default {
     !localStorage.getItem("token")
       ? this.$router.push("/login")
       : (this.nounou = VueJwtDecode.decode(localStorage.getItem("token")));
-    console.log(this.nounou.idNounou)
-    console.log(this.nounou)
+    // console.log(this.nounou.idNounou);
+    // console.log(this.nounou);
     this.displayFlat();
   },
 
@@ -319,50 +363,52 @@ export default {
           `http://localhost:6001/logement/getOneByIdNounou/${this.nounou.idNounou}`
         )
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data !== null) {
-            this.logement = res.data
+            this.logement = res.data;
           } else {
-            return
+            return;
           }
-
-          // this.logement = res.data;
         })
         .catch(err => {
-          // console.log(err);
+          alert(err);
         });
     },
 
     updateProfileNou() {
-      this.axios.post("http://localhost:6001/nounou/updateByEmail", this.nounou);
+      this.axios.post(
+        "http://localhost:6001/nounou/updateByEmail",
+        this.nounou
+      );
       this.logement.id_nounou = this.nounou.idNounou;
 
-      this.axios.post("http://localhost:6001/logement/create", this.logement)
-        .then(res => {
+      this.axios
+        .post("http://localhost:6001/logement/create", this.logement)
+        .then(() => {
           // console.log(res);
           this.$router.push("/");
           alert("Votre profil a été mis à jour avec succès.");
         })
-        .catch(err => {
+        .catch(() => {
           // console.log(err);
         });
     },
 
-
-        mesAvis() {
-          console.log("this.nounou.idNounou : "+ this.nounou.idNounou);
-          console.log(this.nounou.idNounou)
-        this.axios
+    mesAvis() {
+      // console.log("this.nounou.idNounou : " + this.nounou.idNounou);
+      // console.log(this.nounou.idNounou);
+      this.axios
         .get(
-          "http://localhost:6001/avis/AllAvisByNounou/"+ this.nounou.idNounou)
-        
+          "http://localhost:6001/avis/AllAvisByNounou/" + this.nounou.idNounou
+        )
+
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.resultatAvis = res.data;
           this.show = true;
         })
         .catch(err => {
-          // console.log(err);
+          alert(err);
         });
     }
   }
@@ -371,7 +417,6 @@ export default {
 
 <style scoped>
 .bigctn {
-  /* padding: 20px; */
   background-color: whitesmoke;
   font-family: "merienda one", cursive, sans-serif;
 }
@@ -431,7 +476,6 @@ form {
   flex-direction: column;
   justify-content: flex-start;
   align-items: space-around;
-  
 }
 label {
   margin-top: 12px;
@@ -466,7 +510,6 @@ textarea {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -494,7 +537,6 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* padding: 10px; */
 }
 .oui {
   display: flex;
@@ -557,8 +599,8 @@ input {
   }
 
   .logement {
-  width: 100%;
-  padding: 20px;
-}
+    width: 100%;
+    padding: 20px;
+  }
 }
 </style>

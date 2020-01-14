@@ -2,9 +2,21 @@
   <div class="bigctn">
     <form @submit.prevent="loginSubmit">
       <div class="ctninput">
-        <input class="inputT" type="email" placeholder="Email" v-model="email" required />
+        <input
+          class="inputT"
+          type="email"
+          placeholder="Email"
+          v-model="email"
+          required
+        />
 
-        <input class="inputT" type="password" placeholder="Mot de passe" v-model="password" required />
+        <input
+          class="inputT"
+          type="password"
+          placeholder="Mot de passe"
+          v-model="password"
+          required
+        />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
       <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
@@ -13,7 +25,6 @@
 </template>
 
 <script>
-
 export default {
   name: "loginMaitre",
 
@@ -24,12 +35,10 @@ export default {
       erreur: null
     };
   },
-  created: function() {
-       
-  },
+  created: function() {},
 
   methods: {
-    loginSubmit: function(e) {
+    loginSubmit: function() {
       this.axios
         .post("http://localhost:6001/maitre/login", {
           email: this.email,
@@ -38,21 +47,19 @@ export default {
           mdp: this.password
         })
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.token) {
-
-          localStorage.setItem("token", res.data.token);
-          // le $ c'est pour récupérer des variables définies en global dans main.js
-          this.$router.push({ name: "home" });
-          window.location.reload();
-          } 
-        else if (res.data.banni) { 
-          alert("Vous êtes banni, vous ne pouvez plus vous connecter")
+            localStorage.setItem("token", res.data.token);
+            // le $ c'est pour récupérer des variables définies en global dans main.js
+            this.$router.push({ name: "home" });
+            window.location.reload();
+          } else if (res.data.banni) {
+            alert("Vous êtes banni, vous ne pouvez plus vous connecter");
           }
-          })
-        .catch(err => {
-          this.erreur = true
-          console.log(err);
+        })
+        .catch(() => {
+          this.erreur = true;
+          // console.log(err);
         });
     }
   }
@@ -69,11 +76,9 @@ export default {
 }
 form {
   width: 600px;
-  /* height: 600px; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 .div {
   height: 90%;
@@ -101,7 +106,6 @@ input {
   -o-border-radius: 10px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;

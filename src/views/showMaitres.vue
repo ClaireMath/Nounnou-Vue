@@ -323,14 +323,14 @@ export default {
     banUnBanF() {
       this.axios
         .put(this.url, this.maitre)
-        .then(res => {
-          console.log(res.data);
+        .then(() => {
+          // console.log(res.data);
 
           alert("Statut 'banni' modifié avec succès.");
           Router.push({ name: "admin" });
           localStorage.removeItem("idMaitre")
         })
-        .catch(err => {
+        .catch(() => {
           alert("Impossible d'effectuer l'action sur le statut 'banni'.");
         });
     },
@@ -339,14 +339,14 @@ export default {
       this.axios
         .put(this.url2, this.maitre)
         .then(res => {
-          console.log(res.data);
+          // console.log(res.data);
           this.maitre = res.data;
 
           alert("Statut 'admin' modifié avec succès.");
           Router.push({ name: "admin" });
           localStorage.removeItem("idMaitre")
         })
-        .catch(err => {
+        .catch(() => {
           alert("Impossible d'effectuer l'action sur le statut 'admin'.");
         });
     },

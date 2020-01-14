@@ -4,16 +4,21 @@
       <div class="ubox1">
         <h4>Nounou et Propriétaire</h4>
 
-        <router-link to="/fonctionnement">Fonctionnement du service</router-link>
+        <router-link to="/fonctionnement"
+          >Fonctionnement du service</router-link
+        >
         <router-link to="/reglement">Les règles d'or</router-link>
         <router-link to="/sorties">Nos prochaines sorties</router-link>
       </div>
       <div class="ubox1">
         <h4>Conseils</h4>
 
-        <router-link to="/todoliste">La to-do liste du propriétaire</router-link>
-        <router-link to="/conseilsnounous">Conseils pour nos Nounous</router-link>
-        <!-- <router-link to="/objetsutiles">Objets vraiment utiles</router-link> -->
+        <router-link to="/todoliste"
+          >La to-do liste du propriétaire</router-link
+        >
+        <router-link to="/conseilsnounous"
+          >Conseils pour nos Nounous</router-link
+        >
       </div>
       <div class="ubox2">
         <h4>Contactez-nous</h4>
@@ -32,7 +37,11 @@
             <img src="../assets/insta.png" alt="logo instagram" class="logo" />
           </a>
           <a href="https://www.pinterest.com">
-            <img src="../assets/pinterest.png" alt="logo pinterest" class="logo" />
+            <img
+              src="../assets/pinterest.png"
+              alt="logo pinterest"
+              class="logo"
+            />
           </a>
         </div>
       </div>
@@ -50,19 +59,16 @@
 <script>
 export default {
   name: "myfooter"
- 
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .myFooter {
-  /* position: absolute; */
   top: 750px;
   width: 100%;
   height: 220px;
   font-family: cursive, "sans-serif";
-  /* font-family: 'Livvic', "sans-serif"; */
   color: whitesmoke;
   background-color: #680d3b;
   display: flex;
@@ -84,8 +90,6 @@ export default {
   align-items: center;
 }
 .ubox1 {
-  /* margin-right : 80px; */
-  /* margin-bottom: 35px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,9 +141,6 @@ a:nth-child(even):hover {
 .subbox {
   display: flex;
   flex-direction: row;
-  /* justify-content : space-between;
-    align-content: space-between;
-    align-items: space-between; */
 }
 
 /* TABLETTE */
@@ -171,7 +172,6 @@ a:nth-child(even):hover {
     justify-content: space-between;
     align-items: center;
   }
-
   .texttel {
     text-decoration: none;
   }

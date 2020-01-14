@@ -1,12 +1,17 @@
 <template>
   <div class="ctn">
     <router-link to="/inscription" v-show="login" @click="sendform" class="tel"
-      >S'incrire</router-link>
+      >S'incrire</router-link
+    >
 
-    <router-link to="/login" v-if="login" @click="flogin" class="tel">Se connecter</router-link>
-    
-    <p to="/login" v-if="logout" @click="flogout" class="co tel">Se deconnecter</p>
-    
+    <router-link to="/login" v-if="login" @click="flogin" class="tel"
+      >Se connecter</router-link
+    >
+
+    <p to="/login" v-if="logout" @click="flogout" class="co tel">
+      Se deconnecter
+    </p>
+
     <p v-if="logout" @click="showprofile" class="tel">Mon profil</p>
 
     <router-link to="/fonctionnement">Fonctionnement du service</router-link>
@@ -16,8 +21,6 @@
     <router-link to="/todoliste">La to-do liste du propriétaire</router-link>
 
     <router-link to="/conseilsnounous">Conseils pour nos Nounous</router-link>
-
-    <!-- <router-link to="/objetsutiles">Objets vraiment utiles</router-link>  -->
 
     <router-link to="/sorties">Nos prochaines sorties</router-link>
   </div>
@@ -84,7 +87,6 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: whitesmoke;
-  /* opacity: 1; */
   position: absolute;
   font-family: cursive, sans-serif;
   font-size: 1.5em;
@@ -128,7 +130,7 @@ p {
     left: 0px;
   }
   .tel {
-  display: block;
-}
+    display: block;
+  }
 }
 </style>

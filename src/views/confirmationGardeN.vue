@@ -1,19 +1,26 @@
 <template>
   <div class="bigBox">
-      <div class="box">
-     
-          <input type="submit" class="btn" @click="accept" value="J'accepte la garde" />
-          
-          <input type="submit" class="btn" @click="decline" value="Je décline la garde" />
-      
-      </div> 
-    
-    <myfooter></myfooter> 
+    <div class="box">
+      <input
+        type="submit"
+        class="btn"
+        @click="accept"
+        value="J'accepte la garde"
+      />
+
+      <input
+        type="submit"
+        class="btn"
+        @click="decline"
+        value="Je décline la garde"
+      />
+    </div>
+
+    <myfooter></myfooter>
   </div>
 </template>
 
 <script>
-
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 
@@ -21,55 +28,50 @@ export default {
   name: "confirmationGardeN",
   components: {
     myfooter
-    
   },
   data() {
     return {
-     idGarde: "",
-     url1: "http://localhost:6001/garde/accept/:id",
-     url2: "http://localhost:6001/garde/decline/:id"
+      idGarde: "",
+      url1: "http://localhost:6001/garde/accept/:id",
+      url2: "http://localhost:6001/garde/decline/:id"
     };
   },
   created: function() {
-      // trop compliqué d'envoyer dans node les params sur l'url, 
-      // donc on a envoyé la donnée dans une query avec le point d'interrogation dans l'url
-      // c'est pour ça que plus bas, on na pas params mais query
-    this.idGarde = this.$route.query.idGarde
+    // trop compliqué d'envoyer dans node les params sur l'url,
+    // donc on a envoyé la donnée dans une query avec le point d'interrogation dans l'url
+    // c'est pour ça que plus bas, on na pas params mais query
+    this.idGarde = this.$route.query.idGarde;
   },
 
   methods: {
     accept() {
       this.axios
-        .put(
-          `http://localhost:6001/garde/accept/${this.garde}`
-        )
+        .put(`http://localhost:6001/garde/accept/${this.garde}`)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.garde = res.data;
-          alert("Vous avez accepté la garde et nous vous en remercions, vous pouvez dès maintenant prendre conctact avec le maitre du chat")
-          this.$router.push('/');
+          alert(
+            "Vous avez accepté la garde et nous vous en remercions, vous pouvez dès maintenant prendre conctact avec le maitre du chat"
+          );
+          this.$router.push("/");
         })
         .catch(err => {
-          // console.log(err);
+          alert(err)
         });
     },
 
     decline(event) {
-     this.axios
-        .put(
-          `http://localhost:6001/garde/decline/${this.garde.idGarde}`
-        )
+      this.axios
+        .put(`http://localhost:6001/garde/decline/${this.garde.idGarde}`)
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.garde = res.data;
-          alert("Vous avez décliné la garde")
-          this.$router.push('/');
+          alert("Vous avez décliné la garde");
+          this.$router.push("/");
         })
-        .catch(err => {
-          // console.log(err);
-        });
-    },
-}
+        .catch(err => {});
+    }
+  }
 };
 </script>
 
@@ -86,10 +88,7 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   padding: 50px;
-
-  /* padding-top: 200px;
-  padding-bottom: 200px; */
-} 
+}
 
 .btn {
   width: 65%;
@@ -102,7 +101,6 @@ export default {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -120,7 +118,6 @@ export default {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
- 
   .bigBox {
     width: 100%;
     /* background-color: brown; */
@@ -128,6 +125,5 @@ export default {
     flex-direction: column;
     justify-content: space-between;
   }
-  
 }
 </style>

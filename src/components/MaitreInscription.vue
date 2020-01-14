@@ -2,18 +2,35 @@
   <div class="bigctn">
     <form @submit.prevent="addNewMaitre">
       <div class="ctninput">
-
-        <input v-model="maitre.prenom" type="text" placeholder="Prénom" required />
+        <input
+          v-model="maitre.prenom"
+          type="text"
+          placeholder="Prénom"
+          required
+        />
         <input v-model="maitre.nom" type="text" placeholder="Nom" required />
 
-        <input v-model="maitre.email" type="email" placeholder="Email" required />
+        <input
+          v-model="maitre.email"
+          type="email"
+          placeholder="Email"
+          required
+        />
 
-        <input v-model="maitre.mdp" type="password" placeholder="mot de passe" required />
-     
-       <div class="regles">
-        <label id="regles">Je m'engage à respecter les règles énoncées sur le site sous peine de poursuites pénales</label>
-        <input type="checkbox" id="regles" required />
-</div>
+        <input
+          v-model="maitre.mdp"
+          type="password"
+          placeholder="mot de passe"
+          required
+        />
+
+        <div class="regles">
+          <label id="regles"
+            >Je m'engage à respecter les règles énoncées sur le site sous peine
+            de poursuites pénales</label
+          >
+          <input type="checkbox" id="regles" required />
+        </div>
       </div>
       <input type="submit" value="Créer mon compte" class="btn" />
     </form>
@@ -21,8 +38,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import headertemplate from '../components/header.vue'
 export default {
   name: "MaitreInscription",
   data() {
@@ -40,9 +55,7 @@ export default {
           this.$router.push("/profilMaitre");
           window.location.reload();
         })
-        .catch(err => {
-          //   console.log(err);
-        });
+        .catch(err => {});
     }
   }
 };
@@ -68,17 +81,11 @@ form {
   flex-direction: column;
   align-items: center;
   margin: 10px;
-
-
 }
 input {
   margin: 5px;
   width: 80%;
 }
-/*
-legend {
-  padding: 3px 6px;
-} */
 .btn {
   width: 150px;
   height: 30px;
@@ -90,7 +97,6 @@ legend {
   -o-border-radius: 10px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -119,17 +125,11 @@ input {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
- /* .ctn {
-   width: 50%;
- } */
- /* .bigctn {
-   width: 100%;
- } */
- form {
-  width: 120px;
- }
- .ctninput {
-   width: 150%;
- }
-} 
+  form {
+    width: 120px;
+  }
+  .ctninput {
+    width: 150%;
+  }
+}
 </style>

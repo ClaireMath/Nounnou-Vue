@@ -1,13 +1,22 @@
 <template>
   <div>
     <div class="catsittersearch">
-      <!-- <div class="catsitter"> -->
       <h1>Trouver une Nounou</h1>
 
       <form @submit.prevent="shownounou">
-        <input v-model="nounou.ville" type="text" placeholder="Ville de l'hôte" class="ville inputT"/>
+        <input
+          v-model="nounou.ville"
+          type="text"
+          placeholder="Ville de l'hôte"
+          class="ville inputT"
+        />
 
-        <input class="checkbox" v-model="nounou.statut_disponible" type="checkbox" id="dispo" />
+        <input
+          class="checkbox"
+          v-model="nounou.statut_disponible"
+          type="checkbox"
+          id="dispo"
+        />
         <label for="dispo">Disponible immédiatement</label>
 
         <select v-model="nounou.capacite_d_accueil" class="inputT">
@@ -17,13 +26,28 @@
           <option value="4">Pour quatre chats</option>
         </select>
 
-        <input class="checkbox" v-model="nounou.non_fumeur" type="checkbox" id="nonfumeur" />
+        <input
+          class="checkbox"
+          v-model="nounou.non_fumeur"
+          type="checkbox"
+          id="nonfumeur"
+        />
         <label for="nonfumeur">Non fumeur</label>
 
-        <input class="checkbox" v-model="nounou.sans_enfant" type="checkbox" id="sansenfant" />
+        <input
+          class="checkbox"
+          v-model="nounou.sans_enfant"
+          type="checkbox"
+          id="sansenfant"
+        />
         <label for="sansenfant">Sans enfant</label>
 
-        <input class="checkbox" v-model="nounou.sans_animal" type="checkbox" id="sansanimal" />
+        <input
+          class="checkbox"
+          v-model="nounou.sans_animal"
+          type="checkbox"
+          id="sansanimal"
+        />
         <label for="sansanimal">Sans animal</label>
 
         <input type="submit" value="Rechercher" class="btn" />
@@ -40,9 +64,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import myfooter from "../components/myfooter";
 import myTable from "../components/myTable";
+
 export default {
   name: "catsittersearch",
   components: {
@@ -59,21 +83,15 @@ export default {
     };
   },
 
-  // updated() {
-  //   console.log(this.resultatnounou);
-  // },
   methods: {
     shownounou() {
-
       this.axios
         .post(this.url, this.nounou)
         .then(res => {
           this.resultatnounou = res.data;
           this.show = true;
         })
-        .catch(err => {
-          // console.log(err)
-        });
+        .catch(err => {});
     }
   },
   // from: Route d'où je viens : the target Route Object being navigated to.
@@ -116,11 +134,6 @@ form {
 .ville {
   margin: 20px;
 }
-
-/* .catsitter {
-  display: flex;
-  justify-content: center;
-} */
 .btn {
   width: 250px;
   height: 50px;
@@ -132,7 +145,6 @@ form {
   -o-border-radius: 15px;
   color: hsl(330, 78%, 23%);
   background-color: whitesmoke;
-  /* font-family: cursive, "sans-serif"; */
   font-weight: bold;
   font-size: 0.9em;
   letter-spacing: 1px;
@@ -165,19 +177,18 @@ select {
 }
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-
-form {
-  width: 90%;
-}
-.btn {
-  width: 60%;
-}
-.inputT {
-width: 80%;
-}
-.results {
-  margin-top: 40px;
-  width: 100%;
-}
+  form {
+    width: 90%;
+  }
+  .btn {
+    width: 60%;
+  }
+  .inputT {
+    width: 80%;
+  }
+  .results {
+    margin-top: 40px;
+    width: 100%;
+  }
 }
 </style>
