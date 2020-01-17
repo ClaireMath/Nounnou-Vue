@@ -596,15 +596,14 @@ input {
   }
   .bigBox {
     width: 100%;
-    background-color: brown;
+    /* background-color: brown; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .smallBoxNou {
-    background-color: goldenrod;
+    /* background-color: goldenrod; */
     width: 100%;
-    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -612,14 +611,12 @@ input {
   }
 
   .ctnchamps {
-    background-color: lightslategray;
-    /* display: flex;
-    flex-direction: column; */
+    /* background-color: lightslategray; */
     width: 100%;
     height: 400px;
   }
   .chat {
-    background-color: #ff2d95;
+    /* background-color: #ff2d95; */
     width: 100%;
     height: 1050px;
     padding: 20px;
