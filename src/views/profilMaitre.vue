@@ -16,6 +16,7 @@
                 v-model="maitre.nom"
                 type="text"
                 placeholder="Nom"
+                style="resize:horizontal; width:200px; height:30px"
                 required
               />
 
@@ -53,6 +54,7 @@
                 v-model="maitre.telephone"
                 type="tel"
                 placeholder="Téléphone"
+                style="resize:horizontal; width:200px; height:30px"
                 required
               />
             </div>
@@ -322,7 +324,6 @@ export default {
           // console.log(err);
         });
     },
-
     selectCat(event) {
       // console.log(JSON.parse(event.target.value));
       this.chat = event.target.value;
@@ -369,11 +370,12 @@ export default {
           // console.log(err);
         });
     },
-
     recupIdChat(idToken) {
+      // console.log(this.url);
+      // console.log(this.url + idToken);
       this.axios
         .get(this.url + idToken)
-        .then(() => {
+        .then(res => {
           // console.log(res.data)
           this.resultatchats = res.data;
           // console.log(this.resultatchats);
@@ -396,11 +398,13 @@ export default {
           idChats: this.idChats
         })
         .then(res => {
-          // console.log(res.data);
+          //  console.log(res.data);
           this.resultatgardes = res.data.gardes;
           this.show = true;
         })
-        .catch(() => {});
+        .catch(err => {
+          alert(err)
+        });
     },
 
     uploadImage(e) {
@@ -592,15 +596,15 @@ input {
   }
   .bigBox {
     width: 100%;
-    /* background-color: brown; */
+    background-color: brown;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .smallBoxNou {
-    /* background-color: goldenrod; */
+    background-color: goldenrod;
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -608,12 +612,14 @@ input {
   }
 
   .ctnchamps {
-    /* background-color: lightslategray; */
+    background-color: lightslategray;
+    /* display: flex;
+    flex-direction: column; */
     width: 100%;
     height: 400px;
   }
   .chat {
-    /* background-color: #ff2d95; */
+    background-color: #ff2d95;
     width: 100%;
     height: 1050px;
     padding: 20px;
@@ -630,6 +636,9 @@ input {
   }
   p {
     text-align: justify;
+  }
+  .inputTextESSAi {
+    width: 100%
   }
   .inputText {
     text-transform: uppercase;

@@ -139,8 +139,8 @@ export default {
       Router.push({ path: "/login" });
     },
     flogout() {
-      Router.push({ path: "/login" });
       localStorage.removeItem("token");
+      Router.push({ path: "/login" });
       window.location.reload();
     }
   }

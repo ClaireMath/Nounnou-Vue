@@ -77,17 +77,7 @@ export default {
           // alert(err)
         });
     },
-    //   recupChat(id_chat) {
-    //      this.axios
-    //      .get(this.urlC + id_chat)
-    //      .then((res) => {
-    //    this.chat = res.data;
-    //    console.log(this.chat);
-    //  })
-    //  .catch(err => {
-    //    // console.log(err)
-    //  })
-    //    },
+    
     recupMaitre(idToken) {
       this.axios
         .get(this.urlM + idToken)
@@ -127,18 +117,16 @@ export default {
           this.garde = res.data;
           // console.log(res.data.garde.idChat);
 
-          this.axios
-            .post(this.url3, {
-              nounou: this.nounou,
-              maitre: this.maitre,
-              garde: res.data
-            })
+      this.axios
+          .post(this.url3, {nounou: this.nounou, maitre: this.maitre, garde: res.data})
+          
             .then(res => {
               if (res.data.hasOwnProperty("error")) {
                 // console.log(res.data.error);
               }
               // console.log(res.data);
               this.$router.push("/");
+              alert("Un e-mail de demande de garde vient d'être envoyé.")
             })
             .catch(err => {
               alert(err);
