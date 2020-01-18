@@ -116,21 +116,22 @@ tr {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100px;
+  margin-bottom: 10px;
 }
 th {
-  height: 100px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 td {
-  height: 100px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+img {
+  border-radius: 15px;
 }
 #ctn {
   display: flex;

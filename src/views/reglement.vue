@@ -60,14 +60,16 @@ export default {
   /* justify-content: space-between; */
   background-color: whitesmoke;
 }
+.nounou, .proprio {
+  margin-top: 40px;
+}
 h1 {
   text-align: center;
   font-family: cursive, "sans serif";
-  margin-bottom: 10px;
 }
 h2 {
   font-family: cursive, "sans serif";
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 p,
 li {

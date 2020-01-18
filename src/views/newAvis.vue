@@ -120,7 +120,7 @@ export default {
         .post(this.urlA, this.avis)
         .then(() => {
           // console.log(res.data);
-          //  alert("Votre avis vient d'être posté.")
+          alert("Votre avis vient d'être posté.")
           this.$router.push("/");
         })
         .catch(() => {

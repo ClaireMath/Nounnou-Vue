@@ -43,12 +43,6 @@ export default {
 </script>
 
 <style scoped>
-/* .ctn {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-} */
 .sorties {
   padding : 10px;
   display: flex;
@@ -59,7 +53,6 @@ export default {
   width: 100%;
 }
 .text {
- /* text-align: center; */
   width: 95%;
   padding: 20px;
   font-family: "merienda one", cursive, sans-serif;
@@ -92,10 +85,9 @@ img {
 @media screen and (min-width: 481px) and (max-width: 768px) {
 .chatnoir {
   width: 50%;
-  height: 200px;
+}
 }
 
-}
 /* Téléphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
 .sorties {

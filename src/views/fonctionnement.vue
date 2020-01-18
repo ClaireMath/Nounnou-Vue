@@ -40,7 +40,6 @@ export default {
       flex-direction: column;
       justify-content: center;
       background-color: whitesmoke;
-      height:  50vh;
       text-align: justify;
   }
   h1 {
@@ -52,9 +51,5 @@ export default {
     font-family: cursive, 'sans serif';
     margin-bottom: 10px;
   }
-  /* Téléphone */
-@media screen and (min-width: 320px) and (max-width: 480px) {
-.bigctn {
-      height:  80vh;
-  }}
+
 </style>

@@ -336,14 +336,14 @@ Petit mot de la nounou :</textarea
               v-show="ban"
               @click="banUnBanF"
               type="button"
-              class="btn"
+              class="btn btn1"
               value="Bannir cet utilisateur"
             />
             <input
               v-show="unBan"
               @click="banUnBanF"
               type="button"
-              class="btn"
+              class="btn btn1"
               value="Retirer le statut 'banni'"
             />
           </div>
@@ -352,14 +352,14 @@ Petit mot de la nounou :</textarea
               v-show="makeAdmin"
               @click="makeUnMakeAdminF"
               type="button"
-              class="btn"
+              class="btn btn1"
               value="Convertir en admin"
             />
             <input
               v-show="unMakeAdmin"
               @click="makeUnMakeAdminF"
               type="button"
-              class="btn"
+              class="btn btn1"
               value="Retirer le statut admin"
             />
           </div>

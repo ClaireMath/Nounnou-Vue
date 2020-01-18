@@ -10,7 +10,15 @@
           required
           readonly
         />
-
+ <div class="divphoto">
+              <img
+                v-if="chat.photo"
+                :src="chat.photo"
+                class="uploading-image"
+                width="100%"
+              />
+              <img v-else :src="photo" class="uploading-image" width="100%" />
+            </div>
         <div class="input">
           <div class="radio">
             <div class="oui">
@@ -210,7 +218,7 @@ Décrivez-vous, votre expérience avec les chats ou les animaux en général, po
           </div>
         </div>
         <div class="indication"  v-show="user">
-          <p>Si vous souhaitez proposez de garder ce chat, vous pouvez contacter directement son propriétaire sur son adresse e-mail.
+          <p>Si vous souhaitez proposer de garder ce chat, vous pouvez contacter directement son propriétaire sur son adresse e-mail.
           </p>
         </div>
         <!-- <input
@@ -426,6 +434,9 @@ form {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+img {
+  border-radius: 15px;
 }
 label {
   margin-top: 12px;

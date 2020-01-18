@@ -60,7 +60,7 @@
             </div>
           </div>
 
-          <p>J'ai :</p>
+          <p class="jai">J'ai :</p>
           <select v-model="maitre.nombre_de_chats" required>
             <option value="1">un chat</option>
             <option value="2">deux chats</option>
@@ -461,7 +461,6 @@ form {
 .ctnchamps {
   /* background-color: lightslategray; */
   width: 100%;
-  height: 230px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -478,6 +477,12 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.jai {
+  margin-top: 30px;
+}
+img {
+  border-radius: 15px;
 }
 .chat {
   /* background-color: #ff2d95; */
@@ -521,9 +526,9 @@ textarea {
   align-items: center;
 }
 .divphoto {
-  width: 40%;
+  width: 90%;
   display: flex;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   display: flex;
 }
 
@@ -578,7 +583,8 @@ input {
 .ctnchamps {
   display: flex;
   flex-direction: column;
-  height: 380px;
+  /* height: 380px; */
+  margin-top: 40px;
 }
 
 .smallBoxNou h1 {
@@ -613,12 +619,10 @@ input {
   .ctnchamps {
     /* background-color: lightslategray; */
     width: 100%;
-    height: 400px;
   }
   .chat {
     /* background-color: #ff2d95; */
     width: 100%;
-    height: 1050px;
     padding: 20px;
     display: flex;
     flex-direction: column;
