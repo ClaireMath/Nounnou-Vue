@@ -38,14 +38,14 @@
           <td class="hidden">{{ data.chat.idChat }}</td>
           <td>{{ data.prenom }}</td>
           <td>{{ data.ville }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.description }}</td>
+          <td class="email">{{ data.email }}</td>
 
           <td>
             <button v-on:click="learnmoreM(data)" class="btn">
               En savoir plus
             </button>
             <img
+              v-on:click="learnmoreM(data)"
               src="../assets/user.png"
               title="Mon profil"
               alt="mon compte"
@@ -178,6 +178,9 @@ img {
     display: block;
   }
   .photo {
+    display: none;
+  }
+  .email {
     display: none;
   }
 }

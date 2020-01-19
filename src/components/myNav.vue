@@ -11,6 +11,9 @@
     <p to="/login" v-if="logout" @click="flogout" class="co tel">
       Se deconnecter
     </p>
+    <!-- <p to="/admin" v-if="admin" @click="fadmin" class="co tel">
+      Page Admin
+    </p> -->
 
     <p v-if="logout" @click="showprofile" class="tel">Mon profil</p>
 
@@ -37,7 +40,7 @@ export default {
     return {
       user: {},
       login: null,
-      logout: null
+      logout: null,
     };
   },
   created: function() {
@@ -53,6 +56,7 @@ export default {
       this.logout = true;
     }
   },
+
   methods: {
     showprofile() {
       if (!localStorage.getItem("token")) {
@@ -76,6 +80,9 @@ export default {
       Router.push({ path: "/login" });
       localStorage.removeItem("token");
       window.location.reload();
+    },
+    fadmin() {
+      Router.push({ path: "/admin" });
     }
   }
 };

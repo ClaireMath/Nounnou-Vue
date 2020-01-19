@@ -528,8 +528,6 @@ textarea {
 .divphoto {
   width: 90%;
   display: flex;
-  /* margin-left: 20px; */
-  display: flex;
 }
 
 .btn {
@@ -583,7 +581,6 @@ input {
 .ctnchamps {
   display: flex;
   flex-direction: column;
-  /* height: 380px; */
   margin-top: 40px;
 }
 

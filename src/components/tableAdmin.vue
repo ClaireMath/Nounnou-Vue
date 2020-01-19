@@ -6,19 +6,57 @@
           <td>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
 
-        <tr v-for="data in resultats" :key="data.idNounou" v-else>
-          <td>{{ data.idNounou }}</td>
-          <td>{{ data.prenom }}</td>
-          <td>{{ data.nom }}</td>
-          <td>{{ data.ville }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.admin }}</td>
-          <td>{{ data.banni }}</td>
-
-          <td>
-            <button v-on:click="learnmoreN(data)" class="btn">
+ <tr class="titres" v-else>
+          <th class="tel id">ID</th>
+          <th class="tdCase">Prénom</th>
+          <th class="tdCase">Nom</th>
+          <th class="tdCase">Ville</th>
+          <th class="tel tdCase">E-mail</th>
+          <th class="tel adminBanni">Admin</th>
+          <th class="tel adminBanni">Banni</th>
+         <th>
+            <button class="btn tel">
               En savoir plus
             </button>
+          </th>
+          <th class="tdMore">
+            <img 
+              
+              src="../assets/more.png"
+              title="En savoir plus"
+              alt="En savoir plus"
+              width="20px"
+              class="more"
+            />
+          </th>
+          
+            
+          
+        </tr>
+
+        <tr v-for="data in resultats" :key="data.idNounou" >
+          <td class="tel id">{{ data.idNounou }}</td>
+          <td class="tdCase">{{ data.prenom }}</td>
+          <td class="tdCase">{{ data.nom }}</td>
+          <td class="tdCase">{{ data.ville }}</td>
+          <td class="tel tdCase">{{ data.email }}</td>
+          <td class="tel adminBanni">{{ data.admin }}</td>
+          <td class="tel adminBanni">{{ data.banni }}</td>
+
+          <td>
+            <button class="btn tel">
+              En savoir plus
+            </button>
+          </td>
+          <td class="tdMore">
+            <img 
+              v-on:click="learnmoreN(data)" 
+              src="../assets/more.png"
+              title="En savoir plus"
+              alt="En savoir plus"
+              width="20px"
+              class="more"
+            />
           </td>
         </tr>
       </tbody>
@@ -28,19 +66,58 @@
         <tr class v-if="resultats == 0">
           <td class>Il n'y a pas de résultat correspondant à vos critères.</td>
         </tr>
-
-        <tr v-for="data in resultats" :key="data.idMaitre" v-else id="ctn">
-          <td>{{ data.idMaitre }}</td>
-          <td>{{ data.prenom }}</td>
-          <td>{{ data.nom }}</td>
-          <td>{{ data.ville }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.admin }}</td>
-          <td>{{ data.banni }}</td>
-          <td>
-            <button v-on:click="learnmoreM(data)" class="btn">
+ 
+  <tr class="titres" v-else>
+          <th class="tel id">ID</th>
+          <th class="tdCase">Prénom</th>
+          <th class="tdCase">Nom</th>
+          <th class="tdCase">Ville</th>
+          <th class="tel tdCase">E-mail</th>
+          <th class="tel adminBanni">Admin</th>
+          <th class="tel adminBanni">Banni</th>
+         <th>
+            <button class="btn tel">
               En savoir plus
             </button>
+          </th>
+          <th class="tdMore">
+            <img 
+              
+              src="../assets/more.png"
+              title="En savoir plus"
+              alt="En savoir plus"
+              width="20px"
+              class="more"
+            />
+          </th>
+          
+            
+          
+        </tr>
+
+
+        <tr v-for="data in resultats" :key="data.idMaitre" id="ctn">
+          <td class="tel id">{{ data.idMaitre }}</td>
+          <td class="tdCase">{{ data.prenom }}</td>
+          <td class="tdCase">{{ data.nom }}</td>
+          <td class="tdCase">{{ data.ville }}</td>
+          <td class="tel tdCase">{{ data.email }}</td>
+          <td class="tel adminBanni">{{ data.admin }}</td>
+          <td class="tel adminBanni">{{ data.banni }}</td>
+          <td>
+            <button v-on:click="learnmoreM(data)" class="btn tel">
+              En savoir plus
+            </button>
+          </td>
+          <td class="tdMore">
+            <img 
+              v-on:click="learnmoreM(data)" 
+              src="../assets/more.png"
+              title="En savoir plus"
+              alt="En savoir plus"
+              width="20px"
+              class="more"
+            />
           </td>
         </tr>
       </tbody>
@@ -98,17 +175,16 @@ table {
 tr {
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: 50px;
 }
-td {
+td, th {
   padding: 10px;
   text-align: center;
-  height: 50px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+table, th, td {
+  border: 1px solid black;
 }
 #ctn {
   display: flex;
@@ -130,6 +206,7 @@ td {
   font-size: 0.9em;
   letter-spacing: 1px;
   padding: 0px;
+  border-bottom: 20px;
 }
 .btn:hover {
   color: #ffffff;
@@ -137,5 +214,35 @@ td {
   text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}
+.id {
+  width: 5%;
+}
+.tdCase {
+   width: 15%;
+ }
+ .adminBanni {
+   width: 10%
+ }
+.more {
+  display: none;
+}
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+ .tdPrenom {
+   width: 30%;
+ }
+ .more {
+  display: block;
+}
+.tdMore {
+  width: 10%;
+}
+.tdCase {
+  width: 30%;
+}
+ .tel {
+   display: none;
+ } 
 }
 </style>

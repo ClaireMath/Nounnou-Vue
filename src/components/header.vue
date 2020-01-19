@@ -41,6 +41,9 @@
         <button v-if="logout" @click="flogout" class="btn btn2">
           Se deconnecter
         </button>
+        <button v-if="admin" @click="displayBtnAdmin" class="btn btn2">
+          Page admin
+        </button>
       </div>
     </div>
     <div class="recherche">
@@ -83,6 +86,7 @@ export default {
     return {
       login: null,
       logout: null,
+      admin: null,
       user: {}
     };
   },
@@ -98,7 +102,15 @@ export default {
     } else {
       this.logout = true;
     }
-
+     // (pour l'apparition des boutons)
+    this.token = VueJwtDecode.decode(localStorage.getItem("token"));
+    if (this.token.admin == true) {
+      this.admin = true;
+      this.user = false;
+    } else {
+      this.admin = false;
+      this.user = true;
+    }
     // this.login = localStorage.getItem("token") ?false:true
     // this.logout = !localStorage.getItem("token") ?false:true
   },
@@ -142,6 +154,9 @@ export default {
       localStorage.removeItem("token");
       Router.push({ path: "/login" });
       window.location.reload();
+    },
+    displayBtnAdmin() {
+      Router.push({ path: "/admin" });
     }
   }
 };
