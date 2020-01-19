@@ -273,6 +273,7 @@ Décrivez-vous, votre expérience avec les chats ou les animaux en général, po
 import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 import Router from "../router";
+
 export default {
   name: "showMaitres",
   components: {

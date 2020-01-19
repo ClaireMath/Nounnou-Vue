@@ -84,6 +84,7 @@ export default {
   },
   data() {
     return {
+      token: {},
       login: null,
       logout: null,
       admin: null,
@@ -103,14 +104,16 @@ export default {
       this.logout = true;
     }
      // (pour l'apparition des boutons)
-    this.token = VueJwtDecode.decode(localStorage.getItem("token"));
+     if (!localStorage.getItem("token")) {
+       return 
+       } else {
+         this.token = VueJwtDecode.decode(localStorage.getItem("token"))
     if (this.token.admin == true) {
       this.admin = true;
-      this.user = false;
     } else {
       this.admin = false;
-      this.user = true;
     }
+       }
     // this.login = localStorage.getItem("token") ?false:true
     // this.logout = !localStorage.getItem("token") ?false:true
   },

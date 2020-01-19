@@ -19,7 +19,7 @@
         />
       </div>
       <input type="submit" value="Se connecter" class="btn" />
-      <p v-if="erreur">Erreur dans l'identifiant ou le mot de passe</p>
+      <p v-if="erreur" class="messageErreur">Erreur dans l'identifiant ou le mot de passe</p>
     </form>
   </div>
 </template>
@@ -123,5 +123,12 @@ p {
 input {
   border-radius: 10px;
   height: 30px;
+}
+/* Smartphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+.messageErreur {
+width: 35%;
+text-align: justify;
+}
 }
 </style>

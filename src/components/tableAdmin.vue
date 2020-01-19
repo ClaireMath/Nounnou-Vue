@@ -171,6 +171,8 @@ export default {
 }
 table {
   width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 tr {
   display: flex;
@@ -182,9 +184,6 @@ td, th {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-table, th, td {
-  border: 1px solid black;
 }
 #ctn {
   display: flex;
@@ -227,6 +226,15 @@ table, th, td {
 .more {
   display: none;
 }
+
+/* TABLETTE */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+.adminBanni {
+  display: none;
+   /* width: 0% */
+ }
+}
+
 /* Smartphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
  .tdPrenom {

@@ -55,7 +55,7 @@ export default {
           this.$router.push("/profilMaitre");
           window.location.reload();
         })
-        .catch(err => {});
+        .catch(() => {});
     }
   }
 };

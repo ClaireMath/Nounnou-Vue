@@ -29,7 +29,6 @@ import loginNou from "../components/loginNou";
 import loginMaitre from "../components/loginMaitre";
 import myfooter from "../components/myfooter";
 
-import VueJwtDecode from "vue-jwt-decode";
 export default {
   name: "login",
   components: {

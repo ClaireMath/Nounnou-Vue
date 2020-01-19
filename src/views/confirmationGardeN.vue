@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import VueJwtDecode from "vue-jwt-decode";
 import myfooter from "../components/myfooter";
 
 export default {
@@ -60,7 +59,7 @@ export default {
         });
     },
 
-    decline(event) {
+    decline() {
       this.axios
         .put(`http://localhost:6001/garde/decline/${this.garde.idGarde}`)
         .then(res => {
@@ -69,7 +68,7 @@ export default {
           alert("Vous avez décliné la garde");
           this.$router.push("/");
         })
-        .catch(err => {});
+        .catch(() => {});
     }
   }
 };

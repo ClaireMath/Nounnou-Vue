@@ -82,7 +82,7 @@ h1 {
 /* Téléphone*/
 @media screen and (min-width: 320px) and (max-width: 480px) {
   .monMain {
-    height: 600px;
+    height: 350px;
     background: url("../assets/3SnugglingCats.jpg") no-repeat center;
     background-size: 320px;
   }

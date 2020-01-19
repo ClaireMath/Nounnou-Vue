@@ -535,12 +535,14 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   /* background-color: aqua; */
 }
 .ctnchamps {
   /* background-color: lightslategray; */
   width: 100%;
-  height: 1100px;
+  /* height: 1100px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -568,6 +570,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 30px;
 }
 .results {
   width: 80%;
@@ -698,15 +701,16 @@ input {
   }
   .logement {
     width: 100%;
+    margin-top: 15px;
   }
 
   .ctnchamps {
     /* background-color: lightslategray; */
     width: 100%;
-    height: 1500px;
+    /* height: 1500px; */
   }
   .results {
-  width: 95%;
+    width: 95%;
 }
   p {
     text-align: justify;

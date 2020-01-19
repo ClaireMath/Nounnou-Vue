@@ -95,6 +95,7 @@ export default {
 <style scoped>
 .admin {
   width: 100%;
+  min-height: 500px;
   background-color: whitesmoke;
   color: black;
   font-family: "Merienda One", cursive, sans-serif;

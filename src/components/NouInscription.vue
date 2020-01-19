@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import VueJwtDecode from "vue-jwt-decode";
 
 export default {
   name: "NouInscription",
@@ -60,7 +59,7 @@ export default {
           this.$router.push("/profilNou");
           window.location.reload();
         })
-        .catch(err => {
+        .catch(() => {
           // console.log(err);
         });
     }

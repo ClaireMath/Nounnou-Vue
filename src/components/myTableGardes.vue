@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import VueJwtDecode from "vue-jwt-decode";
 
 export default {
   name: "myTableGardes",

@@ -38,18 +38,30 @@ export default {
       padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      /* justify-content: center; */
       background-color: whitesmoke;
       text-align: justify;
+      height: 400px;
   }
   h1 {
     text-align: center;
     font-family: cursive, 'sans serif';
-    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
   p {
     font-family: cursive, 'sans serif';
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
+  /* Téléphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+.bigctn {
+  height: 600px;
+}
+h1 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
 
 </style>

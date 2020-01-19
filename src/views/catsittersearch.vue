@@ -91,7 +91,7 @@ export default {
           this.resultatnounou = res.data;
           this.show = true;
         })
-        .catch(err => {});
+        .catch(() => {});
     }
   },
   // from: Route d'où je viens : the target Route Object being navigated to.
