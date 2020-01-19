@@ -31,8 +31,8 @@ export default {
   data() {
     return {
       idGarde: "",
-      url1: "http://localhost:6001/garde/accept/:id",
-      url2: "http://localhost:6001/garde/decline/:id"
+      url1: "http://localhost:6001/garde/accept/:idGarde",
+      url2: "http://localhost:6001/garde/decline/:idGarde"
     };
   },
   created: function() {
@@ -44,8 +44,10 @@ export default {
 
   methods: {
     accept() {
+      console.dir(this);
+
       this.axios
-        .put(`http://localhost:6001/garde/accept/${this.garde}`)
+        .put(`http://localhost:6001/garde/accept/${this.idGarde}`)
         .then(res => {
           // console.log(res);
           this.garde = res.data;
@@ -61,7 +63,7 @@ export default {
 
     decline() {
       this.axios
-        .put(`http://localhost:6001/garde/decline/${this.garde.idGarde}`)
+        .put(`http://localhost:6001/garde/decline/${this.idGarde}`)
         .then(res => {
           // console.log(res);
           this.garde = res.data;
@@ -123,6 +125,9 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  .btn {
+  width: 90%;
   }
 }
 </style>
